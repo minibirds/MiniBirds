@@ -3,7 +3,7 @@
 ## Entry Project Mini Birds API  
 작성자 : huewilliams  
 API 개요 : SNS 구현 프로젝트인 Mini Bird에 사용되는 API들을 정리한 문서 입니다.  
-![Mini Birds logo](./images/mini.png)
+![Mini Birds logo](./img/mini.png)
 
 # Authenticate
 
@@ -84,6 +84,80 @@ password | varchar(30) | 사용자 계정의 비밀번호
 
 <aside class="success">
 200 : 아이디에 맞는 사용자를 찾았습니다.
+</aside>
+
+<aside class="warning">
+404 : 아이디에 등록된 사용자가 존재하지 않습니다.
+</aside>
+
+# Edit  
+  
+## edit  
+```json
+[
+  {
+    "status": 200,
+    "message": "사용자의 정보를 수정했습니다."
+  },
+  {
+    "id": User.id,
+    "nickname": User.nickname,
+    "Sns_id": User.Sns_id,
+    "password": User.password,
+    "intro": User.intro,
+  }
+]
+```
+
+사용자의 아이디와 비밀번호를 통해 로그인한다.
+
+### HTTP Request
+
+`PUT http://example.com/edit/:<id>`
+
+### URL Parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+id | int | DB에서 사용자 검색을 위해 필요한 정보
+
+### Request Body
+
+Parameter | Type | Description
+--------- | ---- | -----------
+nickname | varchar(20) | 사용자의 변경할 닉네임 
+password | varchar(30) | 사용자의 변경할 비밀번호
+intro | varchar(30) | 사용자의 변경할 한줄소개
+
+<aside class="success">
+200 : 사용자의 정보를 수정했습니다.
+</aside>
+
+<aside class="warning">
+404 : 아이디에 등록된 사용자가 존재하지 않습니다.
+</aside>
+
+## delete
+```json
+{
+ "status": 200,
+ "message": "사용자를 삭제했습니다."
+}
+```
+
+사용자의 아이디와 비밀번호를 통해 사용자를 삭제한다.
+
+### HTTP Request
+
+`DELETE http://example.com/edit/:<id>/:<password>`
+
+### URL Parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+id | int | DB에서 사용자 검색을 위해 필요한 정보
+password | varchar(30) | 사용자 삭제시 해당 사용자가 맞는지 확인하기 위해 필요한 정보
+
+<aside class="success">
+200 : 사용자를 삭제했습니다.
 </aside>
 
 <aside class="warning">
