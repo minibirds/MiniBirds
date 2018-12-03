@@ -1,5 +1,5 @@
 # MiniBirds 개발일정
-![develop process](./images/New Sheet.png)
+![develop process](./images/schedule.png)
 # MiniBirds-FrontEnd
 
 ## 기능 명세
