@@ -1,8 +1,23 @@
-.header {
+.Header {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+  
+    overflow: hidden;
+}
+
+.main-header {
     width: 100%;
     height: 70px;
     box-shadow: 0px 3px 3px #A7A7A7;
 }
+
+.header-right{
+    float: right;
+    width: 15%;
+    height: 100%;
+  }
 
 .home {
     float: left;
@@ -13,29 +28,23 @@
     justify-content: center;
 }
 
-.header-right {
-    float: right;
-    width: 15%;
-    height: 100%;
-}
-
-.twit {
-    display: inline-block;
-    width: 45%;
-    height: 93%;
-    text-align: center;
-}
-
-.twit:hover {
-    border-bottom: 5px solid #D3B1F5;
-}
-
 .home-img {
     position: relative;
-    margin-top: 18px;
+    margin-top: 21px;
     width: 30px;
     height: 30px;
 }
+
+.home-letter {
+    display: inline-block;
+    color: #707070;
+    font-weight: 600;
+    padding: 0;
+    font-size: 21px;
+    margin-left: 5px;
+    margin-top: 23px;
+  }
+
 
 .main {
     position: absolute;
@@ -45,7 +54,29 @@
 }
 
 .logo-img {
-    margin-top: 10px;
-    width: 70px;
-    height: 50px;
+    margin-top: 15px;
+    width: 60px;
+    height: 45px;
+}
+
+.twit_box {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 70px;
+}
+
+.twit {
+    display: inline-block;
+    width: 45%;
+    height: 93%;
+    text-decoration: none;
+    color: #707070;
+    font-weight: bold;
+    text-align: center;
+}
+
+.twit:hover {
+    border-bottom: 5px solid #D3B1F5;
 }
