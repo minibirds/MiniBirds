@@ -36,3 +36,16 @@
     width: 30px;
     height: 30px;
 }
+
+.main {
+    position: absolute;
+    left: 47%;
+    width: 100px;
+    height: 70px;
+}
+
+.logo-img {
+    margin-top: 10px;
+    width: 70px;
+    height: 50px;
+}
