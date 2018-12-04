@@ -1,5 +1,9 @@
 # MiniBirds 개발일정
 ![develop process](./images/schedule.png)
+* 초록 : 공동 참여
+* 노랑 : FrontEnd
+* 보라 : BackEnd
+
 # MiniBirds-FrontEnd
 
 ## 기능 명세
