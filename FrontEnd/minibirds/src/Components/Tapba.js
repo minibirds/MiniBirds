@@ -1,7 +1,7 @@
 import React from 'react';
 import './CSS/Tapba.css';
 
-const Tapba = ({twitNumber, following, follower}) => {
+const Tapba = ({twitNumber, following, follower, twitlist, followlist}) => {
     return (
         <div className="main-box">
             <div className="letter-box">
@@ -12,11 +12,17 @@ const Tapba = ({twitNumber, following, follower}) => {
                         <td className="table-follower">팔로워</td>
                     </tr>
                     <tr className="second-table">
-                        <td className="twit-number">1122</td>
-                        <td className="following-number">4444</td>
-                        <td className="follower-number">2222</td>
+                        <td className="twit-number">{twitNumber}</td>
+                        <td className="following-number">{following}</td>
+                        <td className="follower-number">{follower}</td>
                     </tr>
                 </table>
+            </div>
+            <div className="twit-list">
+                {twitlist}
+            </div>
+            <div>
+                {followlist}
             </div>
         </div>
     );

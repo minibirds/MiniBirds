@@ -1,0 +1,60 @@
+.main-box {
+    width: 386px;
+    height: 358px;
+    border: solid 1px #707070;
+}
+
+.back-box {
+    width: 386px;
+    height: 93px;
+    background-color: #845EF7;
+}
+
+.btn-box {
+    margin-top: -15px;
+    width: 386px;
+    height: 100px;
+}
+
+.big-box {
+    margin: -30px;
+    width: 94px;
+    height: 94px;
+    background-color: #845EF7;
+    margin-left: 30px;
+}
+
+.small-box {
+    width: 78px;
+    height: 82px;
+    background-color: white;
+    margin: 0px 0px 0px 8px;
+}
+
+.follow-btn {
+    position: absolute;
+    left: 9%;
+    margin-top: -15px;
+    padding-top: 5px;
+    width: 156px;
+    height: 45px;
+    background-color: #845EF7;
+    border-radius: 100px;
+    color: white;
+    font-size: 20pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.user-name {
+    font-weight: bold;
+    font-size: 20pt;
+    margin: 10px 0px 0px 30px;
+}
+
+.user-intro {
+    font-size: 15pt;
+    color: #707070;
+    font-family: "맑은 고딕";
+    margin: 28px 43px 0px 43px;
+}

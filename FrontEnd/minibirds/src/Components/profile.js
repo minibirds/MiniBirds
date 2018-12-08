@@ -3,13 +3,13 @@ import editimg from './img/edit-img.png';
 import Tapba from './Tapba.js';
 import './CSS/profile.css';
 
-const Profile = ({id, name, img, edit, following, follower, twitList}) => {
+const Profile = ({id, name, profileImg, edit, following, follower, twitList}) => {
     return (
         <div>
             <div className="main-profile">
                 <div className="big-box">
                     <div className="small-box">
-                        <img src={img} />
+                        <img src={profileImg} />
                     </div>
                 </div>
                 <div className="text-box">
