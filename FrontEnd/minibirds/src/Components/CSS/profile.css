@@ -1,0 +1,74 @@
+.main-profile {
+    margin: 0 auto;
+    margin-top: 20px; 
+    margin-bottom: 20px;
+    width: 1400px;
+    height: 400px;
+    border: none;
+    box-shadow: 0px 2px 10px #707070;
+}
+
+.text-box {
+    display: inline-block;
+    width: 1000px;
+    height: 100%;
+    background-color: white;
+}
+
+.big-box {
+    display: inline-block;
+    float: left;
+    width: 400px;
+    height: 100%;
+    display: inline-block;
+    background-color: #845EF7;
+}
+
+.small-box {
+    display: inline-block;
+    margin: 18px 0px 0px 20px;
+    width: 360px;
+    height: 360px;
+    background-color: white;
+}
+
+.nick-name {
+    margin: 100px 0px 0px 20px;
+    font-size: 25pt;
+    font-family: "맑은 고딕";
+    font-weight: 600;
+}
+
+.user-id {
+    margin: 10px 0px 0px 20px;
+    font-family: "맑은 고딕";
+    font-size: 20pt;
+    color: #707070;
+    font-weight: 600;
+}
+
+.info {
+    margin: 30px 0px 0px 20px;
+    font-family: "맑은 고딕";
+    font-size: 15pt;
+    color: #707070;
+}
+
+.edit-btn {
+    display: flex;
+    float: right;
+    margin-top: 50px;
+}
+
+.edit-img { 
+    width: 35px;
+    height: 35px;
+}
+
+.edit-letter {
+    margin: 6px 66px 0px 10px;
+    font-size: 15pt;
+    font-family: "맑은 고딕";
+    color: #707070;
+    font-weight: 600;
+}
