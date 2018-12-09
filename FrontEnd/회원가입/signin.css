@@ -1,0 +1,69 @@
+html, body{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #B060FF;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+}
+#logo_box{
+  float: left;
+  width: 45%;
+  height: 80%; 
+  border-right: 2px solid #FFFFFF;
+}
+#img_box{
+  display: flex;
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 15%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+}
+#img_box img{
+  margin: 0 auto;  
+  width: 160px;
+  height: 140px;
+}
+#MINIBIRDS{
+  text-align: center;
+  font-size: 50px;
+  margin-top: 2%;
+}
+#input_wrapper{
+  margin: 0 auto;
+  float: right;
+}
+#sign{
+  margin-right: 5px;
+  text-align: right;
+  font-size: 45px;
+  margin-bottom: 15%;
+}
+.input{
+  float: right;
+  margin-left: 30px;
+  border: none;
+  width: 170px;
+  height: 30px;
+  border-radius: 5px;
+}
+.input_set{
+  font-weight: bold;
+  margin-top: 40px;
+}
+#signin{
+  margin-top: 30px;
+  font-weight: bold;
+  margin-left: 50%;
+  border: none;
+  width: 70px;
+  height: 70px;
+  background-color: #FFFFFF;
+  border-radius: 50px;
+  color: #B060FF;
+}
