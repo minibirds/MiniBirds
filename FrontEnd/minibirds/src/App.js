@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import Followlist from './Components/followlist.js';
-
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import SignPage from './Components/SignPage.js';
+import Signlogo from './Components/Signlogo.js';
+import Signin from './Components/Signin.js';
 
 class App extends Component {
   render() {
     return (
       <div>
-        <Followlist />
+        <SignPage left={<Signlogo />} right={<Signin />} />
       </div>
     );
   }

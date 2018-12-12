@@ -1,0 +1,26 @@
+.profile-box {
+    display: inline-block;
+    width: 900px;
+    height: 100%;
+    border-right: solid 3px #ffffff;
+}
+
+.profile-img {
+    position: relative;
+    top: 12%;
+    left: 10%;
+    width: 440px;
+    height: 440px;
+    background-color: #ffffff;
+    border: solid 30px #845EF7;   
+}
+
+.img-edit {
+    width: 405px;
+    position: relative;
+    top: 20%;
+    left: 15%;
+    color: white;
+    font-size: 40pt;
+    border-bottom: solid 1px #ffffff;
+}

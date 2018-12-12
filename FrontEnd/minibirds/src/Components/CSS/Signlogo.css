@@ -1,0 +1,22 @@
+.img-box {
+    display: flex;
+    align-items: center;
+    margin: 12% 0 0 10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
+.img-box img {
+    margin: 0 auto;  
+    width: 320px;
+    height: 280px;
+}
+
+.minibirds {
+    font-size: 100px;
+    margin: 2% 0 0 10%;
+    color: #FFFFFF;
+}
+

@@ -1,9 +1,8 @@
 import React from 'react';
 import editimg from './img/edit-img.png';
-import Tapba from './Tapba.js';
 import './CSS/profile.css';
 
-const Profile = ({id, name, profileImg, edit, following, follower, twitList}) => {
+const Profile = ({id, name, profileImg, edit, following, follower, twitList, info}) => {
     return (
         <div>
             <div className="main-profile">
@@ -13,16 +12,15 @@ const Profile = ({id, name, profileImg, edit, following, follower, twitList}) =>
                     </div>
                 </div>
                 <div className="text-box">
-                    <div className="nick-name">히히낙낙</div>
-                    <div className="user-id">@dsasds</div>
-                    <div className="info">퉤ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ</div>
+                    <div className="nick-name">{name}히히낙낙</div>
+                    <div className="user-id">{id}@dsasds</div>
+                    <div className="info">{info}퉤ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ</div>
                     <div className="edit-btn">
                         <img src={editimg} alt="수정" className="edit-img" />
                         <div className="edit-letter">프로필 수정하기</div>
                     </div>
                 </div>
             </div>
-            <Tapba />
         </div>
     );
 }

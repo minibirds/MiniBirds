@@ -1,0 +1,59 @@
+.input-wrapper {
+    position: relative;
+    top: 10%;
+    margin: auto;
+    width: 700px;
+    height: 50%;
+}
+
+.sign {
+    margin-left: 17%;
+    text-align: center;
+    font-size: 80px;
+    color: #ffffff;
+}
+
+.input-table {
+    margin: 10% 0 0 10%;
+}
+
+.input {
+    margin: 0 0 48px 59px;
+    border: none;
+    font-size: 16pt;
+    color: #707070;
+    font-family: "맑은 고딕";
+    width: 380px;
+    height: 60px;
+    border-radius: 10px;
+    outline: none;
+}
+
+.input_set {
+    margin-top: -40px;
+    font-size: 30px;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.signin-btn{
+    position: relative;
+    left: 48%;
+    margin-top: 60px;
+    padding-top: 53px;
+    width: 140px;
+    height: 88px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18pt;
+    background-color: #FFFFFF;
+    border-radius: 100px;
+    color: #B060FF;
+}
+
+.error {
+    margin: -35px 0 10px 60px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 22pt;
+} 
