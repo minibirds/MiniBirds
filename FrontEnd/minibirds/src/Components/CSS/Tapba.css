@@ -29,3 +29,10 @@ table {
     font-weight: bold;
     font-family: "맑은 고딕";
 }
+
+.twit-list {
+    margin: 0 auto;
+    margin-top: 40px;
+    width: 1200px;
+    height: 100px;
+}

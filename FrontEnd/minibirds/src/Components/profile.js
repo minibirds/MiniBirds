@@ -1,8 +1,8 @@
 import React from 'react';
-import editimg from './img/edit-img.png';
+import editimg from './Img/edit-img.png';
 import './CSS/profile.css';
 
-const Profile = ({id, name, profileImg, edit, following, follower, twitList, info}) => {
+const Profile = ({id, name, profileImg, edit, following, follower, twitList, info, Tapba}) => {
     return (
         <div>
             <div className="main-profile">
@@ -20,6 +20,9 @@ const Profile = ({id, name, profileImg, edit, following, follower, twitList, inf
                         <div className="edit-letter">프로필 수정하기</div>
                     </div>
                 </div>
+            </div>
+            <div>
+                {Tapba}
             </div>
         </div>
     );

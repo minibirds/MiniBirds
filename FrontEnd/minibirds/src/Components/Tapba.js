@@ -12,17 +12,17 @@ const Tapba = ({twitNumber, following, follower, twitlist, followlist}) => {
                         <td className="table-follower">팔로워</td>
                     </tr>
                     <tr className="second-table">
-                        <td className="twit-number">{twitNumber}</td>
-                        <td className="following-number">{following}</td>
-                        <td className="follower-number">{follower}</td>
+                        <td className="twit-number">{twitNumber}22</td>
+                        <td className="following-number">{following}3</td>
+                        <td className="follower-number">{follower}5</td>
                     </tr>
                 </table>
             </div>
             <div className="twit-list">
                 {twitlist}
             </div>
-            <div>
-                {followlist}
+            <div className="follow-list">
+                {followlist} 
             </div>
         </div>
     );
