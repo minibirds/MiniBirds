@@ -1,0 +1,54 @@
+.tweet-profile-img{
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+  display: inline-block;
+}
+
+.tweet{
+  width: 900px;
+  height: 230px;
+  border: 1px solid #707070;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 120px;
+  background-color: white;
+}
+
+.tweet-header{
+  height: 60%;
+  margin: 20px 50px 0px 50px;
+}
+
+.text-tweet{
+  width: 85%;
+  height: 120px;
+  border: 1px solid #845EF7;
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+  float: right;
+  font-size: 20px;
+} 
+
+.tweet-footer{
+  margin-top: 15px;
+}
+
+.btn-gallery{
+  width: 40px;
+  margin-left: 150px;
+}
+
+.btn-tweet{
+  width: 100px;
+  height: 40px;
+  background-color: white;
+  color: #845EF7;
+  border: 1px solid #845EF7;
+  font-size: 20px;
+  border-radius: 5px;
+  float: right;
+  margin-right: 50px;
+}
