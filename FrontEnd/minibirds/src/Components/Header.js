@@ -1,7 +1,7 @@
 import React from 'react';
 import './CSS/Header.css';
-import Home from './Img/home-button.png'
-import logo from './Img/MiniBirds-Logo.png'
+import Home from './img/home-button.png'
+import logo from './img/MiniBirds-Logo.png'
 
 const Header = ({onTwit, logOut, onKeyPress, Form}) => {
     return (
