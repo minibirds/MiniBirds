@@ -1,8 +1,15 @@
 .App {
-  background-color: #F2F2F2;
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
-  overflow: hidden;
+}
+
+.main-tweet{
+  display: inline-block;
+  width: 850px;
+}
+
+*:focus{
+  outline: none;
 }
