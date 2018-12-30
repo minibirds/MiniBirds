@@ -33,3 +33,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+/* a 태그 기본 값 초기화 */
+a {
+  all: unset;
+  cursor: pointer;
+}
