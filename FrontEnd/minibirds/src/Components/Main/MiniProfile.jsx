@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import Logo from '../img/MiniBirds-Logo.png'
-import './MiniProfile.css'
+import ProfileImg from '../img/profile-img-default.png'
+import './MiniProfile.css';
+import {Link} from 'react-router-dom';
+
 
 class MiniProfile extends Component {
   constructor(props) {
@@ -10,13 +12,16 @@ class MiniProfile extends Component {
   render() { 
     return ( 
       <div className="main-profile">
-        <div className="upper-profile">
-          <img className="upper-img" src={Logo} alt="Profile_Photo" />
-          <span className="upper-text">
-            <div className="upper-name">미니버드 공식계정</div>
-            <div className="upper-id">@mini_birds_twt</div>
-          </span>
-        </div>
+        <Link to='/mypage'>
+          <div className="upper-profile">
+            <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
+            <span className="upper-text">
+              <div className="upper-name">미니버드 공식계정</div>
+              <div className="upper-id">@mini_birds_twt</div>
+            </span>
+          </div>
+        </Link>
+        
         <div className="lowwer-profile">
           <span className="lowwer-tweet">
             <div className="lowwer-title">트윗</div>
