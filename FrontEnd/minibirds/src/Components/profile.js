@@ -1,10 +1,10 @@
 import React from 'react';
-import editimg from './Img/edit-img.png';
+import editimg from './img/edit-img.png';
 import './CSS/profile.css';
 
 const Profile = ({id, name, profileImg, edit, following, follower, twitList, info, Tapba}) => {
     return (
-        <div>
+        <React.Fragment>
             <div className="main-profile">
                 <div className="big-box">
                     <div className="small-box">
@@ -24,7 +24,7 @@ const Profile = ({id, name, profileImg, edit, following, follower, twitList, inf
             <div>
                 {Tapba}
             </div>
-        </div>
+        </React.Fragment>
     );
 }
 
