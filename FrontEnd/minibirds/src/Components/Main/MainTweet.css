@@ -1,18 +1,15 @@
 .tweet-profile-img{
   width: 80px;
   height: 80px;
-  border: 1px solid black;
   display: inline-block;
 }
 
 .tweet{
-  width: 900px;
+  width: 100%;
   height: 230px;
   border: 1px solid #707070;
-  border-radius: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 120px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   background-color: white;
 }
 
@@ -39,6 +36,7 @@
 .btn-gallery{
   width: 40px;
   margin-left: 150px;
+  cursor: pointer;
 }
 
 .btn-tweet{
@@ -51,4 +49,10 @@
   border-radius: 5px;
   float: right;
   margin-right: 50px;
+  cursor: pointer;
+}
+
+.btn-tweet:hover{
+  background-color: #845EF7;
+  color: white;
 }
