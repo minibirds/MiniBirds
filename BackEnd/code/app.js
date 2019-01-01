@@ -5,7 +5,10 @@ const morgan = require('morgan');
 const session = require('express-session');
 
 const indexRouter = require('./routes');
+const sequelize = require('./models').sequelize;
+
 const app = express();
+sequelize.sync();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine','pug');
@@ -15,11 +18,11 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
-app.use(cookieParser('boostrun'));
+app.use(cookieParser('entry'));
 app.use(session({
     resave: false,
     saveUninitialized : false,
-    secret : 'boostrun',
+    secret : 'entry',
     cookie : {
         httpOnly : true,
         secure : false,
