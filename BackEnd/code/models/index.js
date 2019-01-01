@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const db = {};
 
 const sequelize = new Sequelize(
-    'mini birds', //db 이름
+    'minibirds', //db 이름
     'root', // 이름명
     'espada8012!', // 비밀번호
     {
