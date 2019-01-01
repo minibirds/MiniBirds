@@ -11,8 +11,8 @@ class MiniProfile extends Component {
   }
   render() { 
     return ( 
-      <div className="main-profile">
-        <Link to='/mypage'>
+      <div className="mini__main--profile">
+        <Link to='/mypage'>          
           <div className="upper-profile">
             <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
             <span className="upper-text">
