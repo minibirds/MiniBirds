@@ -26,7 +26,8 @@ class SignMain extends Component {
                         <SignPage left={
                             <Switch>
                                 <Route exact path='/edit' Component={Edit} />
-                                <Route exact path='/signin' path='/signup' Component={Signlogo} />
+                                <Route exact path='/signin' Component={Signlogo}/>
+                                <Route exact path='/signup' Component={Signlogo} />
                             </Switch>
                         } right={
                             <Switch>
