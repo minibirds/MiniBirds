@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './MainTweet.css'
-import ProfileImg from '../Img/profile-img-default.png'
-import Gallery from '../Img/gallery.png'
+import ProfileImg from '../img/profile-img-default.png'
+import Gallery from '../img/gallery.png'
 
 class MainTweet extends Component {
   constructor(props) {

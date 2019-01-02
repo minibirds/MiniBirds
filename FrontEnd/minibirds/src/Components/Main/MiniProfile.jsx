@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProfileImg from '../Img/profile-img-default.png'
+import ProfileImg from '../img/profile-img-default.png'
 import './MiniProfile.css';
 import {Link} from 'react-router-dom';
 

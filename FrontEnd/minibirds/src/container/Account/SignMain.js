@@ -6,7 +6,6 @@ import Signlogo from '../../Components/signup_in/Signlogo';
 import Signup from '../../Components/signup_in/Signup';
 import Edit from '../../Components/Edit/Edit';
 import Editimg from '../../Components/Edit/Editimg';
-import * as service from '../../service/get.js';
 
 class SignMain extends Component {
 
