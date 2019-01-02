@@ -2,8 +2,7 @@ import React from 'react';
 
 const MainService = ({}) => {
     return(
-        <div>
-            
+        <div className="main-service">
         </div>
     )
 }
