@@ -1,5 +1,6 @@
 import React from 'react';
-import './CSS/Signup.css';
+import './Signup.css';
+import { Link } from 'react-router-dom';
 
 const Signup = ({}) => {
     return (
@@ -10,7 +11,7 @@ const Signup = ({}) => {
                     <tr>
                         <td><div className="input-id">ID</div></td>
                         <td><input className="input" /></td>
-                        <td rowSpan="2"><div className="log-in">로그인</div></td>
+                        <td rowSpan="2"><Link to="/"><div className="log-in">로그인</div></Link></td>
                     </tr>                    
                     <tr>
                         <td><div className="input-pw">PW</div></td>
@@ -20,7 +21,7 @@ const Signup = ({}) => {
             </div>
             <div className="info-box">
                 <div className="no-account">계정이 없으신가요?</div>
-                <div className="go-signin">회원가입</div>
+                <Link to="/siginin"><div className="go-signin">회원가입</div></Link>
             </div>
             <div className="error-code">아이디 또는 비밀번호가 잘못되었습니다.</div>
         </div>

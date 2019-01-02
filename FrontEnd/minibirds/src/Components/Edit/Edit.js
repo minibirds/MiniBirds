@@ -1,5 +1,5 @@
 import React from 'react';
-import './CSS/Edit.css';
+import './Edit.css';
 
 const Edit = ({id}) => {
     return (
@@ -7,7 +7,7 @@ const Edit = ({id}) => {
             <table>
                 <tr>
                     <td><div className="input-letter">아이디</div></td>
-                    <td><div className="input-info">{id}dad</div></td>
+                    <td><div className="input-info">{id}</div></td>
                 </tr>
                 <tr>
                     <td><div className="input-letter">현재 비밀번호</div></td>

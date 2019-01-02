@@ -1,5 +1,5 @@
 import React from 'react'
-import './CSS/followlist.css'
+import './followlist.css'
 
 const Followlist = ({profileImg, follow, nickName, Info}) => {
     return (
