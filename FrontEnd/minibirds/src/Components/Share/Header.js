@@ -1,9 +1,9 @@
 import React from 'react';
 import './Header.css';
-import Home from './img/home-button.png'
-import logo from './img/MiniBirds-Logo.png'
+import Home from '../Img/home-button.png';
+import logo from '../Img/MiniBirds-Logo.png';
 
-const Header = ({onTwit, logOut, onKeyPress, Form}) => {
+const Header = ({onTwit, logOut, onKeyPress}) => {
     return (
         <div>
             <div className="main-header">
@@ -20,9 +20,6 @@ const Header = ({onTwit, logOut, onKeyPress, Form}) => {
                         <li className="twit" logOut={logOut}>로그아웃</li>
                     </ul>
                 </div>
-            </div>
-            <div>
-                {Form}
             </div>
         </div>
     );

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './Twitlist.css';
-import mention from '../img/speech-bubble.png';
-import heart from '../img/heart.png';
-import like from '../img/like.png';
-import ProfileImg from '../img/profile-img-default.png';
+import mention from '../Img/speech-bubble.png';
+import heart from '../Img/heart.png';
+import like from '../Img/like.png';
+import ProfileImg from '../Img/profile-img-default.png';
 
 class Twitlist extends Component {
   constructor(props) {
