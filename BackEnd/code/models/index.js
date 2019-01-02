@@ -20,7 +20,7 @@ db.User = require('./User')(sequelize, Sequelize);
 db.Post = require('./Post')(sequelize, Sequelize);
 db.Mention = require('./Mention')(sequelize, Sequelize);
 db.Follower = require('./Follower')(sequelize, Sequelize);
-db.Following = require('./Following')(sequelize. Sequelize);
+db.Following = require('./Following')(sequelize, Sequelize);
 
 // User 과 Post 1 : N 관계 지정
 db.User.hasMany(db.Post, { foreignKey: 'userId', sourceKey: 'id' });
