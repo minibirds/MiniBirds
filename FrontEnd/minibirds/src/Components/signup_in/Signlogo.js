@@ -1,6 +1,6 @@
 import React from 'react'
 import './Signlogo.css';
-import logo from './img/MiniBirds-Logo.png';
+import logo from '../img/MiniBirds-Logo.png';
 
 const Signlogo = ({}) => {
     return (
