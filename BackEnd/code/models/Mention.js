@@ -1,7 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('Mention', {
         mentId: {
-            type: DataTypes.STRING(20),
+            type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true
         },
