@@ -52,6 +52,34 @@ router.get('/signIn/:id/:password', async (req, res)=> {
     }
 });
 
+router.post('/signUp', async (req, res)=>{
+    let err = {};
+    try {
+        const user = await User.findOne({
+            where: {id: req.body.id}
+        });
+        if (user) {
+            err.message = '아이디가 중복된 사용자가 존재합니다.';
+            err.status = 405;
+            throw err;
+        } else {
+            let result = await User.create({
+                id: req.body.id,
+                password: req.body.password,
+                nickname: req.body.nickname
+            });
+            res.json({
+                result
+            })
+        }
+    } catch (err) {
+        res.json({
+            status: err.status,
+            message: err.message
+        })
+    }
+});
+
 // 토큰이 발급되었고 유효한지 검사하는 API
 router.get('/token', async (req, res)=>{
    let token = req.cookies.sign;
@@ -76,5 +104,6 @@ router.get('/token', async (req, res)=>{
        })
    }
 });
+
 
 module.exports = router;
