@@ -1,9 +1,11 @@
 let express = require('express');
 let User = require('../models').User;
+const { verify } = require('./middlewares');
 let router = express.Router();
 
 let jwt = require('jsonwebtoken');
 
+// id, password 로 인증받아 토큰을 발급받는 API
 router.get('/signIn/:id/:password', async (req, res)=> {
     let err = {};
     try {
@@ -21,7 +23,7 @@ router.get('/signIn/:id/:password', async (req, res)=> {
                 });
             }
             else {
-                err.message = '비밀번호가 일치하지 않습니다'
+                err.message = '비밀번호가 일치하지 않습니다';
                 throw err;
             }
             function sign(user) {
@@ -48,6 +50,31 @@ router.get('/signIn/:id/:password', async (req, res)=> {
             message: err.message
         })
     }
+});
+
+// 토큰이 발급되었고 유효한지 검사하는 API
+router.get('/token', async (req, res)=>{
+   let token = req.cookies.sign;
+   let err = {};
+   if(token) {
+       try {
+           let result = await verify(token, 'entry_minibird');
+           if(result < 0) throw err;
+           res.json(result);
+       } catch (err) {
+               res.json({
+                   status: 401,
+                   message: err.message
+               });
+               // 401 , invalid signature (비인증된 토큰)
+               // 401 , jwt expired (토큰 유효기간 만료)
+       }
+   } else {
+       res.json({
+           'status':404,
+           'message':'JWT token 이 존재하지 않습니다'
+       })
+   }
 });
 
 module.exports = router;
