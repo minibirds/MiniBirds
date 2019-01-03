@@ -4,5 +4,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(20),
             primaryKey: true
         }
+    },{
+        timestamps: false
     })
 };
