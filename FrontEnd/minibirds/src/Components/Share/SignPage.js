@@ -4,7 +4,7 @@ import './SignPage.css';
 const SignPage = ({left, right}) => {
     return (
         <div className="background-box">
-            <div className="main-box">
+            <div className="sign-container">
                 <div className="left-component">
                     {left}
                 </div>
