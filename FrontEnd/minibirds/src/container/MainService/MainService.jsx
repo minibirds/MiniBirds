@@ -3,6 +3,7 @@ import Main from '../MainPage/Main';
 import Mypage from '../Mypage/Mypage';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Header from '../../Components/Share/Header';
+import Twit from '../../Components/Main/MainTweet';
 
 const MainService = ({}) => {
     return(

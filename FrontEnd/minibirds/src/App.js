@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import SignMain from './container/Account/SignMain';
+import SignMain from './container/Account/SignMain.jsx';
 import MainService from './container/MainService/MainService';
 
 class App extends Component {
