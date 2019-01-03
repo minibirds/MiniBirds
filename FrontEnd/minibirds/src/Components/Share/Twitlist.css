@@ -89,6 +89,7 @@
 .mention-img {
     width: 37px;
     height: 37px;
+    cursor: pointer;
 }
 
 .mention-number {
@@ -102,6 +103,14 @@
     width: 37px;
     height: 37px;
     margin-left: 50px;
+    cursor: pointer;
+}
+
+.like-img{
+    width: 37px;
+    height: 37px;
+    margin-left: 50px;
+    cursor: pointer;
 }
 
 .heart-number {

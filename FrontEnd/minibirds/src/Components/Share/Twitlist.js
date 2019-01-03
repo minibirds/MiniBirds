@@ -5,6 +5,17 @@ import heart from '../img/heart.png';
 import like from '../img/like.png';
 import TwitProfileImg from '../img/profile-img-default.png';
 
+const ChangeHeartImg = () => {
+  const HeartStatus = document.getElementById("heart-img");
+  if (HeartStatus.className === "heart-img") {
+    HeartStatus.src = like;
+    HeartStatus.className= 'like-img';
+  }
+  else {
+    HeartStatus.src = heart;
+    HeartStatus.className = 'heart-img';
+  }
+}
 
 const Twitlist = ({profileImg, date, nickName, poto, content, mentionNum, heartNum}) => {
   return (
@@ -24,12 +35,12 @@ const Twitlist = ({profileImg, date, nickName, poto, content, mentionNum, heartN
         </div>
         <div className="under-box">
           <div className="twit-img">
-            <img src={poto} />
+            <img src={poto} alt=''/>
           </div>
             <div className="emoji-box">
-              <img src={mention} className="mention-img" />
+              <img src={mention} className="mention-img" alt='' />
               <div className="mention-number">{mentionNum}23</div>
-              <img src={heart} className="heart-img" />
+              <img src={heart} className="heart-img" id="heart-img" onClick={()=>ChangeHeartImg()} alt='' />
               <div className="heart-number">{heartNum}231</div>
           </div>
         </div>                                                                       
