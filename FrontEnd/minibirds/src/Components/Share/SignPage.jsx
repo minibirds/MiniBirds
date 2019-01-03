@@ -23,7 +23,7 @@ const SignPage = () => {
                             </div>
                             <div className="right-component">
                                 <Switch>
-                                    <Route exact path='/signin' component={Signin} />
+                                    <Route exact path='/siginin' component={Signin} />
                                     <Route exact path='/signup' component={Signup} />
                                     <Route exact path='/edit' component={Edit} />
                                 </Switch>

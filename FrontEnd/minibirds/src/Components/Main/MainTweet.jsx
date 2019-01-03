@@ -21,7 +21,7 @@ class MainTweet extends Component {
           <img className="btn-gallery" src={Gallery} alt="gallery"></img>
           <input className="btn-tweet" type="button" value="트윗하기"/>
         </div>
-        
+      
       </div>
      );
   }
