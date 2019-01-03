@@ -1,9 +1,42 @@
 const express = require('express');
-
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 let User = require('../models').User;
 let Post = require('../models').Post;
 const { verify } = require('./middlewares');
 let router = express.Router();
+
+fs.readdir('uploads', (error)=>{
+    if (error) {
+        console.error('uploads 폴더가 없어 uploads 폴더를 서버의 디스크에 생성합니다');
+        fs.mkdirSync('uploads');
+    }
+});
+
+// 미들웨어 객체
+let upload = multer({
+    storage: multer.diskStorage({
+        // 파일 저장 경로 설정
+        destination(req, file, cb) {
+            cb(null, 'uploads/');
+        },
+        // 파일 이름 설정
+        filename(req, file, cb) {
+            // 파일 확장자 추출
+            const ext = path.extname(file.originalname);
+            cb(null, path.basename(file.originalname, ext) + new Date().valueOf() + ext);
+        },
+    }),
+    // 파일 사이즈 제한 설정
+    limits: {fileSize : 5 * 1024 * 1024}
+});
+
+router.post('/img', upload.single('img'), async (req, res)=> {
+//    console.log(req.file);
+    res.json({ url : `/img/${req.file.filename}`});
+});
+
 
 router.post('/:id', async (req, res)=>{
     let err = {};
@@ -37,6 +70,6 @@ router.post('/:id', async (req, res)=>{
             message: err.message
         })
     }
-})
+});
 
 module.exports = router;
