@@ -6,6 +6,7 @@ const session = require('express-session');
 
 const indexRouter = require('./routes');
 const authRouter = require('./routes/auth');
+const editRouter = require('./routes/edit');
 const sequelize = require('./models').sequelize;
 
 const app = express();
@@ -13,7 +14,7 @@ sequelize.sync();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine','pug');
-app.set('port', process.env.PORT || 6000);
+app.set('port', process.env.PORT || 5000);
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
@@ -32,6 +33,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
+app.use('/edit', editRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
 app.use((req, res, next)=>{
