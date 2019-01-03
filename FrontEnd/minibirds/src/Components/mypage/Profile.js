@@ -1,6 +1,5 @@
 import React from 'react';
 import editimg from '../img/edit-img.png';
-import { Link } from 'react-router-dom';
 import './profile.css';
 import MyProfileImg from '../img/profile-img-default.png';
 
@@ -14,10 +13,8 @@ const Profile = ({id, name, profileImg, info, Tapba}) => {
                     <div className="user-id">{id}@dsasds</div>
                     <div className="info">{info}퉤ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ</div>
                     <div className="info-modify-btn">
-                        <Link to='/account/edit'>
-                            <img src={editimg} alt="수정" className="edit-img" />
-                            <span className="edit-letter">프로필 수정하기</span>
-                        </Link>
+                        <img src={editimg} alt="수정" className="edit-img" />
+                        <span className="edit-letter">프로필 수정하기</span>
                     </div>
                 </div>
             </div>

@@ -18,12 +18,10 @@ class MainTweet extends Component {
         </div>
         
         <div className="tweet-footer">
-          <img className="btn-gallery" src={Gallery} alt="gallery">
           <input type="file" accept="image/*" style={{display: 'none'}} />
-          </img>
+          <img className="btn-gallery" src={Gallery} alt="gallery"></img>
           <input className="btn-tweet" type="button" value="트윗하기"/>
         </div>
-      
       </div>
      );
   }

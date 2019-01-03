@@ -3,7 +3,7 @@ import './followlist.css'
 
 const Followlist = ({profileImg, follow, nickName, Info}) => {
     return (
-        <React.Fragment>
+        <div>
             <div className="back-box"></div>
             <div className="btn-box">
                 <div className="big-box">
@@ -17,7 +17,7 @@ const Followlist = ({profileImg, follow, nickName, Info}) => {
                 <div className="user-name">{nickName}미미</div>
                 <div className="user-intro">{Info} ㅇㄴㅁ어ㅗㅓ놈너ㅗㅇ우아아아ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</div>
             </div>
-        </React.Fragment>
+        </div>
     );
 }
 
