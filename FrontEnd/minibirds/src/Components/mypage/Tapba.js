@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Tapba = ({twitNumber, following, follower, twitlist, followlist}) => {
     return (
-        <div className="main-box">
+        <div className="tap-bar">
             <div className="letter-box">
                 <table className="letter-table">
                     <tr className="first-table">
