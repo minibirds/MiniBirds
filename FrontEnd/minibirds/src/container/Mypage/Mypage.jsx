@@ -4,6 +4,7 @@ import TabBar from '../../Components/mypage/Tapba';
 import TwitList from '../../Components/Share/Twitlist';
 import FollowList from '../../Components/mypage/Followlist';
 import './Mypage.css';
+import Header from '../../Components/Share/Header';
 
 class Mypage extends Component {
   constructor(props) {
@@ -13,7 +14,12 @@ class Mypage extends Component {
   render() { 
     return ( 
       <div className="mypage-container">
-
+        <Header/>
+        <Profile/>
+        <TabBar/>
+        <div className="mypage-selected-list">
+          <TwitList/>
+        </div>
       </div>
      );
   }
