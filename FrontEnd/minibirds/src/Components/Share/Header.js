@@ -6,10 +6,20 @@ import logo from '../img/MiniBirds-Logo.png';
 import {Link} from 'react-router-dom';
 import Twit from '../Main/MainTweet';
 
+const AppearTwitComponent = () => {
+    const TwitBackground = document.getElementById('small-twit-back');
+
+    if (TwitBackground.className === 'small-twit-back-on') {
+        TwitBackground.className = 'small-twit-back';
+    } else {
+        TwitBackground.className = 'small-twit-back-on';
+    }
+};
+
 const Header = ({onTwit, logOut, onKeyPress, Form}) => (
     <div>
-        <div className="small-twit-back" onClick={() => document.querySelector('small-twit-back').style.display = 'none'}>
-            <div className="small-twit-area">
+        <div className="small-twit-back" id="small-twit-back" onClick={() => AppearTwitComponent()}>
+            <div onClick={(e)=>e.stopPropagation()} className="small-twit-area">
                 <Twit />
             </div>
         </div>
@@ -25,7 +35,7 @@ const Header = ({onTwit, logOut, onKeyPress, Form}) => (
             </div>
             <div className="header-right">
                 <ul className="twit_box">
-                    <li className="twit" OnClick={() => document.querySelector('small-twit-back').style.display = 'flex'} >트윗하기</li>
+                    <li className="twit" onClick={() => AppearTwitComponent()} >트윗하기</li>
                     <li className="twit" logOut={logOut}>로그아웃</li>
                 </ul>
             </div>
