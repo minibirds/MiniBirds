@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 const Signin = ({}) => {
     return (
         <div className="input-wapper">
-            <div className="sign">SIGN UP</div>    
+            <div className="sign">SIGN IN</div>    
             <div className="input-box">
                 <table>
                     <tr>
