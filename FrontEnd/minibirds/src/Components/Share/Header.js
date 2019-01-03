@@ -3,6 +3,7 @@ import './Header.css';
 import Home from '../img/home-button.png';
 import logo from '../img/MiniBirds-Logo.png';
 import Twit from '../Main/MainTweet';
+import {Link} from 'react-router-dom';
 
 const AppearTwitComponent = () => {
     const TwitBackground = document.getElementById('small-twit-back');
@@ -22,10 +23,10 @@ const Header = ({onTwit, logOut, onKeyPress, Form}) => (
             </div>
         </div>
         <div className="main-header">
-            <div className="home">
+            <Link to="../" className="home">
                 <img src={Home} alt="홈" className="home-img" ></img> 
                 <div className="home-letter">홈</div>
-            </div>
+            </Link>
             <div className="main">
                 <img src={logo} alt="로고" className="logo-img"  onClick={() => window.location.reload()}></img>
             </div>
