@@ -5,7 +5,7 @@ import logo from '../img/MiniBirds-Logo.png';
 const Signlogo = ({}) => {
     return (
         <div className="logo-box">
-            <div className="img-box">
+            <div className="sign-logo">
                 <img src={logo} alt="미니버즈"/>
             </div>
             <div className="minibirds">MINIBIRDS</div>
