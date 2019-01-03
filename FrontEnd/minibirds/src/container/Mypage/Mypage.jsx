@@ -14,6 +14,7 @@ class Mypage extends Component {
   render() { 
     return ( 
       <div className="mypage-container">
+
         <Header/>
         <Profile/>
         <TabBar/>

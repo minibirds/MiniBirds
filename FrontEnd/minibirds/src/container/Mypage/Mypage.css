@@ -1,6 +1,7 @@
 .mypage-container{
   display: flex;
   flex-direction: column;
+  padding-bottom: 50px;
 }
 
 .mypage-selected-list{
