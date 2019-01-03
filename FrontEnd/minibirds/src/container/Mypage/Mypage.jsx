@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Profile from '../../Components/mypage/Profile';
 import TabBar from '../../Components/mypage/Tapba';
-import TwitList from '../../Components/Main/Twitlist';
+import TwitList from '../../Components/Share/Twitlist';
 import FollowList from '../../Components/mypage/Followlist';
 import './Mypage.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
