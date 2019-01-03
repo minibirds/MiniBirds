@@ -1,6 +1,5 @@
 import React from 'react';
 import './Header.css';
-import ProfileImg from '../img/profile-img-default.png'
 import Home from '../img/home-button.png';
 import logo from '../img/MiniBirds-Logo.png';
 import Twit from '../Main/MainTweet';
