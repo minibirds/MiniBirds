@@ -16,6 +16,7 @@
     font-size: 30px;
     position: absolute;
     right: 0px;     
+    top: -20px;
 }
 
 .delete-btn {
@@ -51,6 +52,8 @@
 }
 
 .date {
+    margin: 20px 0 0 500px;
+    margin-left: 500px;
     font-size: 20px;
     color: #666666;
 }
@@ -59,7 +62,7 @@
     position: relative;
     top: -54%;
     left: 150px;
-    width: 800px;
+    width: 700px;
     word-break: break-all;
 }
 

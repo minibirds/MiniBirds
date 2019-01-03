@@ -13,9 +13,9 @@ const Tapba = ({twitNumber, following, follower, twitlist, followlist}) => {
                         <Link exact to='/mypage/follower'><td className="table-follower">팔로워</td></Link>
                     </tr>
                     <tr className="second-table">
-                        <Link exact to='/mypage/twitlist'><td className="twit-number">{twitNumber}22</td></Link>
-                        <Link exact to='/mypage/following'><td className="following-number">{following}3</td></Link>
-                        <Link exact to='/mypage/follower'><td className="follower-number">{follower}5</td></Link>
+                        <Link exact to='/mypage/twitlist'><td className="twit-number">{twitNumber}0</td></Link>
+                        <Link exact to='/mypage/following'><td className="following-number">{following}0</td></Link>
+                        <Link exact to='/mypage/follower'><td className="follower-number">{follower}0</td></Link>
                     </tr>
                 </table>
             </div>
