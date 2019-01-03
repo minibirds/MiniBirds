@@ -17,16 +17,24 @@ const ChangeHeartImg = () => {
   }
 }
 
+const DeleteTwitList = () => {
+  const TwitList = document.getElementById('twit-content');
+
+  if (TwitList.className === 'twit-content') {
+    TwitList.className = 'twit-content-del';
+  }
+}
+
 const Twitlist = ({profileImg, date, nickName, poto, content, mentionNum, heartNum}) => {
   return (
-    <div className="twit-content">
+    <div className="twit-content" id="twit-content">
         <div className="above-box">
           <div className="content-box">
             <img className="twit-profile-img" src={TwitProfileImg} alt=''/>
             <div className="letter-box">
               <div className="user-name">{nickName}히히낙낙</div>
               <span className="date">{date}11월 4일</span>
-              <span className="delete-btn">X</span>
+              <span className="delete-btn" onClick={() => DeleteTwitList()}>X</span>
             </div>
           </div>
           <div className="letter-content-box">

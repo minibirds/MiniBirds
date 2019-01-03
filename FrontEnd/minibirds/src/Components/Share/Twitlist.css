@@ -6,6 +6,10 @@
     box-shadow: 0px 2px 10px #26262680;
 }
 
+.twit-content-del {
+    display: none;
+}
+
 .letter-box{
     display: inline-block;
     position: relative;
