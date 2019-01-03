@@ -7,6 +7,7 @@ const session = require('express-session');
 const indexRouter = require('./routes');
 const authRouter = require('./routes/auth');
 const editRouter = require('./routes/edit');
+const twitRouter = require('./routes/twit');
 const sequelize = require('./models').sequelize;
 
 const app = express();
@@ -19,7 +20,7 @@ app.set('port', process.env.PORT || 5000);
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
-app.use(express.urlencoded({ extended : false }));
+app.use(express.urlencoded({ extended : false , limit: '50mb'}));
 app.use(cookieParser('entry'));
 app.use(session({
     resave: false,
@@ -34,6 +35,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/edit', editRouter);
+app.use('/twit', twitRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
 app.use((req, res, next)=>{
