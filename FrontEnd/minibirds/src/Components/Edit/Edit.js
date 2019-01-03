@@ -26,7 +26,7 @@ const Edit = ({id}) => {
                     <td><textarea className="input-intro" /></td>
                 </tr>
             </table>
-            <div className="edit-btn">수정하기</div>
+            <div className="accept-edit-btn">수정하기</div>
         </div>
     );
 }
