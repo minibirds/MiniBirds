@@ -5,7 +5,7 @@ import MiniProfile from '../../Components/Main/MiniProfile';
 import TwitList from '../../Components/Share/Twitlist';
 import './Main.css';
 
-const Main = () =>{
+const Main = () => {
   return(
     <div className='main-page'>
       <MiniProfile/>
