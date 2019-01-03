@@ -9,8 +9,10 @@ const Header = ({onTwit, logOut, onKeyPress, Form}) => {
         <div>
             <div className="main-header">
                 <div className="home"  onClick={() => window.location.reload()}>
-                    <img src={Home} alt="홈" className="home-img" ></img>
-                    <div className="home-letter">홈</div>
+                    <Link to="../">
+                        <img src={Home} alt="홈" className="home-img" ></img> 
+                        <div className="home-letter">홈</div>
+                    </Link>
                 </div>
                 <div className="main">
                     <img src={logo} alt="로고" className="logo-img"  onClick={() => window.location.reload()}></img>

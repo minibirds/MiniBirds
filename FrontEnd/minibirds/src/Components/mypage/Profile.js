@@ -1,5 +1,5 @@
 import React from 'react';
-import editimg from './Img/edit-img.png';
+import editimg from '../Img/edit-img.png';
 import { Link } from 'react-router-dom';
 import './profile.css';
 
