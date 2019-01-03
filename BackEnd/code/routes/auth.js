@@ -30,7 +30,8 @@ router.get('/signIn/:id/:password', async (req, res)=> {
                 let token = jwt.sign({
                         // 토큰의 내용 (payload)
                         nickname: user.nickname,
-                        intro: user.intro
+                        intro: user.intro,
+                        id: user.id
                     },
                     'entry_minibirds', // 비밀키
                     {
@@ -52,6 +53,7 @@ router.get('/signIn/:id/:password', async (req, res)=> {
     }
 });
 
+// id, nickname, password 를 body 에서 받아와 새로운 유저를 등록하는 API
 router.post('/signUp', async (req, res)=>{
     let err = {};
     try {
@@ -86,7 +88,7 @@ router.get('/token', async (req, res)=>{
    let err = {};
    if(token) {
        try {
-           let result = await verify(token, 'entry_minibird');
+           let result = await verify(token, 'entry_minibirds');
            if(result < 0) throw err;
            res.json(result);
        } catch (err) {

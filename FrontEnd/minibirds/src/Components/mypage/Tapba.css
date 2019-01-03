@@ -1,11 +1,4 @@
-.Tapba {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-}
-
-.main-box {
+.tap-bar {
     margin-top: 35px;
     width: 100%;
     height: 100px;
@@ -24,15 +17,20 @@ table {
 }
 
 .letter-table {
+    width: 100%;
     font-size: 20pt;
     color: #707070;
     font-weight: bold;
     font-family: "맑은 고딕";
 }
 
+td {
+    width: 600px;
+}
+
 .twit-list {
     margin: 0 auto;
     margin-top: 40px;
-    width: 1200px;
+    width: 900px;
     height: 100px;
 }

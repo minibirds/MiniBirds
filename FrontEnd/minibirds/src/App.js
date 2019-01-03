@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
-import Header from './Components/Header.js';
-import Main from './container/Main/Main';
-import Mypage from './container/Mypage/Mypage';
-import SignMain from './container/Account/SignMain';
+import SigninPage from './Components/Share/SigninPage';
 import MainService from './container/MainService/MainService';
+import SignupPage from './Components/Share/SignupPage';
 
 class App extends Component {
   render() {
@@ -13,11 +11,10 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <Header/>
             <Switch>
               <Route path='/' component={MainService} exact />
-              <Route path='/mypage' component={Mypage} exact />
-              <Route path='/account' component={SignMain} exact/>
+              <Route path='/signin' component={SigninPage} exact/>
+              <Route path='/signup' component={SignupPage} exact/>
             </Switch>
           </React.Fragment>
         </BrowserRouter>

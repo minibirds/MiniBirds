@@ -1,21 +1,20 @@
 import React from 'react';
 import './Tapba.css';
-import { Link } from 'react-router-dom';
 
 const Tapba = ({twitNumber, following, follower, twitlist, followlist}) => {
     return (
-        <div className="main-box">
+        <div className="tap-bar">
             <div className="letter-box">
                 <table className="letter-table">
                     <tr className="first-table">
-                        <Link exact to='/mypage/twitlist'><td className="table-twit">나의 트윗</td></Link>
-                        <Link exact to='/mypage/following'><td className="table-following">팔로잉</td></Link>
-                        <Link exact to='/mypage/follower'><td className="table-follower">팔로워</td></Link>
+                        <td className="table-twit">나의 트윗</td>
+                        <td className="table-following">팔로잉</td>
+                        <td className="table-follower">팔로워</td>
                     </tr>
                     <tr className="second-table">
-                        <Link exact to='/mypage/twitlist'><td className="twit-number">{twitNumber}22</td></Link>
-                        <Link exact to='/mypage/following'><td className="following-number">{following}3</td></Link>
-                        <Link exact to='/mypage/follower'><td className="follower-number">{follower}5</td></Link>
+                        <td className="twit-number">{twitNumber}0</td>
+                        <td className="following-number">{following}0</td>
+                        <td className="follower-number">{follower}0</td>
                     </tr>
                 </table>
             </div>

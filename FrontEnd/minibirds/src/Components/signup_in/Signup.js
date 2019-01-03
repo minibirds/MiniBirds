@@ -1,29 +1,35 @@
-import React from 'react';
-import './Signup.css';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import './Signup.css'
 
 const Signup = ({}) => {
     return (
-        <div className="input-wapper">
-            <div className="sign">SIGN UP</div>    
-            <div className="input-box">
-                <table>
+        <div className="input-wrapper">
+            <div className="sign">SIGN UP</div>  
+            <div>
+                <table className="input-table">
                     <tr>
-                        <td><div className="input-id">ID</div></td>
-                        <td><input className="input" /></td>
-                        <td rowSpan="2"><Link to="/"><div className="log-in">로그인</div></Link></td>
-                    </tr>                    
-                    <tr>
-                        <td><div className="input-pw">PW</div></td>
+                        <td><div className="input_set">NAME</div></td>
                         <td><input className="input" /></td>
                     </tr>
+                    <tr>
+                        <td><div className="input_set">ID</div></td>
+                        <td><input className="input" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div className="error">사용할 수 없는 아이디입니다.</div></td>
+                    </tr>
+                    <tr>
+                        <td><div className="input_set">PW</div></td>
+                        <td><input type="password"  className="input" /></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><div className="error">입력하지 않은 정보가 있습니다.</div></td>
+                    </tr>
                 </table>
+                <div className="signin-btn">회원가입</div>
             </div>
-            <div className="info-box">
-                <div className="no-account">계정이 없으신가요?</div>
-                <Link to="/siginin"><div className="go-signin">회원가입</div></Link>
-            </div>
-            <div className="error-code">아이디 또는 비밀번호가 잘못되었습니다.</div>
         </div>
     );
 }

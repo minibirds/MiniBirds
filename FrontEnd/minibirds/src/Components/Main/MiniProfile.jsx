@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import ProfileImg from '../Img/profile-img-default.png'
-import './MiniProfile.css';
+import ProfileImg from '../img/profile-img-default.png'
 import {Link} from 'react-router-dom';
+import './MiniProfile.css';
 
 
 class MiniProfile extends Component {

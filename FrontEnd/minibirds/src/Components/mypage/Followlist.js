@@ -3,7 +3,7 @@ import './followlist.css'
 
 const Followlist = ({profileImg, follow, nickName, Info}) => {
     return (
-        <div className="main-box">
+        <div>
             <div className="back-box"></div>
             <div className="btn-box">
                 <div className="big-box">
