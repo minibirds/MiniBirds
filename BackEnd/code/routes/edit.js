@@ -41,7 +41,7 @@ router.put('/:id', async (req, res)=>{
            }
        }
        else {
-           err.status = 401;
+           err.status = 403;
            err.message = '다른 사람의 정보는 수정할 수 없습니다';
            throw err;
        }
