@@ -25,14 +25,15 @@ class SignMain extends Component {
                     <React.Fragment>
                         <SignPage left={
                             <Switch>
-                                <Route exact path='/edit' Component={Edit} />
-                                <Route exact path='/signin' Component={Signlogo}/>
-                                <Route exact path='/signup' Component={Signlogo} />
+                                <Route exact path='/edit' component={Editimg} />
+                                <Route exact path='/signin' component={Signlogo}/>
+                                <Route exact path='/signup' component={Signlogo} />
                             </Switch>
                         } right={
                             <Switch>
-                                <Route exact path='/signin' Component={Signin} />
-                                <Route exact path='/signup' Component={Signup} />
+                                <Route exact path='/signin' component={Signin} />
+                                <Route exact path='/signup' component={Signup} />
+                                <Route exact path='/edit' component={Edit} />
                             </Switch>
                         }/>
                     </React.Fragment>
