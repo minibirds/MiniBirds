@@ -15,7 +15,13 @@ const AppearTwitComponent = () => {
     }
 };
 
+const AppearConfirm = () => {
+    // eslint-disable-next-line no-unused-expressions
+    window.confirm('로그아웃 하시겠습니까?') ? localStorage.setItem('token', '') : null ;
+}
+
 const Header = ({onTwit, logOut, onKeyPress, Form}) => (
+
     <div>
         <div className="small-twit-back" id="small-twit-back" onClick={() => AppearTwitComponent()}>
             <div onClick={(e)=>e.stopPropagation()} className="small-twit-area">
@@ -33,7 +39,7 @@ const Header = ({onTwit, logOut, onKeyPress, Form}) => (
             <div className="header-right">
                 <ul className="twit_box">
                     <li className="twit" onClick={() => AppearTwitComponent()} >트윗하기</li>
-                    <li className="twit" logOut={logOut}>로그아웃</li>
+                    <li className="twit" logOut={logOut} onClick={()=> AppearConfirm()} >로그아웃</li>
                 </ul>
             </div>
         </div>
