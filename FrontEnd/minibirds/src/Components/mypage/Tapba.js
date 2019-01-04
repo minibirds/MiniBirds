@@ -12,9 +12,9 @@ const Tapba = ({listClassName, twitNumber, following, follower, twitlist, follow
                         <td onClick={() => history.push('/mypage/followers')} className="table-follower">팔로워</td>
                     </tr>
                     <tr className="second-table">
-                        <td className="twit-number">{twitNumber}0</td>
-                        <td className="following-number">{following}0</td>
-                        <td className="follower-number">{follower}0</td>
+                        <td className="twit-number" onClick={() => history.push('/mypage/twitlist')}>{twitNumber}0</td>
+                        <td className="following-number" onClick={() => history.push('/mypage/following')}>{following}0</td>
+                        <td className="follower-number" onClick={() => history.push('/mypage/followers')}>{follower}0</td>
                     </tr>
                 </table>
             </div>
