@@ -5,6 +5,7 @@ let Follower = require('../models').Follower;
 const { verify } = require('./middlewares');
 let router = express.Router();
 
+// 다른 유저를 팔로우하는 API
 router.post('/', (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
@@ -39,6 +40,7 @@ router.post('/', (req, res)=>{
     }
 });
 
+// 자신이 팔로우 중인 유저 리스트를 가져오는 API
 router.get('/:id', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
@@ -65,6 +67,39 @@ router.get('/:id', async (req, res)=>{
         res.json({
             'status':err.status,
             'message':err.message
+        })
+    }
+});
+
+// 팔로우를 끊는 API
+router.delete('/:userId/:targetId', async(req, res)=>{
+    let err = {};
+    let token = req.cookies.sign;
+    try {
+        let auth = verify(token, "entry_minibirds");
+        if(auth < 0) throw err;
+        let follow = await Following.findOne({
+            where: {userId: req.params.userId, FollowingId: req.params.targetId}
+        });
+            if(follow) {
+                let result = await Following.destroy({
+                    where: {userId: req.params.userId, FollowingId: req.params.targetId}
+                });
+                if(result) {
+                    let result2 = await Follower.destroy({
+                        where: {userId: req.params.targetId, FollowerId: req.params.userId}
+                    });
+                    if(result2) {
+                       res.json({
+                           message: '팔로우가 취소되었습니다'
+                       })
+                    }
+                }
+            }
+    } catch (err) {
+        res.json({
+            status: err.status,
+            message: err.message
         })
     }
 });
