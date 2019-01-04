@@ -8,10 +8,10 @@ import axios from 'axios';
 class MiniProfile extends Component {
 
   componentDidMount() {
-    GetTwitNum();
-    GetFollowerNum();
-    GetFollowingNum();
-  }
+  //   GetTwitNum();
+  //   GetFollowerNum();
+  //   GetFollowingNum();
+   }
 
   constructor(props) {
     super(props);
