@@ -68,9 +68,12 @@
 }
 
 .error-code {
-    display: none;
     margin: 150px 0 0 10px;
     font-size: 20pt;
     color: #FFFFFF;
     font-weight: bold
+}
+
+.error-code.hidden {
+    display: none;
 }
