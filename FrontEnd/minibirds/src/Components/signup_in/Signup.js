@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import './Signup.css';
+import './Signin.css';
 import axios from 'axios';
+import base_url from '../../base_url';
 
 class Signup extends Component {
     constructor(props) {
@@ -36,7 +38,7 @@ class Signup extends Component {
         } else {
             axios({
                 method: 'post',
-                url: 'http://13.59.174.126:5000/auth/signup',
+                url: `${base_url}/auth/signup`,
                 data: {
                     id: id,
                     password: password,
