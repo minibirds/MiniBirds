@@ -9,6 +9,7 @@ class Signin extends Component {
         id : '',
         pw : '',
         isError: false,
+        check: false,
     }
     handleChange = (e) => {
         this.setState({
@@ -20,6 +21,7 @@ class Signin extends Component {
             .then((data) => {
                 this.setState({
                     isError: false,
+                    check: true,
                 });
                 console.log(data);
             }).catch(() => {
@@ -30,6 +32,8 @@ class Signin extends Component {
             })
     }
     render() {
+        const {check} = this.state;
+
         let errorClassName = "error-code";
         if(!this.state.isError) {
             errorClassName += " hidden";
@@ -43,11 +47,11 @@ class Signin extends Component {
                             <tr>
                                 <td><div className="input-id">ID</div></td>
                                 <td><input className="input" onChange={this.handleChange} value={this.state.id} name="id"/></td>
-                                <td rowSpan="2"><button className="log-in" onClick={this.handleLogin}>로그인</button></td>
+                                <td rowSpan="2"><Link to={check? '/':'signup'}><button className="log-in" onClick={this.handleLogin}>로그인</button></Link></td>
                             </tr>                    
                             <tr>
                                 <td><div className="input-pw">PW</div></td>
-                                <td><input className="input" onChange={this.handleChange} value={this.state.pw} name="pw"/></td>
+                                <td><input type="password" className="input" onChange={this.handleChange} value={this.state.pw} name="pw"/></td>
                             </tr>
                         </tbody>
                     </table>
