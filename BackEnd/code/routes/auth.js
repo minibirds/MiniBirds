@@ -1,7 +1,9 @@
 let express = require('express');
+const cors = require('cors');
 let User = require('../models').User;
 const { verify } = require('./middlewares');
 let router = express.Router();
+router.use(cors());
 
 let jwt = require('jsonwebtoken');
 
