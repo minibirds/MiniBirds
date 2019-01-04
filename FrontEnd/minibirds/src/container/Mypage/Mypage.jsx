@@ -30,7 +30,7 @@ class Mypage extends Component {
         <TabBar history={history} />
         <div className="mypage-twit-list" id="mypage-selected-list">
           {location.pathname === '/mypage/twitlist' ? 
-          <TwitList /> : location.pathname === '/mypage/following' ? <FollowList/> : '팔로워'}
+          <TwitList /> : location.pathname === '/mypage/following' ? <FollowList/> : <FollowList/>}
         </div>
       </div>
      );
