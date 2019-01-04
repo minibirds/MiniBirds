@@ -21,6 +21,7 @@ app.set('port', process.env.PORT || 5000);
 
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/img', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json());
 app.use(express.urlencoded({ extended : false , limit: '50mb'}));
 app.use(cookieParser('entry'));
