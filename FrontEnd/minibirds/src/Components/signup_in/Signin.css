@@ -52,6 +52,7 @@
     border-radius: 100%;
     color: #B060FF;
     text-align: center;
+    cursor: pointer;
 }
 
 .no-account {
@@ -68,8 +69,8 @@
 }
 
 .error-code {
-    margin: 150px 0 0 10px;
-    font-size: 20pt;
+    margin: 150px 0 0 80px;
+    font-size: 18pt;
     color: #FFFFFF;
     font-weight: bold
 }

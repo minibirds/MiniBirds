@@ -24,6 +24,9 @@ class Signin extends Component {
                     check: true,
                 });
                 console.log(data);
+                localStorage.setItem('token' , data.data.token);
+                // window.location.reload();
+
             }).catch(() => {
                 this.setState({
                     isError: true,
@@ -32,7 +35,7 @@ class Signin extends Component {
             })
     }
     render() {
-        const {check} = this.state;
+        const {check} = this.state; 
 
         let errorClassName = "error-code";
         if(!this.state.isError) {
