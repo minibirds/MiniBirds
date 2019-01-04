@@ -11,7 +11,7 @@ const Signin = ({}) => {
                     <tr>
                         <td><div className="input-id">ID</div></td>
                         <td><input className="input" /></td>
-                        <td rowSpan="2"><div className="log-in">로그인</div></td>
+                        <td rowSpan="2"><button className="log-in">로그인</button></td>
                     </tr>                    
                     <tr>
                         <td><div className="input-pw">PW</div></td>
