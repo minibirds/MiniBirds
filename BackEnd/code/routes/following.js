@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 let User = require('../models').User;
 let Following = require('../models').Following;
 let Follower = require('../models').Follower;
 const { verify } = require('./middlewares');
 let router = express.Router();
+router.use(cors());
 
 // 다른 유저를 팔로우하는 API
 router.post('/', (req, res)=>{
@@ -46,7 +48,10 @@ router.get('/:id', async (req, res)=>{
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
-        if(auth < 0) throw err;
+        if(auth < 0) {
+            err.status = 401;
+            throw err;
+        }
         if(auth == req.params.id) {
             let list = await Following.findAll({
                 attributes: ['followingId'],
@@ -63,7 +68,7 @@ router.get('/:id', async (req, res)=>{
             err.message = '권한이 없는 사용자 입니다';
             throw err;
         }
-    } catch (error) {
+    } catch (err) {
         res.json({
             'status':err.status,
             'message':err.message
