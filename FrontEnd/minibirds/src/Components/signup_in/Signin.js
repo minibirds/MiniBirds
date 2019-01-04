@@ -47,7 +47,7 @@ class Signin extends Component {
                             <tr>
                                 <td><div className="input-id">ID</div></td>
                                 <td><input className="input" onChange={this.handleChange} value={this.state.id} name="id"/></td>
-                                <td rowSpan="2"><Link to={check? '/':'signup'}><button className="log-in" onClick={this.handleLogin}>로그인</button></Link></td>
+                                <td rowSpan="2"><Link to={check? '/':'signin'}><button className="log-in" onClick={this.handleLogin}>로그인</button></Link></td>
                             </tr>                    
                             <tr>
                                 <td><div className="input-pw">PW</div></td>
