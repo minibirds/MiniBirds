@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ProfileImg from '../img/profile-img-default.png'
-import {Link} from 'react-router-dom';
 import './MiniProfile.css';
+import {Link} from 'react-router-dom';
 
 
 class MiniProfile extends Component {
@@ -12,7 +12,7 @@ class MiniProfile extends Component {
   render() { 
     return ( 
       <div className="mini__main--profile">
-        <Link to='/mypage'>          
+        <Link to='/mypage/twitlist'>          
           <div className="upper-profile">
             <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
             <span className="upper-text">
