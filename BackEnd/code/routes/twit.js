@@ -3,7 +3,6 @@ const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
-let User = require('../models').User;
 let Post = require('../models').Post;
 const { verify } = require('./middlewares');
 let router = express.Router();
@@ -46,7 +45,7 @@ router.post('/', async (req, res)=>{
     try {
         let auth = verify(token, 'entry_minibirds');
         if(auth < 0) throw err;
-        if(auth == req.body.id) { // 인증성공
+        if(auth == req.body.userId) { // 인증성공
             let post = await Post.create({
                 userId: req.body.id,
                 content: req.body.content,
