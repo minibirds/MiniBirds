@@ -16,7 +16,7 @@ class App extends Component {
               <Route path='/' component={MainService} exact />
               <Route path='/signin' component={SigninPage} exact/>
               <Route path='/signup' component={SignupPage} exact/>
-              <Route path='/mypage' component={Mypage} exact/>
+              <Route path='/mypage' component={Mypage} />
             </Switch>
           </React.Fragment>
         </BrowserRouter>
