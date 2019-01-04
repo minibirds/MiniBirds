@@ -9,6 +9,7 @@ const authRouter = require('./routes/auth');
 const editRouter = require('./routes/edit');
 const twitRouter = require('./routes/twit');
 const followingRouter = require('./routes/following');
+const followerRouter = require('./routes/follower');
 const sequelize = require('./models').sequelize;
 
 const app = express();
@@ -38,6 +39,7 @@ app.use('/auth', authRouter);
 app.use('/edit', editRouter);
 app.use('/twit', twitRouter);
 app.use('/following',followingRouter);
+app.use('/follower',followerRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
 app.use((req, res, next)=>{
