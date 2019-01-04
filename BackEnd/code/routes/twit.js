@@ -38,15 +38,15 @@ router.post('/img', upload.single('img'), async (req, res)=> {
 });
 
 
-router.post('/:id', async (req, res)=>{
+router.post('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
         if(auth < 0) throw err;
-        if(auth == req.params.id) { // 인증성공
+        if(auth == req.body.id) { // 인증성공
             let post = await Post.create({
-                userId: req.params.id,
+                userId: req.body.id,
                 content: req.body.content,
                 img: req.body.img
             });

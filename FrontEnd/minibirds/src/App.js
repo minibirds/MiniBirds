@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import SigninPage from './Components/Share/SigninPage';
 import MainService from './container/MainService/MainService';
 import SignupPage from './Components/Share/SignupPage';
+import Mypage from './container/Mypage/Mypage';
 
 class App extends Component {
   render() {
@@ -15,6 +16,7 @@ class App extends Component {
               <Route path='/' component={MainService} exact />
               <Route path='/signin' component={SigninPage} exact/>
               <Route path='/signup' component={SignupPage} exact/>
+              <Route path='/mypage' component={Mypage} exact/>
             </Switch>
           </React.Fragment>
         </BrowserRouter>
