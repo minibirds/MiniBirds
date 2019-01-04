@@ -1,4 +1,4 @@
-.back-box {
+.background-box {
     width: 386px;
     height: 93px;
     background-color: #845EF7;
@@ -10,7 +10,7 @@
     height: 100px;
 }
 
-.big-box {
+.behind-box {
     margin: -30px;
     width: 94px;
     height: 94px;
@@ -18,7 +18,7 @@
     margin-left: 30px;
 }
 
-.small-box {
+.inner-box {
     width: 78px;
     height: 82px;
     background-color: white;
@@ -40,7 +40,7 @@
     text-align: center;
 }
 
-.user-name {
+.user-name-text {
     font-weight: bold;
     font-size: 20pt;
     margin: 10px 0px 0px 30px;
