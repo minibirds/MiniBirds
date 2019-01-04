@@ -2,14 +2,62 @@ import React, { Component } from 'react';
 import ProfileImg from '../img/profile-img-default.png'
 import './MiniProfile.css';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 
 class MiniProfile extends Component {
+
+  componentDidMount() {
+    GetTwitNum();
+    GetFollowerNum();
+    GetFollowingNum();
+  }
+
   constructor(props) {
     super(props);
-    this.state = {  }
+    this.state = { 
+      id: '',
+      twitNum: 0,
+      followerNum: 0,
+      followingNum: 0,
+    }
   }
+
+  GetTwitNum = () => {
+    axios.get(`http://13.59.174.126:5000/auth/twit/${this.state.id}`)
+    .then((response) => {
+      this.setState({
+        twitNum: response.data.num
+      })
+    })
+  }
+
+  GetFollowerNum = () => {
+    axios.get(`http://13.59.174.126:5000/auth/follower/${this.state.id}`)
+    .then((response) => {
+      this.setState({
+        followerNum: response.data.num
+      });
+    })
+  }
+
+  GetFollowingNum = () => {
+    axios.get(`http://13.59.174.126:5000/auth/following/${this.state.id}`)
+    .then((response) => {
+      this.setState({
+        followingNum: response.data.num
+      })
+    })
+  }
+
   render() { 
+    const {twitNum, followerNum, followingNum} = this.state;
+    const {
+      GetFollowerNum,
+      GetFollowingNum,
+      GetTwitNum
+    } = this;
+
     return ( 
       <div className="mini__main--profile">
         <Link to='/mypage/twitlist'>          
@@ -25,15 +73,15 @@ class MiniProfile extends Component {
         <div className="lowwer-profile">
           <span className="lowwer-tweet">
             <div className="lowwer-title">트윗</div>
-            <div className="lowwer-body">2313</div>
+            <div className="lowwer-body">{twitNum}</div>
           </span>
           <span className="lowwer-following">
             <div className="lowwer-title">팔로잉</div>
-            <div className="lowwer-body">2313</div>
+            <div className="lowwer-body">{followerNum}</div>
           </span>
           <span className="lowwer-follower">
             <div className="lowwer-title">팔로워</div>
-            <div className="lowwer-body">2313</div>
+            <div className="lowwer-body">{followingNum}</div>
           </span>
         </div>
       </div>
