@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Link, withRouter} from 'react-router-dom';
 import './Signup.css';
 import axios from 'axios';
 
@@ -9,7 +10,9 @@ class Signup extends Component {
         this.state = {
             id: '',
             password: '',
-            nickname: ''
+            nickname: '',
+            errorCode: '',
+            check: false,
         };
     }
 
@@ -19,32 +22,43 @@ class Signup extends Component {
         });
     }
 
+    handleKeyPress = (e) => {
+        if(e.key === 'Enter') {
+            this.postUserInfo();
+        }
+    }
+
     postUserInfo = () => {
+        const {id, password, nickname, check} = this.state;
 
-        axios({
-            method: 'post',
-            url: 'http://13.59.174.126:3000/auth/signup',
-            data: {
-                id: this.state.id,
-                password: this.state.password,
-                nickname: this.state.nickname
-            }
-        })
-        .then((response) => {
-            console.log(response.data);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-
-       /* axios.post('http://13.59.174.126:3000/auth/signup', {userInfo})
-        .then((res) => {
-            console.log(res.data);
-        }) */
+        if (id === '' || password === '' || nickname === '') {
+            window.alert("입력하지 않은 정보가 있습니다. 다시 입력해주세요.");
+        } else {
+            axios({
+                method: 'post',
+                url: 'http://13.59.174.126:5000/auth/signup',
+                data: {
+                    id: id,
+                    password: password,
+                    nickname: nickname
+                }
+            })
+            .then((response) => {
+                if (response.data.status === 405) {
+                    alert(response.data.message);
+                } else {
+                    alert("회원가입에 성공하셨습니다. 로그인 후 미니버드 홈페이지를 이용해주시길 바랍니다.");
+                    this.setState({
+                        check: true
+                    });
+                }
+            })
+        }
     }
 
     render() {
         const {
+            handleKeyPress,
             ChangeInput,
             postUserInfo,
         } = this;
@@ -53,6 +67,7 @@ class Signup extends Component {
             id,
             password,
             nickname,
+            check
         } = this.state;
 
         return (
@@ -63,31 +78,23 @@ class Signup extends Component {
                     <tbody>
                         <tr>
                             <td><div className="input_set">NAME</div></td>
-                            <td><input className="input" value={nickname} onChange={ChangeInput} name="nickname" /></td>
+                            <td><input className="input" value={nickname} onChange={ChangeInput} onKeyPress={handleKeyPress} name="nickname" /></td>
                         </tr>
                         <tr>
                             <td><div className="input_set">ID</div></td>
-                            <td><input className="input" value={id} onChange={ChangeInput} name="id" /></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><div className="error">사용할 수 없는 아이디입니다.</div></td>
+                            <td><input className="input" value={id} onChange={ChangeInput} onKeyPress={handleKeyPress} name="id" /></td>
                         </tr>
                         <tr>
                             <td><div className="input_set">PW</div></td>
-                            <td><input type="password"  className="input" value={password} onChange={ChangeInput} name="password" /></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td><div className="error">입력하지 않은 정보가 있습니다.</div></td>
+                            <td><input type="password"  className="input" value={password} onChange={ChangeInput} onKeyPress={handleKeyPress} name="password" /></td>
                         </tr>
                         </tbody>
                     </table>
-                    <button onClick={() => postUserInfo()}className="signin-btn">회원가입</button>
+                    <Link to={check? '/signin':'/signup'}><div onClick={() => postUserInfo()} className="signin-btn">회원가입</div></Link>
                 </div>
             </div>
         )
     }
 }
 
-export default Signup;
+export default withRouter(Signup);
