@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
@@ -6,6 +7,7 @@ let User = require('../models').User;
 let Post = require('../models').Post;
 const { verify } = require('./middlewares');
 let router = express.Router();
+router.use(cors());
 
 fs.readdir('uploads', (error)=>{
     if (error) {
