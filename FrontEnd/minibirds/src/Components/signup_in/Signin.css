@@ -2,7 +2,7 @@
     position: relative;
     top: 20%;
     margin: 0 auto;
-    width: 500px;
+    width: 530px;
     height: 50%;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .error-code {
-    margin: 150px 0 0 80px;
+    margin: 100px 0 0 95px;
     font-size: 18pt;
     color: #FFFFFF;
     font-weight: bold
