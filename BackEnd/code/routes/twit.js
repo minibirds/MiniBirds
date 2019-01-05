@@ -47,7 +47,7 @@ router.post('/', async (req, res)=>{
         if(auth < 0) throw err;
         if(auth == req.body.userId) { // 인증성공
             let post = await Post.create({
-                userId: req.body.id,
+                userId: req.body.userId,
                 content: req.body.content,
                 img: req.body.img
             });
