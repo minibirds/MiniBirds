@@ -1,0 +1,802 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
+    <link href="stylesheets/highlight-monokai.css" rel="stylesheet" type="text/css" media="screen, print" />
+    <script src="javascripts/all.js" type="text/javascript"></script>
+  </head>
+
+  <body class="" data-languages="[&#34;json&#34;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img alt="undefined" class="undefined" src="images/navbar.png">
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img alt="undefined" class="undefined" src="images/logo.png">
+      
+        <div class="lang-selector">
+          
+            <a href="#" data-language-name="json">json</a>
+          
+        </div>
+      
+      
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      
+      <div id="toc">
+      </div>
+      
+        <ul class="toc-footer">
+          
+            <li><a href='#'>Sign Up for a Developer Key</a></li>
+          
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+          
+        </ul>
+      
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        
+          <h1 id="introduction">Introduction</h1>
+<h2 id="entry-project-mini-birds-api">Entry Project Mini Birds API</h2>
+<p>작성자 : huewilliams<br>API 개요 : SNS 구현 프로젝트인 Mini Bird에 사용되는 API들을 정리한 문서 입니다.<br><img src="./images/Logo.png" alt="Mini Birds logo"></p>
+<h1 id="authenticate">Authenticate</h1>
+<h2 id="sign-up">Sign up</h2>
+<pre class="highlight json"><code>[
+  {
+       <span class="hljs-attr">"result"</span>: {
+            <span class="hljs-attr">"intro"</span>: <span class="hljs-string">"자기소개가 없습니다. 자신을 다른 사람들에게 소개해보세요"</span>,
+            <span class="hljs-attr">"id"</span>: <span class="hljs-string">"사용자의 SNS 계정 id"</span>,
+            <span class="hljs-attr">"password"</span>: <span class="hljs-string">"사용자의 SNS 계정 password"</span>,
+            <span class="hljs-attr">"nickname"</span>: <span class="hljs-string">"사용자의 SNS nickname"</span>
+       }
+  }
+]</code></pre><p>유저 회원가입. 닉네임, 아이디, 비밀번호로 회원가입한다.<br>회원가입 후 바로 토큰을 발급해주지 않기 때문에 회원가입 이후 로그인 해야한다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>POST http://example.com/auth/signup</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nickname</td>
+<td>varchar(20)</td>
+<td>duplicate OK, 사용자가 상시적으로 변경 가능</td>
+</tr>
+<tr>
+<td>id</td>
+<td>varchar(20)</td>
+<td>unique, 회원 가입 이후 변경 불가</td>
+</tr>
+<tr>
+<td>password</td>
+<td>varchar(30)</td>
+<td>사용자가 상시적으로 변경 가능</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>DB에 새로운 사용자가 추가되었습니다.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>아이디가 중복된 사용자가 존재합니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="sign-in">Sign in</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"사용자의 고유 아이디"</span>,
+    <span class="hljs-attr">"nickname"</span>: <span class="hljs-string">"사용자의 닉네임"</span>,
+    <span class="hljs-attr">"Sns_id"</span>: <span class="hljs-string">"사용자의 sns 아이디"</span>,
+    <span class="hljs-attr">"password"</span>: <span class="hljs-string">"계정의 패스워드"</span>,
+    <span class="hljs-attr">"intro"</span>: <span class="hljs-string">"사용자의 한줄소개"</span>
+  }
+]
+</code></pre><p>사용자의 아이디와 비밀번호를 통해 로그인한다.<br>JWT를 발급받아 요청 객체의 쿠키에 보관한다.<br>로그인 이후의 요청은 쿠키의 JWT와 함께 전달된다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>GET http://example.com/auth/signIn/:&lt;id&gt;/:&lt;password&gt;</code></p>
+<h3 id="url-parameters">URL Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>TYPE</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>varchar(20)</td>
+<td>사용자의 고유 아이디(계정 id)</td>
+</tr>
+<tr>
+<td>password</td>
+<td>varchar(30)</td>
+<td>사용자 계정의 비밀번호</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>로그인에 성공하여 JWT 토큰을 발급받았습니다.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>JWT의 만료시간이 지났습니다.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>유효하지 않은 JWT 입니다.(secret key 오류) </td>
+</tr>
+</tbody>
+</table>
+<h1 id="edit">Edit</h1>
+<h2 id="edit">edit</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"사용자의 고유 아이디"</span>,
+    <span class="hljs-attr">"nickname"</span>: <span class="hljs-string">"사용자 닉네임"</span>,
+    <span class="hljs-attr">"Sns_id"</span>: <span class="hljs-string">"사용자 sns 아이디"</span>,
+    <span class="hljs-attr">"password"</span>: <span class="hljs-string">"계정 패스워드"</span>,
+    <span class="hljs-attr">"intro"</span>: <span class="hljs-string">"사용자 한줄소개"</span>
+  }
+]</code></pre><p>사용자의 아이디와 비밀번호를 통해 사용자 정보를 수정한다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>PUT http://example.com/edit/:&lt;id&gt;</code></p>
+<h3 id="url-parameters">URL Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>varchar(20)</td>
+<td>토큰과의 비교를 위해 필요한 정보(사용자 SNS id)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nickname</td>
+<td>varchar(20)</td>
+<td>사용자의 변경할 닉네임 </td>
+</tr>
+<tr>
+<td>password</td>
+<td>varchar(30)</td>
+<td>사용자의 변경할 비밀번호</td>
+</tr>
+<tr>
+<td>intro</td>
+<td>varchar(30)</td>
+<td>사용자의 변경할 한줄소개</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>사용자의 정보를 수정했습니다.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>토큰 만료/ 검증되지 않은 토큰</td>
+</tr>
+<tr>
+<td>403</td>
+<td>다른 사람의 정보는 수정할 수 없습니다</td>
+</tr>
+<tr>
+<td>404</td>
+<td>아이디에 해당하는 사용자를 찾을 수 없습니다</td>
+</tr>
+</tbody>
+</table>
+<h1 id="twit">twit</h1>
+<h2 id="get-twit">get twit</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"postId"</span>: <span class="hljs-string">"(게시물 고유의 id)"</span>,
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-string">"(게시물 작성자의 id)"</span>,
+    <span class="hljs-attr">"content"</span>: <span class="hljs-string">"(게시물의 텍스트 내용)"</span>,
+    <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(게시물의 이미지가 저장된 경로)"</span>,
+    <span class="hljs-attr">"created_At"</span>: <span class="hljs-string">"(게시물이 작성된 날짜)"</span>
+  }
+]</code></pre><p>사용자의 id로 식별하여 자신이 팔로우 한 사람들의 게시물을 시간순으로 가져온다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>GET http://example.com/twit/:id</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>varchar(20)</td>
+<td>사용자의 고유 sns id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>트윗을 가져왔습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>아이디에 등록된 사용자가 존재하지 않습니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post-twit">post twit</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"(게시물 고유의 id)"</span>,
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-string">"(게시물 작성자의 id)"</span>,
+    <span class="hljs-attr">"content"</span>: <span class="hljs-string">"(게시물의 텍스트 내용)"</span>,
+    <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(게시물의 이미지가 저장된 경로)"</span>,
+    <span class="hljs-attr">"created_At"</span>: <span class="hljs-string">"(게시물이 작성된 날짜)"</span>
+  }
+]</code></pre><p>사용자의 id로 식별하여 트윗을 게시한다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>POST http://example.com/twit/</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td>varchar(1000)</td>
+<td>게시물의 텍스트 내용(1000자 제한)</td>
+</tr>
+<tr>
+<td>img</td>
+<td>varchar(500)</td>
+<td>게시물의 이미지가 저장된 경로</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>varchar(20)</td>
+<td>게시물을 업로드한 사용자의 id 정보  </td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>트윗을 게시했습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>아이디에 등록된 사용자가 존재하지 않습니다.</td>
+</tr>
+</tbody>
+</table>
+<aside class="notice">
+img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지가 저장된 경로가 varchar(500)으로 저장되어 있다.
+</aside>
+
+<h2 id="post-img">post img</h2>
+<pre class="highlight json"><code>{
+  <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(이미지가 저장된 경로)"</span>
+}</code></pre><p>이미지를 업로드 하면 서버의 로컬 디스크에 이미지를 저장한다.<br>트윗 업로드에 사용되는 이미지 경로를 반환한다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>POST http://example.com/twit/img</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>img</td>
+<td>multipart-formdata</td>
+<td>게시물의 이미지 내용(1장 제한)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>이미지를 업로드했습니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="delete">delete</h2>
+<pre class="highlight json"><code>{
+ <span class="hljs-attr">"status"</span>: <span class="hljs-number">200</span>,
+ <span class="hljs-attr">"message"</span>: <span class="hljs-string">"게시물을 삭제했습니다."</span>
+}</code></pre><p>사용자의 아이디와 비밀번호를 통해 게시물을 삭제한다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>DELETE http://example.com/twit/:userId/:postId</code></p>
+<h3 id="url-parameters">URL Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postId</td>
+<td>int</td>
+<td>삭제할 게시물의 고유 id</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>varchar(20)</td>
+<td>삭제할 게시물 작성자의 고유 id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>게시물을 삭제했습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>삭제하려는 게시물을 찾을 수 없습니다</td>
+</tr>
+</tbody>
+</table>
+<h1 id="mention">mention</h1>
+<h2 id="get">get</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"mentId"</span>: <span class="hljs-string">"(멘션 고유의 id)"</span>,
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-string">"(멘션 작성자의 id)"</span>,
+    <span class="hljs-attr">"postId"</span>: <span class="hljs-string">"(멘션이 소속된 게시물의 id)"</span>,
+    <span class="hljs-attr">"content"</span>: <span class="hljs-string">"(멘션의 텍스트 내용)"</span>
+  }
+]</code></pre><p>게시물의 id로 식별하여 게시물에 달린 모든 멘션을 가져온다.<br>멘션이 속한 게시물의 id, 멘션을 작성한 작성자의 id도 반환한다.  </p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>POST http://example.com/ment/:&lt;postId&gt;</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>postId</td>
+<td>int</td>
+<td>멘션이 소속된 게시물의 id  </td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>멘션을 등록했습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>아이디에 등록된 사용자가 존재하지 않습니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="post">post</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"(게시물 고유의 id)"</span>,
+    <span class="hljs-attr">"user_id"</span>: <span class="hljs-string">"(게시물 작성자의 id)"</span>,
+    <span class="hljs-attr">"content"</span>: <span class="hljs-string">"(게시물의 텍스트 내용)"</span>,
+    <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(게시물 이미지가 저장된 경로)"</span>
+  }
+]</code></pre><p>사용자의 id로 식별하여 트윗을 게시한다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>POST http://example.com/ment/:&lt;id&gt;</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>content</td>
+<td>varchar(1000)</td>
+<td>게시물의 텍스트 내용(1000자 제한)</td>
+</tr>
+<tr>
+<td>img</td>
+<td>multipart-formdata</td>
+<td>게시물의 이미지 내용(1장 제한)</td>
+</tr>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>멘션을 업로드한 사용자의 id 정보  </td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>트윗을 게시했습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>아이디에 등록된 사용자가 존재하지 않습니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="delete">delete</h2>
+<pre class="highlight json"><code>{
+   <span class="hljs-attr">"status"</span>: <span class="hljs-number">200</span>,
+   <span class="hljs-attr">"message"</span>: <span class="hljs-string">"멘션을 삭제했습니다."</span>
+}</code></pre><h3 id="http-request">HTTP Request</h3>
+<p><code>DELETE http://example.com/ment/:&lt;id&gt;/:&lt;user_id&gt;</code></p>
+<h3 id="url-parameters">URL Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>삭제할 멘션의 고유 id</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>int</td>
+<td>삭제할 게시물 작성자의 고유 id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>멘션을 삭제했습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>사용자가 일치하지 않습니다.</td>
+</tr>
+</tbody>
+</table>
+<h1 id="following">following</h1>
+<h2 id="get">get</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"num"</span>: <span class="hljs-string">"(현재 팔로잉 한 사람의 수)"</span>
+  },
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"(팔로잉 id)"</span>,
+    <span class="hljs-attr">"img"</span>:<span class="hljs-string">"(팔로잉 한 사람의 프로필 이미지 저장 경로)"</span>,
+    <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로잉 한 사람의 한줄소개)"</span>  
+  }
+]</code></pre><h3 id="http-request">HTTP Request</h3>
+<p><code>GET http://example.com/following/:&lt;id&gt;</code></p>
+<h3 id="url-parameters">URL Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>리스트를 가져올 유저의 고유 id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>팔로잉 리스트를 가져왔습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>사용자 정보가 존재하지 않습니다.  </td>
+</tr>
+</tbody>
+</table>
+<h2 id="post">post</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"num"</span>: <span class="hljs-string">"현재 팔로잉 한 사람의 수"</span>,
+    <span class="hljs-attr">"nick"</span>: <span class="hljs-string">"(지금 팔로우 한 사람의 nick)"</span> 
+  }
+]</code></pre><h3 id="http-request">HTTP Request</h3>
+<p><code>POST http://example.com/following</code>  </p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>팔로우을 한 사용자의 고유 id  </td>
+</tr>
+<tr>
+<td>targetId</td>
+<td>int</td>
+<td>팔로우를 당한 유저의 고유 id  </td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>유저를 팔로잉 했습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>사용자 정보가 존재하지 않습니다.  </td>
+</tr>
+<tr>
+<td>409</td>
+<td>이미 팔로우 중인 유저입니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="delete">delete</h2>
+<pre class="highlight json"><code>{
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"팔로우를 취소 했습니다"</span>
+}</code></pre><h3 id="http-request">HTTP Request</h3>
+<p><code>DELETE http://example.com/following/:&lt;userId&gt;/:&lt;targetId&gt;</code></p>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>팔로잉을 취소 했습니다.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>토큰 만료/ 인증되지 않은 토큰</td>
+</tr>
+<tr>
+<td>404</td>
+<td>사용자 정보가 존재하지 않습니다.  </td>
+</tr>
+</tbody>
+</table>
+<h1 id="follower">follower</h1>
+<h2 id="get">get</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"status"</span>: <span class="hljs-number">200</span>,
+    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"팔로우 리스트를 가져왔습니다"</span>,
+    <span class="hljs-attr">"num"</span>: <span class="hljs-string">"(현재 팔로우의 수)"</span>
+  },
+  {
+    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"(팔로우 id)"</span>,
+    <span class="hljs-attr">"img"</span>:<span class="hljs-string">"(팔로우 한 사람의 프로필 이미지 저장 경로)"</span>,
+    <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로우 한 사람의 한줄소개)"</span>  
+  }
+]</code></pre><h3 id="http-request">HTTP Request</h3>
+<p><code>GET http://example.com/follower/:&lt;id&gt;</code></p>
+<h3 id="url-parameters">URL Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>int</td>
+<td>리스트를 가져올 유저의 고유 id</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>팔로우 리스트를 가져왔습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>사용자 정보가 존재하지 않습니다.  </td>
+</tr>
+</tbody>
+</table>
+
+        
+      </div>
+      <div class="dark-box">
+        
+          <div class="lang-selector">
+            
+              <a href="#" data-language-name="json">json</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </body>
+</html>
