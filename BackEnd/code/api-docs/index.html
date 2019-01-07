@@ -16,11 +16,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img alt="undefined" class="undefined" src="images/navbar.png">
+        <img alt="undefined" class="undefined" src="./images/navbar.png">
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img alt="undefined" class="undefined" src="images/logo.png">
+      <img alt="undefined" class="undefined" src="./images/logo.png">
       
         <div class="lang-selector">
           
@@ -108,7 +108,7 @@
 <td>DB에 새로운 사용자가 추가되었습니다.</td>
 </tr>
 <tr>
-<td>405</td>
+<td>409</td>
 <td>아이디가 중복된 사용자가 존재합니다.</td>
 </tr>
 </tbody>
@@ -125,7 +125,7 @@
 ]
 </code></pre><p>사용자의 아이디와 비밀번호를 통해 로그인한다.<br>JWT를 발급받아 요청 객체의 쿠키에 보관한다.<br>로그인 이후의 요청은 쿠키의 JWT와 함께 전달된다.</p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/auth/signIn/:&lt;id&gt;/:&lt;password&gt;</code></p>
+<p><code>POST http://example.com/auth/signIn</code></p>
 <h3 id="url-parameters">URL Parameters</h3>
 <table>
 <thead>
@@ -171,8 +171,46 @@
 </tr>
 </tbody>
 </table>
-<h1 id="edit">Edit</h1>
-<h2 id="edit">edit</h2>
+<h1 id="profile">Profile</h1>
+<h2 id="post-img">POST img</h2>
+<pre class="highlight json"><code>{
+  <span class="hljs-attr">"img"</span>: <span class="hljs-string">"이미지가 저장된 경로"</span>   
+}</code></pre><p>서버의 디렉토리에 이미지를 추가함</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>POST http://example.com/profile/img</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>img</td>
+<td>multipart-formdata(image)</td>
+<td>업로드할 이미지 파일</td>
+</tr>
+</tbody>
+</table>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201</td>
+<td>이미지를 추가했습니다</td>
+</tr>
+</tbody>
+</table>
+<h2 id="put">PUT</h2>
 <pre class="highlight json"><code>[
   {
     <span class="hljs-attr">"id"</span>: <span class="hljs-string">"사용자의 고유 아이디"</span>,
@@ -183,7 +221,7 @@
   }
 ]</code></pre><p>사용자의 아이디와 비밀번호를 통해 사용자 정보를 수정한다.</p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>PUT http://example.com/edit/:&lt;id&gt;</code></p>
+<p><code>PUT http://example.com</code></p>
 <h3 id="url-parameters">URL Parameters</h3>
 <table>
 <thead>
@@ -195,7 +233,7 @@
 </thead>
 <tbody>
 <tr>
-<td>id</td>
+<td>userId</td>
 <td>varchar(20)</td>
 <td>토큰과의 비교를 위해 필요한 정보(사용자 SNS id)</td>
 </tr>
@@ -267,7 +305,7 @@
   }
 ]</code></pre><p>사용자의 id로 식별하여 자신이 팔로우 한 사람들의 게시물을 시간순으로 가져온다.</p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/twit/:id</code></p>
+<p><code>GET http://example.com/:id</code></p>
 <h3 id="request-body">Request Body</h3>
 <table>
 <thead>
@@ -410,7 +448,7 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"게시물을 삭제했습니다."</span>
 }</code></pre><p>사용자의 아이디와 비밀번호를 통해 게시물을 삭제한다.</p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>DELETE http://example.com/twit/:userId/:postId</code></p>
+<p><code>DELETE http://example.com/:userId/:postId</code></p>
 <h3 id="url-parameters">URL Parameters</h3>
 <table>
 <thead>
@@ -616,7 +654,7 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
     <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로잉 한 사람의 한줄소개)"</span>  
   }
 ]</code></pre><h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/following/:&lt;id&gt;</code></p>
+<p><code>GET http://example.com/:&lt;id&gt;/following</code></p>
 <h3 id="url-parameters">URL Parameters</h3>
 <table>
 <thead>
@@ -710,7 +748,7 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 <pre class="highlight json"><code>{
     <span class="hljs-attr">"message"</span>: <span class="hljs-string">"팔로우를 취소 했습니다"</span>
 }</code></pre><h3 id="http-request">HTTP Request</h3>
-<p><code>DELETE http://example.com/following/:&lt;userId&gt;/:&lt;targetId&gt;</code></p>
+<p><code>DELETE http://example.com/:&lt;userId&gt;/following/:&lt;targetId&gt;</code></p>
 <h3 id="status-code">Status Code</h3>
 <table>
 <thead>
@@ -748,7 +786,7 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
     <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로우 한 사람의 한줄소개)"</span>  
   }
 ]</code></pre><h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/follower/:&lt;id&gt;</code></p>
+<p><code>GET http://example.com/:&lt;id&gt;/follower</code></p>
 <h3 id="url-parameters">URL Parameters</h3>
 <table>
 <thead>
