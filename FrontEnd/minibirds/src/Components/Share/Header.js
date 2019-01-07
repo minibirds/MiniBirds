@@ -38,7 +38,7 @@ class Header extends Component {
       }
 
     render() { 
-        const {onTwit, logOut, onKeyPress, Form} = this.props;
+        const {onTwit, logout, onKeyPress, Form} = this.props;
         return ( 
             <div>
         <div className="small-twit-back" id="small-twit-back" onClick={() => this.AppearTwitComponent()}>
@@ -57,7 +57,7 @@ class Header extends Component {
             <div className="header-right">
                 <ul className="twit_box">
                     <li className="twit" onClick={() => this.AppearTwitComponent()} >트윗하기</li>
-                    <li className="twit" logOut={logOut} onClick={()=> this.AppearConfirm()} >로그아웃</li>
+                    <li className="twit" logout={logout} onClick={()=> this.AppearConfirm()} >로그아웃</li>
                 </ul>
             </div>
         </div>

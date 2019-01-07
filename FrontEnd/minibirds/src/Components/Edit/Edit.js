@@ -37,6 +37,7 @@ class Edit extends Component{
     return (
         <div className="input-box">
             <table>
+                <tbody>
                 <tr>
                     <td><div className="input-letter">아이디</div></td>
                     <td><div className="input-info">{this.state.id}</div></td>
@@ -57,8 +58,8 @@ class Edit extends Component{
                     <td><div className="input-letter">한줄소개</div></td>
                     <td><textarea className="input-intro" placeholder={this.state.intro} onChange={this.handleChange} value={this.state.intro} name="intro"/></td>
                 </tr>
-            </table>
-            
+                </tbody>
+            </table>      
             <button className="accept-edit-btn" onClick={this.handleModify}>수정하기</button>
             
         </div>
