@@ -82,6 +82,12 @@ router.put('/:id', async (req, res)=>{
                     {where: {id: req.params.id}}
                 )
             }
+            if(req.body.img) { //프로필 이미지 변경시
+                await User.update(
+                    {img: req.body.img},
+                    {where: {id: req.params.id}}
+                )
+            }
             let user = await User.findOne({
                 where : {id: req.params.id}
             });
