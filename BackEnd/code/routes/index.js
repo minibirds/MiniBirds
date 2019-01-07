@@ -57,42 +57,42 @@ router.get('/:id', async (req, res)=>{
 });
 
 // 사용자의 정보를 수정하는 API
-router.put('/:id', async (req, res)=>{
+router.put('/', async (req, res)=>{
     let token = req.cookies.sign;
     let err = {};
     try {
         let auth = verify(token, 'entry_minibirds');
-        if(auth < 0) throw err;
-        if(auth == req.params.id) {
+        if(auth) {
             if(req.body.nickname) { // 닉네임 변경시
                 await User.update(
                     {nickname: req.body.nickname},
-                    {where: {id: req.params.id}}
+                    {where: {id: auth}}
                 )
             }
             if(req.body.password) { // 비밀번호 변경시
                 await User.update(
                     {password: req.body.password},
-                    {where: {id: req.params.id}}
+                    {where: {id: auth}}
                 )
             }
             if(req.body.intro) { // 한줄소개 변경시
                 await User.update(
                     {intro: req.body.intro},
-                    {where: {id: req.params.id}}
+                    {where: {id: auth}}
                 )
             }
             if(req.body.img) { //프로필 이미지 변경시
                 await User.update(
                     {img: req.body.img},
-                    {where: {id: req.params.id}}
+                    {where: {id: auth}}
                 )
             }
             let user = await User.findOne({
-                where : {id: req.params.id}
+                where : {id: auth}
             });
-            if(user) res.json(user);
-            else {
+            if(user) {
+                res.json(user)
+            } else {
                 err.message = 404;
                 err.message = 'id 에 해당하는 사용자를 찾을 수 없습니다';
                 throw err;
