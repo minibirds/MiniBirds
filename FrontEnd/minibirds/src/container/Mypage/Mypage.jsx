@@ -7,11 +7,6 @@ import FollowList from '../../Components/mypage/Followlist';
 import './Mypage.css';
 import Header from '../../Components/Share/Header';
 
-const ChangeListComponents = () => {
-  const selectedList = document.getElementById('mypage-selected-list');
-  if(selectedList.className === 'mypage-twitlist') ;
-}
-
 class Mypage extends Component {
   constructor(props) {
     super(props);
@@ -19,8 +14,19 @@ class Mypage extends Component {
       listClassName : '',
      }
   }
+
+  componentDidMount(){
+    this.CheckToken();
+  }
+
+  CheckToken = () => {
+    const {history} = this.props;
+    if(localStorage.getItem('token') === ''){
+        history.push('/signin');
+    }
+  }
+
   render() { 
-    const { listClassName } = this.state;
     const { history, location } = this.props;
     return ( 
       <div className="mypage-container">
