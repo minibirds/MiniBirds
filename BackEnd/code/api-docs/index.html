@@ -118,7 +118,6 @@
   {
     <span class="hljs-attr">"id"</span>: <span class="hljs-string">"사용자의 고유 아이디"</span>,
     <span class="hljs-attr">"nickname"</span>: <span class="hljs-string">"사용자의 닉네임"</span>,
-    <span class="hljs-attr">"Sns_id"</span>: <span class="hljs-string">"사용자의 sns 아이디"</span>,
     <span class="hljs-attr">"password"</span>: <span class="hljs-string">"계정의 패스워드"</span>,
     <span class="hljs-attr">"intro"</span>: <span class="hljs-string">"사용자의 한줄소개"</span>
   }
@@ -172,7 +171,7 @@
 </tbody>
 </table>
 <h1 id="profile">Profile</h1>
-<h2 id="post-img">POST img</h2>
+<h2 id="post-img">post img</h2>
 <pre class="highlight json"><code>{
   <span class="hljs-attr">"img"</span>: <span class="hljs-string">"이미지가 저장된 경로"</span>   
 }</code></pre><p>서버의 디렉토리에 이미지를 추가함</p>
@@ -210,12 +209,11 @@
 </tr>
 </tbody>
 </table>
-<h2 id="put">PUT</h2>
+<h2 id="put">put</h2>
 <pre class="highlight json"><code>[
   {
     <span class="hljs-attr">"id"</span>: <span class="hljs-string">"사용자의 고유 아이디"</span>,
     <span class="hljs-attr">"nickname"</span>: <span class="hljs-string">"사용자 닉네임"</span>,
-    <span class="hljs-attr">"Sns_id"</span>: <span class="hljs-string">"사용자 sns 아이디"</span>,
     <span class="hljs-attr">"password"</span>: <span class="hljs-string">"계정 패스워드"</span>,
     <span class="hljs-attr">"intro"</span>: <span class="hljs-string">"사용자 한줄소개"</span>
   }
@@ -264,6 +262,39 @@
 ]</code></pre><p>사용자의 id로 식별하여 자신이 팔로우 한 사람들의 게시물을 최신순으로 가져온다.</p>
 <h3 id="http-request">HTTP Request</h3>
 <p><code>GET http://example.com/</code></p>
+<h3 id="request-body">Request Body</h3>
+<p>Just Token</p>
+<h3 id="status-code">Status Code</h3>
+<table>
+<thead>
+<tr>
+<th>Status</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>트윗을 가져왔습니다.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>아이디에 등록된 사용자가 존재하지 않습니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="get-my-twit">get my twit</h2>
+<pre class="highlight json"><code>[
+  {
+    <span class="hljs-attr">"postId"</span>: <span class="hljs-string">"(게시물 고유의 id)"</span>,
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-string">"(게시물 작성자의 id)"</span>,
+    <span class="hljs-attr">"content"</span>: <span class="hljs-string">"(게시물의 텍스트 내용)"</span>,
+    <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(게시물의 이미지가 저장된 경로)"</span>,
+    <span class="hljs-attr">"created_At"</span>: <span class="hljs-string">"(게시물이 작성된 날짜)"</span>
+  }
+]</code></pre><p>사용자가 작성한 총 트윗 수와 트윗 목록을 가져온다.</p>
+<h3 id="http-request">HTTP Request</h3>
+<p><code>GET http://example.com/twit</code></p>
 <h3 id="request-body">Request Body</h3>
 <p>Just Token</p>
 <h3 id="status-code">Status Code</h3>
