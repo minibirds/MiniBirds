@@ -6,7 +6,6 @@ const session = require('express-session');
 
 const indexRouter = require('./routes');
 const authRouter = require('./routes/auth');
-const editRouter = require('./routes/edit');
 const twitRouter = require('./routes/twit');
 const followingRouter = require('./routes/following');
 const followerRouter = require('./routes/follower');
@@ -38,7 +37,6 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/edit', editRouter);
 app.use('/twit', twitRouter);
 app.use('/following',followingRouter);
 app.use('/follower',followerRouter);
