@@ -5,19 +5,15 @@ const { verify } = require('./middlewares');
 let router = express.Router();
 router.use(cors());
 
-router.get('/:id/follower', async (req, res)=>{
+router.get('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
-        if (auth < 0) {
-            err.status = 401;
-            throw err;
-        }
-        if (auth == req.params.id) {
+        if (auth) {
             let list = await Follower.findAll({
                 attributes: ['FollowerId'],
-                where: {userId: req.params.id}
+                where: {userId: auth}
             });
             if(list) {
                 res.json({
