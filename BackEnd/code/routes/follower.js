@@ -5,7 +5,7 @@ const { verify } = require('./middlewares');
 let router = express.Router();
 router.use(cors());
 
-router.get('/:id', async (req, res)=>{
+router.get('/:id/follower', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
