@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import axios from 'axios';
 import './Signin.css';
 import base_url from '../../base_url';
@@ -17,21 +17,24 @@ class Signin extends Component {
         })
     }
     handleLogin = () => {
-        axios.get(`${base_url}/auth/signIn/${this.state.id}/${this.state.pw}`)
-            .then((data) => {
-                this.setState({
-                    isError: false,
-                    check: true,
-                });
-                console.log(data);
-                localStorage.setItem('token' , data.data.token);
-                // window.location.reload();
+        const {id, pw} = this.state;
+        const userInfo = {id: id, password: pw};
+        const {history} = this.props;
 
+        axios.post(`${base_url}/auth/signIn`, userInfo)
+        .then((data) => {
+                // this.setState({
+                //     isError: false,
+                //     check: true,
+                // });
+                console.log(data.data);
+                // localStorage.setItem('token' , data.data.id);
+
+                history.push('/');
             }).catch(() => {
                 this.setState({
                     isError: true,
                 });
-                console.log('에러');
             })
     }
     render() {
@@ -44,13 +47,13 @@ class Signin extends Component {
         return (
             <div className="input-wapper">
                 <div className="sign">SIGN IN</div>    
-                <div className="input-box">
+                <div className="signin-input-box">
                     <table>
                         <tbody>
                             <tr>
                                 <td><div className="input-id">ID</div></td>
                                 <td><input className="input" onChange={this.handleChange} value={this.state.id} name="id"/></td>
-                                <td rowSpan="2"><Link to={check? '/':'signin'}><button className="log-in" onClick={this.handleLogin}>로그인</button></Link></td>
+                                <td rowSpan="2"><button className="log-in" onClick={this.handleLogin}>로그인</button></td>
                             </tr>                    
                             <tr>
                                 <td><div className="input-pw">PW</div></td>
@@ -69,4 +72,4 @@ class Signin extends Component {
     }
 }
 
-export default Signin;
+export default withRouter(Signin) ;
