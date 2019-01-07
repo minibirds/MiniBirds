@@ -22,16 +22,20 @@ class Header extends Component {
     };
     
     AppearConfirm = () => {
-        const { CheckToken, history } = this.props;
-        console.log(history);    
         // eslint-disable-next-line no-unused-expressions
         window.confirm('로그아웃 하시겠습니까?') ? localStorage.setItem('token', '') : null ;
     
-        const historyAddress = history.push('/signin');
-        // CheckToken(historyAddress); 
+        this.CheckToken(); 
         
     }
 
+    CheckToken = () => {
+        const {history} = this.props;
+        if(localStorage.getItem('token') === ''){
+            history.push('/signin');
+            window.location.reload();
+        }
+      }
 
     render() { 
         const {onTwit, logOut, onKeyPress, Form} = this.props;
