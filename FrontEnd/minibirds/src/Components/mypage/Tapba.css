@@ -10,6 +10,30 @@
     display: flex;
 }
 
+.on-table-twit {
+    color: #7950F2;
+}
+
+.on-table-following {
+    color: #7950F2;
+}
+
+.on-table-follower {
+    color: #7950F2;
+}
+
+.on-twit-number {
+    color: #7950F2;
+}
+
+.on-following-number {
+    color: #7950F2;
+}
+
+.on-follower-number {
+    color: #7950F2;
+}
+
 table {
     width: 95%;
     padding-top: 10px;
@@ -26,6 +50,7 @@ table {
 
 td {
     width: 600px;
+    cursor: pointer;
 }
 
 .twit-list {
