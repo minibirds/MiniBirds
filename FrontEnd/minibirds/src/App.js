@@ -5,20 +5,9 @@ import SigninPage from './Components/Share/SigninPage';
 import MainService from './container/MainService/MainService';
 import SignupPage from './Components/Share/SignupPage';
 import Mypage from './container/Mypage/Mypage';
+import EditInfo from './container/EditInfo/EditInfo';
 
-class App extends Component {
-  CheckToken = (history) => {
-    if(localStorage.getItem('token') === ''){
-      
-      return history;
-    }
-  }
-
-  constructor(){
-    super();
-    this.CheckToken();
-}
-  
+class App extends Component {  
   render() {
 
     return (
@@ -26,10 +15,11 @@ class App extends Component {
         <BrowserRouter>
           <React.Fragment>
             <Switch>
-              <Route path='/' component={() => <MainService CheckToken={this.CheckToken} history={this.history}/>} exact />
-              <Route path='/signin' component={SigninPage} exact/>
+              <Route path='/' component={() => <MainService history={this.history}/>} exact />
+              <Route path='/signin' component={() => <SigninPage history={this.history}/>} exact/>
               <Route path='/signup' component={SignupPage} exact/>
               <Route path='/mypage' component={() => <Mypage CheckToken={this.CheckToken} history={this.history} />} />
+              <Route path='/edit' component={EditInfo} />
             </Switch>
           </React.Fragment>
         </BrowserRouter>
