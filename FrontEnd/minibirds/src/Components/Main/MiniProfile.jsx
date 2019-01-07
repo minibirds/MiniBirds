@@ -8,9 +8,10 @@ import axios from 'axios';
 class MiniProfile extends Component {
 
   componentDidMount() {
-  //   GetTwitNum();
-  //   GetFollowerNum();
-  //   GetFollowingNum();
+     this.GetTwitNum();
+     this.GetFollowerNum();
+     this.GetFollowingNum();
+     this.GetUserInfo();
    }
 
   constructor(props) {
@@ -20,7 +21,19 @@ class MiniProfile extends Component {
       twitNum: 0,
       followerNum: 0,
       followingNum: 0,
+      userID: '@NULL',
+      userNickname: '계정이 없습니다.'
     }
+  }
+
+  GetUserInfo = () => {
+    axios.get(`http://13.59.174.126:5000/auth/signup/${this.state.id}`)
+    .then((response) => {
+      this.setState({
+        userID: response.data.result.id,
+        userNickname: response.data.result.nickname,
+      })
+    }) 
   }
 
   GetTwitNum = () => {
@@ -51,12 +64,7 @@ class MiniProfile extends Component {
   }
 
   render() { 
-    const {twitNum, followerNum, followingNum} = this.state;
-    const {
-      GetFollowerNum,
-      GetFollowingNum,
-      GetTwitNum
-    } = this;
+    const {twitNum, followerNum, followingNum, userID, userNickname} = this.state;
 
     return ( 
       <div className="mini__main--profile">
@@ -64,8 +72,8 @@ class MiniProfile extends Component {
           <div className="upper-profile">
             <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
             <span className="upper-text">
-              <div className="upper-name">미니버드 공식계정</div>
-              <div className="upper-id">@mini_birds_twt</div>
+              <div className="upper-name">{userNickname}</div>
+              <div className="upper-id">{userID}</div>
             </span>
           </div>
         </Link>
