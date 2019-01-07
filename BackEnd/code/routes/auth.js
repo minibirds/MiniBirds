@@ -8,15 +8,15 @@ router.use(cors());
 let jwt = require('jsonwebtoken');
 
 // id, password 로 인증받아 토큰을 발급받는 API
-router.get('/signIn/:id/:password', async (req, res)=> {
+router.post('/signIn', async (req, res)=> {
     let err = {};
     try {
         const user = await User.findOne({
-            where: {id: req.params.id},
+            where: {id: req.body.id},
         });
         if (user) {
             // 비밀번호 일치 시
-            if (req.params.password == user.password) {
+            if (req.body.password == user.password) {
                 let token = sign(user);
                 res.cookie("sign", token);
                 res.json({
@@ -108,6 +108,5 @@ router.get('/token', async (req, res)=>{
        })
    }
 });
-
 
 module.exports = router;
