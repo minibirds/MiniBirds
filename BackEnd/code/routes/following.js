@@ -8,21 +8,20 @@ let router = express.Router();
 router.use(cors());
 
 // 다른 유저를 팔로우하는 API
-router.post('/following', (req, res)=>{
+router.post('/', (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
-        if(auth < 0) throw err;
-        if(auth == req.body.userId) {
+        if(auth) {
             Following.create({
                 FollowingId: req.body.targetId,
-                userId: req.body.userId
+                userId: auth
             })
                 .then((followings)=>{
                     console.log(followings.userId);
                     Follower.create({
-                        FollowerId: req.body.userId,
+                        FollowerId: auth,
                         userId: req.body.targetId
                     })
                         .then((followers)=>{
@@ -43,19 +42,15 @@ router.post('/following', (req, res)=>{
 });
 
 // 자신이 팔로우 중인 유저 리스트를 가져오는 API
-router.get('/:id/following', async (req, res)=>{
+router.get('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
-        if(auth < 0) {
-            err.status = 401;
-            throw err;
-        }
-        if(auth == req.params.id) {
+        if(auth) {
             let list = await Following.findAll({
                 attributes: ['followingId'],
-                where: {userId: req.params.id}
+                where: {userId: auth}
             });
             if(list) {
                 res.json({
