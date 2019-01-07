@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import Signlogo from '../signup_in/Signlogo';
 import Signin from '../signup_in/Signin';
 
-const SigninPage = () => {
+const SigninPage = ({signin}) => {
     return (
         <div className="background-box">
             <div className="sign-container">
@@ -12,7 +12,7 @@ const SigninPage = () => {
                     <Signlogo />
                 </div>
                 <div className="right-component">
-                    <Signin/>
+                    <Signin signin={signin} />
                 </div>       
             </div> 
         </div>

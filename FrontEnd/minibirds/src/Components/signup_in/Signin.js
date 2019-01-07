@@ -11,6 +11,7 @@ class Signin extends Component {
         isError: false,
         check: false,
     }
+
     handleChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value
@@ -22,13 +23,21 @@ class Signin extends Component {
         const {history} = this.props;
 
         axios.post(`${base_url}/auth/signIn`, userInfo)
-        .then((data) => {
-                localStorage.setItem('token' , data.data.token);
+        .then((res) => {
+                localStorage.setItem('token' , res.data.token);
+                this.props.signin(
+                    res.data.user.id,
+                    res.data.user.nickname,
+                    res.data.user.password,
+                    res.data.user.intro,
+                );
+                
                 history.push('/');
-            }).catch(() => {
+            }).catch((res) => {
                 this.setState({
                     isError: true,
                 });
+                console.log('에러');
             })
     }
     render() {

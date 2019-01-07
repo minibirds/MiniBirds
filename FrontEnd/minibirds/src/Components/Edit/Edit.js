@@ -7,12 +7,13 @@ class Edit extends Component{
     constructor(props) {
         super(props);
         this.state = { 
-            id: '',
-            pw: '',
-            nickname: '',
-            intro : '',
+            id: this.props.id,
+            pw: this.props.pw,
+            newpw : '',
+            nickname: this.props.nickname,
+            intro : this.props.intro,
          }
-      }
+    }
     render() {
         this.handleChange = (e) => {
             this.setState({
@@ -46,7 +47,7 @@ class Edit extends Component{
                 </tr>
                 <tr>
                     <td><div className="input-letter">새 비밀번호</div></td>
-                     <td><input className="input-info" onChange={this.handleChange} value={this.state.pw} name="pw"/></td>
+                     <td><input className="input-info" onChange={this.handleChange} value={this.state.newpw} name="newpw"/></td>
                 </tr>
                 <tr>
                     <td><div className="input-letter">닉네임</div></td>
