@@ -19,6 +19,7 @@ class MiniProfile extends Component {
     super(props);
     this.state = { 
       id: '',
+      password: '',
       twitNum: 0,
       followerNum: 0,
       followingNum: 0,
@@ -28,7 +29,7 @@ class MiniProfile extends Component {
   }
 
   GetUserInfo = () => {
-    axios.get(`${base_url}/auth/signup/${this.state.id}`)
+    axios.get(`${base_url}/auth/signIn/${this.state.id}/${this.state.password}`)
     .then((response) => {
       this.setState({
         userID: response.data.result.id,
