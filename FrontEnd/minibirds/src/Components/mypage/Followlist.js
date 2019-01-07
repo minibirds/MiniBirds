@@ -5,64 +5,78 @@ import axios from 'axios';
 import base_url from '../../base_url';
 
 class Followlist extends Component {
-
-    componentDidMount() {
-        this.GetUserInfo();
-    }
     
     constructor() {
         super();
         this.state = {
             id: '',
             userNickname: '계정이 없습니다.',
-            info: '자기소개가 없습니다.',
+            intro: '자기소개가 없습니다.',
             followState: '팔로우',
-            Profile: {ProfileImg}
+            Profile: ProfileImg
         }
+    }
+
+    componentDidMount() {
+        this.GetUserInfo();
     }
     
     GetUserInfo = () => {
-        axios.get(`${base_url}/auth/following/${this.state.id}`)
+        axios.get(`${base_url}/follower/${this.state.id}`)
         .then((response) => {
-          this.setState({
-            userNickname: response.data.id,
-            info: response.data.intro,
-            Profile: response.data.img
-          });
+            this.setState({
+                intro: response.data.intro
+            })
         }) 
       }
 
     handleBtnChange = () => {
         const changeBtn = document.getElementById('follow-btn');
+        let followNum;
     
         if (changeBtn.className === 'follow-btn') {
             changeBtn.className = 'none-follow-btn';
             this.setState({
                 followState: '팔로우'
             });
+            axios.get(`${base_url}/following`)
+            .then((response) => {
+                followNum = response.data.num;
+                followNum -= 1;
+            })
+            .then(() => {
+                axios({
+                    method: 'post',
+                    url: `${base_url}/following`,
+                    data: {
+                        num: followNum
+                    }
+                })
+            })
         } else {
             changeBtn.className = 'follow-btn';
-            this.setState({
+            this.setState({ 
                 followState: '팔로잉'
             });
         }
         
     }
     render() {
-        const { followState, userNickname, info } = this.state;
+        const { followState, userNickname, intro, Profile } = this.state;
         const {
             handleBtnChange
         } = this;
+        
         return (
             <React.Fragment>
                 <div className="follow-content">
                     <div className="btn-box">
-                        <img src={ProfileImg} alt='' className='follow-profile-img' />
+                        <img src={Profile} alt='' className='follow-profile-img' />
                         <div className="user-name-text">{userNickname}</div>
                     <div className="follow-btn" id="follow-btn" onClick={handleBtnChange}>{followState}</div>
                 </div>
                 <div className="text-content">
-                    <div className="user-intro">{info}</div>
+                    <div className="user-intro">{intro}</div>
                 </div>
                 </div>
             </React.Fragment>
