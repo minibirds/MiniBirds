@@ -16,7 +16,8 @@ class Followlist extends Component {
             id: '',
             userNickname: '계정이 없습니다.',
             info: '자기소개가 없습니다.',
-            followState: '팔로우'
+            followState: '팔로우',
+            Profile: {ProfileImg}
         }
     }
     
@@ -25,7 +26,8 @@ class Followlist extends Component {
         .then((response) => {
           this.setState({
             userNickname: response.data.id,
-            info: response.data.intro
+            info: response.data.intro,
+            Profile: response.data.img
           });
         }) 
       }
