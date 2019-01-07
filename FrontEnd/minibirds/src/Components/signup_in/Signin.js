@@ -23,13 +23,7 @@ class Signin extends Component {
 
         axios.post(`${base_url}/auth/signIn`, userInfo)
         .then((data) => {
-                // this.setState({
-                //     isError: false,
-                //     check: true,
-                // });
-                console.log(data.data);
-                // localStorage.setItem('token' , data.data.id);
-
+                localStorage.setItem('token' , data.data.token);
                 history.push('/');
             }).catch(() => {
                 this.setState({
