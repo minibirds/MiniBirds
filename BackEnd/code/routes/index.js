@@ -105,4 +105,34 @@ router.put('/:id', async (req, res)=>{
     }
 });
 
+// userId 와 postId로 게시물을 검색하여 삭제하는 API
+router.delete('/:userId/:postId', async (req, res)=>{
+    let err = {};
+    let token = req.cookies.sign;
+    try {
+        let auth = verify(token, 'entry_minibirds');
+        if(auth < 0) throw err;
+        if(auth == req.params.userId) {
+            let post = await Post.findOne({
+                where: {userId: req.params.userId, postId: req.params.postId}
+            });
+            if(post) {
+                Post.destroy({
+                    where: {postId: req.params.postId}
+                });
+                res.json({'message':'게시물을 삭제하였습니다'});
+            } else {
+                err.status = 404;
+                err.message = '삭제하려는 게시물을 찾을 수 없습니다';
+                throw err;
+            }
+        }
+    } catch (err) {
+        res.json({
+            status: err.status,
+            message: err.message
+        })
+    }
+});
+
 module.exports = router;
