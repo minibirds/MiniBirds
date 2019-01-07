@@ -107,16 +107,15 @@ router.put('/', async (req, res)=>{
     }
 });
 
-// userId 와 postId로 게시물을 검색하여 삭제하는 API
-router.delete('/:userId/:postId', async (req, res)=>{
+// postId로 게시물을 검색하여 삭제하는 API
+router.delete('/:postId', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
-        if(auth < 0) throw err;
-        if(auth == req.params.userId) {
+        if(auth) {
             let post = await Post.findOne({
-                where: {userId: req.params.userId, postId: req.params.postId}
+                where: {userId: auth, postId: req.params.postId}
             });
             if(post) {
                 Post.destroy({
