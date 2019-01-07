@@ -37,7 +37,7 @@ class App extends Component {
                 exact
               />
               <Route path='/signup' component={SignupPage} exact/>
-              <Route path='/mypage' component={() => <Mypage CheckToken={this.CheckToken} history={this.history} />} />
+              <Route path='/mypage' component={() => <Mypage history={this.history} />} />
               <Route
                 path='/edit'
                 component={() =>
