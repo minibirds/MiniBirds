@@ -16,11 +16,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img alt="undefined" class="undefined" src="./images/navbar.png">
+        <img alt="undefined" class="undefined" src="images/navbar.png">
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img alt="undefined" class="undefined" src="./images/logo.png">
+      <img alt="undefined" class="undefined" src="images/logo.png">
       
         <div class="lang-selector">
           
@@ -222,50 +222,8 @@
 ]</code></pre><p>사용자의 아이디와 비밀번호를 통해 사용자 정보를 수정한다.</p>
 <h3 id="http-request">HTTP Request</h3>
 <p><code>PUT http://example.com</code></p>
-<h3 id="url-parameters">URL Parameters</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>userId</td>
-<td>varchar(20)</td>
-<td>토큰과의 비교를 위해 필요한 정보(사용자 SNS id)</td>
-</tr>
-</tbody>
-</table>
 <h3 id="request-body">Request Body</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>nickname</td>
-<td>varchar(20)</td>
-<td>사용자의 변경할 닉네임 </td>
-</tr>
-<tr>
-<td>password</td>
-<td>varchar(30)</td>
-<td>사용자의 변경할 비밀번호</td>
-</tr>
-<tr>
-<td>intro</td>
-<td>varchar(30)</td>
-<td>사용자의 변경할 한줄소개</td>
-</tr>
-</tbody>
-</table>
+<p>Just Token</p>
 <h3 id="status-code">Status Code</h3>
 <table>
 <thead>
@@ -303,26 +261,11 @@
     <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(게시물의 이미지가 저장된 경로)"</span>,
     <span class="hljs-attr">"created_At"</span>: <span class="hljs-string">"(게시물이 작성된 날짜)"</span>
   }
-]</code></pre><p>사용자의 id로 식별하여 자신이 팔로우 한 사람들의 게시물을 시간순으로 가져온다.</p>
+]</code></pre><p>사용자의 id로 식별하여 자신이 팔로우 한 사람들의 게시물을 최신순으로 가져온다.</p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/:id</code></p>
+<p><code>GET http://example.com/</code></p>
 <h3 id="request-body">Request Body</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>varchar(20)</td>
-<td>사용자의 고유 sns id</td>
-</tr>
-</tbody>
-</table>
+<p>Just Token</p>
 <h3 id="status-code">Status Code</h3>
 <table>
 <thead>
@@ -373,11 +316,6 @@
 <td>img</td>
 <td>varchar(500)</td>
 <td>게시물의 이미지가 저장된 경로</td>
-</tr>
-<tr>
-<td>userId</td>
-<td>varchar(20)</td>
-<td>게시물을 업로드한 사용자의 id 정보  </td>
 </tr>
 </tbody>
 </table>
@@ -446,9 +384,9 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 <pre class="highlight json"><code>{
  <span class="hljs-attr">"status"</span>: <span class="hljs-number">200</span>,
  <span class="hljs-attr">"message"</span>: <span class="hljs-string">"게시물을 삭제했습니다."</span>
-}</code></pre><p>사용자의 아이디와 비밀번호를 통해 게시물을 삭제한다.</p>
+}</code></pre><p>게시물 아이디를 통해 게시물을 삭제한다.</p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>DELETE http://example.com/:userId/:postId</code></p>
+<p><code>DELETE http://example.com/:postId</code></p>
 <h3 id="url-parameters">URL Parameters</h3>
 <table>
 <thead>
@@ -463,11 +401,6 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 <td>postId</td>
 <td>int</td>
 <td>삭제할 게시물의 고유 id</td>
-</tr>
-<tr>
-<td>userId</td>
-<td>varchar(20)</td>
-<td>삭제할 게시물 작성자의 고유 id</td>
 </tr>
 </tbody>
 </table>
@@ -654,24 +587,9 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
     <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로잉 한 사람의 한줄소개)"</span>  
   }
 ]</code></pre><h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/:&lt;id&gt;/following</code></p>
-<h3 id="url-parameters">URL Parameters</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>int</td>
-<td>리스트를 가져올 유저의 고유 id</td>
-</tr>
-</tbody>
-</table>
+<p><code>GET http://example.com/following</code></p>
+<h3 id="request">Request</h3>
+<p>Just Token</p>
 <h3 id="status-code">Status Code</h3>
 <table>
 <thead>
@@ -710,13 +628,8 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 </thead>
 <tbody>
 <tr>
-<td>userId</td>
-<td>int</td>
-<td>팔로우을 한 사용자의 고유 id  </td>
-</tr>
-<tr>
 <td>targetId</td>
-<td>int</td>
+<td>varchar(20)</td>
 <td>팔로우를 당한 유저의 고유 id  </td>
 </tr>
 </tbody>
@@ -748,7 +661,24 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 <pre class="highlight json"><code>{
     <span class="hljs-attr">"message"</span>: <span class="hljs-string">"팔로우를 취소 했습니다"</span>
 }</code></pre><h3 id="http-request">HTTP Request</h3>
-<p><code>DELETE http://example.com/:&lt;userId&gt;/following/:&lt;targetId&gt;</code></p>
+<p><code>DELETE http://example.com/:&lt;targetId&gt;</code></p>
+<h3 id="request-body">Request Body</h3>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>targetId</td>
+<td>varchar(20)</td>
+<td>팔로우를 당한 유저의 고유 id  </td>
+</tr>
+</tbody>
+</table>
 <h3 id="status-code">Status Code</h3>
 <table>
 <thead>
@@ -786,24 +716,9 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
     <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로우 한 사람의 한줄소개)"</span>  
   }
 ]</code></pre><h3 id="http-request">HTTP Request</h3>
-<p><code>GET http://example.com/:&lt;id&gt;/follower</code></p>
-<h3 id="url-parameters">URL Parameters</h3>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>id</td>
-<td>int</td>
-<td>리스트를 가져올 유저의 고유 id</td>
-</tr>
-</tbody>
-</table>
+<p><code>GET http://example.com/follower</code></p>
+<h3 id="request">Request</h3>
+<p>Just Token</p>
 <h3 id="status-code">Status Code</h3>
 <table>
 <thead>
