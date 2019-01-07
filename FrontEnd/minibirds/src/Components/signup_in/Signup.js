@@ -31,6 +31,7 @@ class Signup extends Component {
     }
 
     postUserInfo = () => {
+        const {history} = this.props;
         const {id, password, nickname} = this.state;
 
         if (id === '' || password === '' || nickname === '') {
@@ -53,6 +54,8 @@ class Signup extends Component {
                     this.setState({
                         check: true
                     });
+
+                    history.push('/signin');
                 }
             })
         }
