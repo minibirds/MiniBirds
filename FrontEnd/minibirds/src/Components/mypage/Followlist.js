@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import './followlist.css'
 import ProfileImg from '../img/profile-img-default.png';
 import axios from 'axios';
+import base_url from '../../base_url';
 
 class Followlist extends Component {
+
+    componentDidMount() {
+        this.GetUserInfo();
+    }
     
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             id: '',
             userNickname: '계정이 없습니다.',
@@ -16,12 +21,12 @@ class Followlist extends Component {
     }
     
     GetUserInfo = () => {
-        axios.get(`http://13.59.174.126:5000/auth/signup/${this.state.id}`)
+        axios.get(`${base_url}/auth/following/${this.state.id}`)
         .then((response) => {
           this.setState({
-            userNickname: response.data.result.nickname,
-            info: response.data.result.info
-          })
+            userNickname: response.data.id,
+            info: response.data.intro
+          });
         }) 
       }
 
@@ -32,12 +37,12 @@ class Followlist extends Component {
             changeBtn.className = 'none-follow-btn';
             this.setState({
                 followState: '팔로우'
-            })
+            });
         } else {
             changeBtn.className = 'follow-btn';
             this.setState({
                 followState: '팔로잉'
-            })
+            });
         }
         
     }
