@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import './Signup.css';
 import './Signin.css';
-import axios from 'axios';
+import axios from 'axios'
 import base_url from '../../base_url';
 
 class Signup extends Component {

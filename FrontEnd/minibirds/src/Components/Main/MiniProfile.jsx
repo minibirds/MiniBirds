@@ -3,6 +3,7 @@ import ProfileImg from '../img/profile-img-default.png'
 import './MiniProfile.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import base_url from '../../base_url';
 
 
 class MiniProfile extends Component {
@@ -27,26 +28,26 @@ class MiniProfile extends Component {
   }
 
   GetUserInfo = () => {
-    axios.get(`http://13.59.174.126:5000/auth/signup/${this.state.id}`)
+    axios.get(`${base_url}/auth/signup/${this.state.id}`)
     .then((response) => {
       this.setState({
         userID: response.data.result.id,
         userNickname: response.data.result.nickname,
-      })
+      });
     }) 
   }
 
   GetTwitNum = () => {
-    axios.get(`http://13.59.174.126:5000/auth/twit/${this.state.id}`)
+    axios.get(`${base_url}/auth/twit/${this.state.id}`)
     .then((response) => {
       this.setState({
         twitNum: response.data.num
-      })
+      });
     })
   }
 
   GetFollowerNum = () => {
-    axios.get(`http://13.59.174.126:5000/auth/follower/${this.state.id}`)
+    axios.get(`${base_url}/auth/follower/${this.state.id}`)
     .then((response) => {
       this.setState({
         followerNum: response.data.num
@@ -55,11 +56,11 @@ class MiniProfile extends Component {
   }
 
   GetFollowingNum = () => {
-    axios.get(`http://13.59.174.126:5000/auth/following/${this.state.id}`)
+    axios.get(`${base_url}/auth/following/${this.state.id}`)
     .then((response) => {
       this.setState({
         followingNum: response.data.num
-      })
+      });
     })
   }
 
