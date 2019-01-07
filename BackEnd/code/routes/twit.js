@@ -44,10 +44,9 @@ router.post('/', async (req, res)=>{
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
-        if(auth < 0) throw err;
-        if(auth == req.body.userId) { // 인증성공
+        if(auth) { // 인증성공
             let post = await Post.create({
-                userId: req.body.userId,
+                userId: auth,
                 content: req.body.content,
                 img: req.body.img
             });
