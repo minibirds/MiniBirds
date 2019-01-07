@@ -39,7 +39,7 @@ app.use(session({
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/twit', twitRouter);
-app.use('/',followingRouter);
+app.use('/following',followingRouter);
 app.use('/',followerRouter);
 app.use('/profile', profileRouter);
 
