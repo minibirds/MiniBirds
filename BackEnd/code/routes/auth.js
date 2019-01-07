@@ -21,7 +21,8 @@ router.post('/signIn', async (req, res)=> {
                 res.cookie("sign", token);
                 res.json({
                     'status': 200,
-                    'token': token
+                    'token': token,
+                    user : user
                 });
             }
             else {
