@@ -38,7 +38,6 @@ router.post('/img', upload.single('img'), async (req, res)=> {
     res.json({ url : `/img/${req.file.filename}`});
 });
 
-
 router.post('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
@@ -58,6 +57,35 @@ router.post('/', async (req, res)=>{
                 err.status = 500;
                 err.message = '트윗 추가를 실패했습니다';
                 throw err;
+            }
+        } else {
+            err.status = 401;
+            err.message = '올바르지 않은 사용자입니다';
+            throw err;
+        }
+    } catch (err) {
+        res.json({
+            status: err.status,
+            message: err.message
+        })
+    }
+});
+
+router.get('/', async(req, res)=>{
+    let err = {};
+    let token = req.cookies.sign;
+    try {
+        let auth = verify(token, 'entry_minibirds');
+        if(auth) { // 인증설공
+            let posts = await Post.findAll({
+                where: {userId: auth}
+            });
+            if (posts)
+            {
+              res.json({
+                  num: posts.length,
+                  posts
+              })
             }
         } else {
             err.status = 401;
