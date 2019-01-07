@@ -70,6 +70,7 @@
 .edit-img { 
     width: 35px;
     height: 35px;
+    cursor: pointer;
 }
 
 .edit-letter {
@@ -78,4 +79,5 @@
     font-family: "맑은 고딕";
     color: #707070;
     font-weight: 600;
+    cursor: pointer;
 }
