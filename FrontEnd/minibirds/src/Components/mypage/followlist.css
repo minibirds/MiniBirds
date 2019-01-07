@@ -28,6 +28,26 @@
     position: absolute;
     right: 20px;
     top: 130px;
+    cursor: pointer;
+}
+
+.none-follow-btn {
+    display: inline-block;
+    width: 120px;
+    height: 40px;
+    background-color: #ffffff;
+    border-radius: 100px;
+    border: solid 1px #845EF7;
+    color: #845EF7;
+    font-size: 23px;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 5px;
+    right: 0;
+    position: absolute;
+    right: 20px;
+    top: 130px;
+    cursor: pointer;
 }
 
 .user-name-text {
