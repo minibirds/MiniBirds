@@ -72,22 +72,22 @@ router.get('/', async (req, res)=>{
 });
 
 // 팔로우를 끊는 API
-router.delete('/:userId/following/:targetId', async(req, res)=>{
+router.delete('/:targetId', async(req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
         let auth = verify(token, "entry_minibirds");
         if(auth < 0) throw err;
         let follow = await Following.findOne({
-            where: {userId: req.params.userId, FollowingId: req.params.targetId}
+            where: {userId: auth, FollowingId: req.params.targetId}
         });
             if(follow) {
                 let result = await Following.destroy({
-                    where: {userId: req.params.userId, FollowingId: req.params.targetId}
+                    where: {userId: auth, FollowingId: req.params.targetId}
                 });
                 if(result) {
                     let result2 = await Follower.destroy({
-                        where: {userId: req.params.targetId, FollowerId: req.params.userId}
+                        where: {userId: req.params.targetId, FollowerId: auth}
                     });
                     if(result2) {
                        res.json({
