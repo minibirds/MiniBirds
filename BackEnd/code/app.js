@@ -40,7 +40,7 @@ app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use('/twit', twitRouter);
 app.use('/following',followingRouter);
-app.use('/follower',followerRouter);
+app.use('/',followerRouter);
 app.use('/profile', profileRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
