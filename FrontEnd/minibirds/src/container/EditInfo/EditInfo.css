@@ -1,0 +1,7 @@
+.edit-container{
+  display: flex;
+  flex-direction: column;
+  background-color: #B060FF;
+  margin: 0;
+  padding: 0;
+}
