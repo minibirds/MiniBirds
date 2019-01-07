@@ -5,12 +5,12 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Header from '../../Components/Share/Header';
 import Twit from '../../Components/Main/MainTweet';
 
-const MainService = ({}) => {
+const MainService = ({CheckToken, history}) => {
     return(
         <div className="main-service">
             <BrowserRouter>
                 <React.Fragment>
-                    <Header/>
+                    <Header CheckToken={CheckToken} history={history} />
                     <Switch>
                         <Route path='/' component={Main} exact />
                         <Route path='/mypage' component={Mypage} exact/>

@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const { Sequelize: {Op} } = require('../models');
 let Post = require('../models').Post;
+let User = require('../models').User;
 let Following = require('../models').Following;
 const { verify } = require('./middlewares');
 const router = express.Router();
@@ -46,6 +47,91 @@ router.get('/:id', async (req, res)=>{
             err.message = '권한이 없는 사용자입니다';
             err.status = 401;
             throw err;
+        }
+    } catch (err) {
+        res.json({
+            status: err.status,
+            message: err.message
+        })
+    }
+});
+
+// 사용자의 정보를 수정하는 API
+router.put('/:id', async (req, res)=>{
+    let token = req.cookies.sign;
+    let err = {};
+    try {
+        let auth = verify(token, 'entry_minibirds');
+        if(auth < 0) throw err;
+        if(auth == req.params.id) {
+            if(req.body.nickname) { // 닉네임 변경시
+                await User.update(
+                    {nickname: req.body.nickname},
+                    {where: {id: req.params.id}}
+                )
+            }
+            if(req.body.password) { // 비밀번호 변경시
+                await User.update(
+                    {password: req.body.password},
+                    {where: {id: req.params.id}}
+                )
+            }
+            if(req.body.intro) { // 한줄소개 변경시
+                await User.update(
+                    {intro: req.body.intro},
+                    {where: {id: req.params.id}}
+                )
+            }
+            if(req.body.img) { //프로필 이미지 변경시
+                await User.update(
+                    {img: req.body.img},
+                    {where: {id: req.params.id}}
+                )
+            }
+            let user = await User.findOne({
+                where : {id: req.params.id}
+            });
+            if(user) res.json(user);
+            else {
+                err.message = 404;
+                err.message = 'id 에 해당하는 사용자를 찾을 수 없습니다';
+                throw err;
+            }
+        }
+        else {
+            err.status = 403;
+            err.message = '다른 사람의 정보는 수정할 수 없습니다';
+            throw err;
+        }
+    } catch (err) {
+        res.json({
+            status: err.status,
+            message: err.message
+        });
+    }
+});
+
+// userId 와 postId로 게시물을 검색하여 삭제하는 API
+router.delete('/:userId/:postId', async (req, res)=>{
+    let err = {};
+    let token = req.cookies.sign;
+    try {
+        let auth = verify(token, 'entry_minibirds');
+        if(auth < 0) throw err;
+        if(auth == req.params.userId) {
+            let post = await Post.findOne({
+                where: {userId: req.params.userId, postId: req.params.postId}
+            });
+            if(post) {
+                Post.destroy({
+                    where: {postId: req.params.postId}
+                });
+                res.json({'message':'게시물을 삭제하였습니다'});
+            } else {
+                err.status = 404;
+                err.message = '삭제하려는 게시물을 찾을 수 없습니다';
+                throw err;
+            }
         }
     } catch (err) {
         res.json({

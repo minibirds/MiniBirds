@@ -1,28 +1,58 @@
-import React from 'react';
+import React, { Component } from 'react';
 import editimg from '../img/edit-img.png';
 import './profile.css';
 import MyProfileImg from '../img/profile-img-default.png';
+import axios from 'axios';
+import base_url from '../../base_url';
 
-const Profile = ({id, name, profileImg, info, Tapba}) => {
-    return (
-        <div>
-            <div className="detail-profile">
-                <img className="my-profile-img" src={MyProfileImg} alt=''/>
-                <div className="text-box">
-                    <div className="nick-name">{name}히히낙낙</div>
-                    <div className="user-id">{id}@dsasds</div>
-                    <div className="info">{info}퉤ㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔㅔ</div>
-                    <div className="info-modify-btn">
-                        <img src={editimg} alt="수정" className="edit-img" />
-                        <span className="edit-letter">프로필 수정하기</span>
+class Profile extends Component {
+
+    componentDidMount() {
+        this.GetLoginUserInfo();
+    }
+
+    constructor() {
+        super();
+        this.state = {
+            id: '',
+            password: '',
+            profileImg: MyProfileImg,
+            nickName: '계정이 없습니다.',
+            userID: '@NULL',
+            info: '자기소개가 없습니다. 자신을 다른 사람들에게 소개해보세요.',
+        }
+    }
+
+    GetLoginUserInfo = () => {
+        axios.get(`${base_url}/auth/signIn/${this.state.id}/${this.state.password}`)
+        .then((response) => {
+            this.setState({
+                userID: response.data.Sns_id,
+                nickName: response.data.nickName,
+                info: response.data.intro
+            })
+        })
+    }
+
+    render() {
+        const { profileImg, nickName, userID, info } = this.state
+        return (
+            <div>
+                <div className="detail-profile">
+                    <img className="my-profile-img" src={profileImg} alt=''/>
+                    <div className="text-box">
+                        <div className="nick-name">{nickName}</div>
+                        <div className="user-id">{userID}</div>
+                        <div className="info">{info}</div>
+                        <div className="info-modify-btn">
+                            <img src={editimg} alt="수정" className="edit-img" />
+                            <span className="edit-letter">프로필 수정하기</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div>
-                {Tapba}
-            </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default Profile;

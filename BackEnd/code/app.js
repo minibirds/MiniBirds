@@ -6,10 +6,10 @@ const session = require('express-session');
 
 const indexRouter = require('./routes');
 const authRouter = require('./routes/auth');
-const editRouter = require('./routes/edit');
 const twitRouter = require('./routes/twit');
 const followingRouter = require('./routes/following');
 const followerRouter = require('./routes/follower');
+const profileRouter = require('./routes/profile');
 const sequelize = require('./models').sequelize;
 
 const app = express();
@@ -38,10 +38,10 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
-app.use('/edit', editRouter);
 app.use('/twit', twitRouter);
-app.use('/following',followingRouter);
-app.use('/follower',followerRouter);
+app.use('/',followingRouter);
+app.use('/',followerRouter);
+app.use('/profile', profileRouter);
 
 // 해당 라우터가 없을시 404 Error 발생
 app.use((req, res, next)=>{

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import './Signup.css';
 import './Signin.css';
-import axios from 'axios';
+import axios from 'axios'
 import base_url from '../../base_url';
 
 class Signup extends Component {
@@ -31,6 +31,7 @@ class Signup extends Component {
     }
 
     postUserInfo = () => {
+        const {history} = this.props;
         const {id, password, nickname} = this.state;
 
         if (id === '' || password === '' || nickname === '') {
@@ -53,6 +54,8 @@ class Signup extends Component {
                     this.setState({
                         check: true
                     });
+
+                    history.push('/signin');
                 }
             })
         }

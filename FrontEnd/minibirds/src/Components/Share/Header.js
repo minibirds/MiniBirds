@@ -1,29 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './Header.css';
 import Home from '../img/home-button.png';
 import logo from '../img/MiniBirds-Logo.png';
 import Twit from '../Main/MainTweet';
-import {Link} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 
-const AppearTwitComponent = () => {
-    const TwitBackground = document.getElementById('small-twit-back');
-
-    if (TwitBackground.className === 'small-twit-back-on') {
-        TwitBackground.className = 'small-twit-back';
-    } else {
-        TwitBackground.className = 'small-twit-back-on';
+class Header extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {  }
     }
-};
 
-const AppearConfirm = () => {
-    // eslint-disable-next-line no-unused-expressions
-    window.confirm('로그아웃 하시겠습니까?') ? localStorage.setItem('token', '') : null ;
-}
+    AppearTwitComponent = () => {
+        const TwitBackground = document.getElementById('small-twit-back');
+    
+        if (TwitBackground.className === 'small-twit-back-on') {
+            TwitBackground.className = 'small-twit-back';
+        } else {
+            TwitBackground.className = 'small-twit-back-on';
+        }
+    };
+    
+    AppearConfirm = () => {
+        const { CheckToken, history } = this.props;
+        console.log(history);    
+        // eslint-disable-next-line no-unused-expressions
+        window.confirm('로그아웃 하시겠습니까?') ? localStorage.setItem('token', '') : null ;
+    
+        const historyAddress = history.push('/signin');
+        // CheckToken(historyAddress); 
+        
+    }
 
-const Header = ({onTwit, logOut, onKeyPress, Form}) => (
 
-    <div>
-        <div className="small-twit-back" id="small-twit-back" onClick={() => AppearTwitComponent()}>
+    render() { 
+        const {onTwit, logOut, onKeyPress, Form} = this.props;
+        return ( 
+            <div>
+        <div className="small-twit-back" id="small-twit-back" onClick={() => this.AppearTwitComponent()}>
             <div onClick={(e)=>e.stopPropagation()} className="small-twit-area">
                 <Twit />
             </div>
@@ -38,12 +52,14 @@ const Header = ({onTwit, logOut, onKeyPress, Form}) => (
             </div>
             <div className="header-right">
                 <ul className="twit_box">
-                    <li className="twit" onClick={() => AppearTwitComponent()} >트윗하기</li>
-                    <li className="twit" logOut={logOut} onClick={()=> AppearConfirm()} >로그아웃</li>
+                    <li className="twit" onClick={() => this.AppearTwitComponent()} >트윗하기</li>
+                    <li className="twit" logOut={logOut} onClick={()=> this.AppearConfirm()} >로그아웃</li>
                 </ul>
             </div>
         </div>
     </div>
-);
+         );
+    }
+}
 
-export default Header;
+export default withRouter(Header);

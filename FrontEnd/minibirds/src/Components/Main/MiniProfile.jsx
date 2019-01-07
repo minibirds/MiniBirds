@@ -3,37 +3,52 @@ import ProfileImg from '../img/profile-img-default.png'
 import './MiniProfile.css';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+import base_url from '../../base_url';
 
 
 class MiniProfile extends Component {
 
   componentDidMount() {
-  //   GetTwitNum();
-  //   GetFollowerNum();
-  //   GetFollowingNum();
+     this.GetTwitNum();
+     this.GetFollowerNum();
+     this.GetFollowingNum();
+     this.GetUserInfo();
    }
 
   constructor(props) {
     super(props);
     this.state = { 
       id: '',
+      password: '',
       twitNum: 0,
       followerNum: 0,
       followingNum: 0,
+      userID: '@NULL',
+      userNickname: '계정이 없습니다.'
     }
   }
 
+  GetUserInfo = () => {
+    axios.get(`${base_url}/auth/signIn/${this.state.id}/${this.state.password}`)
+    .then((response) => {
+      this.setState({
+        userID: response.data.result.id,
+        userNickname: response.data.result.nickname,
+      });
+    }) 
+  }
+
   GetTwitNum = () => {
-    axios.get(`http://13.59.174.126:5000/auth/twit/${this.state.id}`)
+    axios.get(`${base_url}/auth/twit/${this.state.id}`)
     .then((response) => {
       this.setState({
         twitNum: response.data.num
-      })
+      });
     })
   }
 
   GetFollowerNum = () => {
-    axios.get(`http://13.59.174.126:5000/auth/follower/${this.state.id}`)
+    axios.get(`${base_url}/auth/follower/${this.state.id}`)
     .then((response) => {
       this.setState({
         followerNum: response.data.num
@@ -42,21 +57,16 @@ class MiniProfile extends Component {
   }
 
   GetFollowingNum = () => {
-    axios.get(`http://13.59.174.126:5000/auth/following/${this.state.id}`)
+    axios.get(`${base_url}/auth/following/${this.state.id}`)
     .then((response) => {
       this.setState({
         followingNum: response.data.num
-      })
+      });
     })
   }
 
   render() { 
-    const {twitNum, followerNum, followingNum} = this.state;
-    const {
-      GetFollowerNum,
-      GetFollowingNum,
-      GetTwitNum
-    } = this;
+    const {twitNum, followerNum, followingNum, userID, userNickname} = this.state;
 
     return ( 
       <div className="mini__main--profile">
@@ -64,8 +74,8 @@ class MiniProfile extends Component {
           <div className="upper-profile">
             <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
             <span className="upper-text">
-              <div className="upper-name">미니버드 공식계정</div>
-              <div className="upper-id">@mini_birds_twt</div>
+              <div className="upper-name">{userNickname}</div>
+              <div className="upper-id">{userID}</div>
             </span>
           </div>
         </Link>
