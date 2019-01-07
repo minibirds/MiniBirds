@@ -8,7 +8,7 @@ let router = express.Router();
 router.use(cors());
 
 // 다른 유저를 팔로우하는 API
-router.post('/', (req, res)=>{
+router.post('/following', (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
@@ -43,7 +43,7 @@ router.post('/', (req, res)=>{
 });
 
 // 자신이 팔로우 중인 유저 리스트를 가져오는 API
-router.get('/:id', async (req, res)=>{
+router.get('/:id/following', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
@@ -77,7 +77,7 @@ router.get('/:id', async (req, res)=>{
 });
 
 // 팔로우를 끊는 API
-router.delete('/:userId/:targetId', async(req, res)=>{
+router.delete('/:userId/following/:targetId', async(req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
