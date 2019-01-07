@@ -15,8 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         intro: {
             type: DataTypes.STRING(50),
             defaultValue: '자기소개가 없습니다. 자신을 다른 사람들에게 소개해보세요'
+        },
+        img: {
+            type: DataTypes.STRING(200)
         }
     }, {
         timestamps: false
     })
-}
+};
