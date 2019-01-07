@@ -9,19 +9,15 @@ const router = express.Router();
 router.use(cors());
 
 //자신이 팔로우 한 사람의 게시물을 최신 순으로 가져오는 API
-router.get('/:id', async (req, res)=>{
+router.get('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
         let auth = verify(token, 'entry_minibirds');
-        if(auth < 0) {
-            err.status=401;
-            throw err;
-        }
-        if(auth == req.params.id) {
+        if(auth) {
             follow = await Following.findAll({
                 attributes: ['FollowingId'],
-                where: {userId: req.params.id}
+                where: {userId: auth}
             });
                 if(follow) {
                     let query = [];
