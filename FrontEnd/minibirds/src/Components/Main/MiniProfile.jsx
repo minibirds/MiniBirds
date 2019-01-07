@@ -32,8 +32,8 @@ class MiniProfile extends Component {
     axios.get(`${base_url}/auth/signIn/${this.state.id}/${this.state.password}`)
     .then((response) => {
       this.setState({
-        userID: response.data.result.id,
-        userNickname: response.data.result.nickname,
+        userID: response.data.Sns_id,
+        userNickname: response.data.nickname,
       });
     }) 
   }
@@ -48,7 +48,7 @@ class MiniProfile extends Component {
   }
 
   GetFollowerNum = () => {
-    axios.get(`${base_url}/auth/follower/${this.state.id}`)
+    axios.get(`${base_url}/follower/`)
     .then((response) => {
       this.setState({
         followerNum: response.data.num
@@ -57,7 +57,7 @@ class MiniProfile extends Component {
   }
 
   GetFollowingNum = () => {
-    axios.get(`${base_url}/auth/following/${this.state.id}`)
+    axios.get(`${base_url}/following`)
     .then((response) => {
       this.setState({
         followingNum: response.data.num
