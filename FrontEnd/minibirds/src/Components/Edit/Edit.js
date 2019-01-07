@@ -4,19 +4,23 @@ import axios from 'axios';
 import base_url from '../../base_url';
 
 class Edit extends Component{
-    render() {
-        state = {
+    constructor(props) {
+        super(props);
+        this.state = { 
             id: '',
             pw: '',
             nickname: '',
             intro : '',
-        }
-        handleChange = (e) => {
+         }
+      }
+    render() {
+        this.handleChange = (e) => {
             this.setState({
                 [e.target.name] : e.target.value
             })
         }
-        handleModify = () => {
+
+        this.handleModify = () => {
             axios
                 .put(
                     `${base_url}/edit/${this.state.id}`, {
@@ -53,8 +57,8 @@ class Edit extends Component{
                     <td><textarea className="input-intro" placeholder={this.state.intro} onChange={this.handleChange} value={this.state.intro} name="intro"/></td>
                 </tr>
             </table>
-            <Link to={check? '/':'mypage'}>
-            <button className="accept-edit-btn" onClick={this.handleModify}>수정하기</button></Link>
+            
+            <button className="accept-edit-btn" onClick={this.handleModify}>수정하기</button>
             
         </div>
     );
