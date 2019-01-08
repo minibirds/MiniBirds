@@ -6,11 +6,11 @@ import TwitProfileImg from "../../Components/img/profile-img-default.png";
 import axios from "axios";
 
 class MyTwitList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       postId: "",
-      userNickname: "",
+      userNickname: this.props.nickName,
       content: "",
       img: "",
       created_At: "",
@@ -30,12 +30,16 @@ class MyTwitList extends Component {
 
   componentDidMount() {
     this.GetMyTwitInfo();
-    this.GetMyNickname();
     this.GetMyProfileImg();
   }
 
   GetMyTwitInfo = () => {
-    axios.get(`${base_url}/twit`).then(res => {
+    axios.get(`${base_url}/twit`, {
+      headers: {
+        'token': `${localStorage.getItem('token')}`
+      }
+    }).then((res) => {
+      console.log(res.data);
       this.setState({
         postId: res.data.postId,
         content: res.data.content,
@@ -45,16 +49,12 @@ class MyTwitList extends Component {
     });
   };
 
-  GetMyNickname = () => {
-    axios.post(`${base_url}/auth/signIn`).then(res => {
-      this.setState({
-        userNickname: res.data.nickName
-      });
-    });
-  };
-
   GetMyProfileImg = () => {
-    axios.post(`${base_url}/profile/img`).then(res => {
+    axios.post(`${base_url}/profile/img`, {
+      headers: {
+        'token': `${localStorage.getItem('token')}`
+      }
+    }).then((res) => {
       this.setState({
         userImg: res.data.img
       });

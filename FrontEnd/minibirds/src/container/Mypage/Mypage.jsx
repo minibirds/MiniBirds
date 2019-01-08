@@ -6,7 +6,6 @@ import MyTwitList from "../MyTwitList/MyTwitList";
 import FollowList from "../../Components/mypage/Followlist";
 import "./Mypage.css";
 import Header from "../../Components/Share/Header";
-import TwitList from "../../Components/Share/Twitlist";
 
 class Mypage extends Component {
   constructor(props) {
@@ -30,16 +29,16 @@ class Mypage extends Component {
   };
 
   render() {
-    const { twitList, followingList, followerList } = this.state;
-    const { history, location } = this.props;
+    const { twitList, followingList } = this.state;
+    const { history, nickname, id, intro } = this.props;
     return (
       <div className="mypage-container">
         <Header />
-        <Profile />
+        <Profile id={id} nickname={nickname} intro={intro} />
         <TabBar history={history} />
         <div className="mypage-twit-list" id="mypage-selected-list">
           {twitList ? (
-            <MyTwitList />
+            <MyTwitList nickname={nickname} />
           ) : followingList ? (
             <FollowList />
           ) : (

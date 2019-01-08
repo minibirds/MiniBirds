@@ -23,7 +23,7 @@ class App extends Component {
     });
   }
   render() {
-
+    const { id, nickname, intro } = this.state;
     return (
       <div className="App">
         <BrowserRouter>
@@ -36,7 +36,7 @@ class App extends Component {
                 exact
               />
               <Route path='/signup' component={SignupPage} exact/>
-              <Route path='/mypage' component={() => <Mypage history={this.history} />} />
+              <Route path='/mypage' component={() => <Mypage id={id} nickname={nickname} intro={intro} history={this.history} />} />
               <Route
                 path='/edit'
                 component={() =>
