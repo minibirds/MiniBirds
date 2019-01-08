@@ -86,9 +86,9 @@ router.put('/', async (req, res)=>{
                     {where: {id: auth}}
                 )
             }
-            if(req.body.password) { // 비밀번호 변경시
+            if(req.body.newPassword) { // 비밀번호 변경시
                 await User.update(
-                    {password: req.body.password},
+                    {password: req.body.newPassword},
                     {where: {id: auth}}
                 )
             }
