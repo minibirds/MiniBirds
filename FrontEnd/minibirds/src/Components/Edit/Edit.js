@@ -39,23 +39,23 @@ class Edit extends Component{
             <table>
                 <tbody>
                 <tr>
-                    <td><div className="input-letter">아이디</div></td>
+                    <td><span className="input-letter">아이디</span></td>
                     <td><div className="input-info">{this.state.id}</div></td>
                 </tr>
                 <tr>
-                    <td><div className="input-letter">현재 비밀번호</div></td>
+                    <td><span className="input-letter">현재 비밀번호</span></td>
                     <td><div className="input-info">{this.state.pw}</div></td>
                 </tr>
                 <tr>
-                    <td><div className="input-letter">새 비밀번호</div></td>
+                    <td><span className="input-letter">새 비밀번호</span></td>
                      <td><input className="input-info" onChange={this.handleChange} value={this.state.newpw} name="newpw"/></td>
                 </tr>
                 <tr>
-                    <td><div className="input-letter">닉네임</div></td>
+                    <td><span className="input-letter">닉네임</span></td>
                     <td><input className="input-info" placeholder={this.state.nickname} onChange={this.handleChange} value={this.state.nickname} name="nickname"/></td>
                 </tr>
                 <tr>
-                    <td><div className="input-letter">한줄소개</div></td>
+                    <td><span className="input-letter">한줄소개</span></td>
                     <td><textarea className="input-intro" placeholder={this.state.intro} onChange={this.handleChange} value={this.state.intro} name="intro"/></td>
                 </tr>
                 </tbody>
