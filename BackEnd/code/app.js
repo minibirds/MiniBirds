@@ -3,6 +3,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
 const session = require('express-session');
+// .env 파일을 읽어 process.env 객체에 넣음
+require('dotenv').config();
 
 const indexRouter = require('./routes');
 const authRouter = require('./routes/auth');
@@ -25,11 +27,11 @@ app.use('/img', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', express.static(path.join(__dirname, 'api-docs')));
 app.use(express.json());
 app.use(express.urlencoded({ extended : false , limit: '50mb'}));
-app.use(cookieParser('entry'));
+app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(session({
     resave: false,
     saveUninitialized : false,
-    secret : 'entry',
+    secret : process.env.COOKIE_SECRET,
     cookie : {
         httpOnly : true,
         secure : false,
