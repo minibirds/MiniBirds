@@ -19,15 +19,15 @@ class Profile extends Component {
     }
 
     render() {
-        const { profileImg, nickName, userID, info } = this.state
+        const {id, nickname, intro} = this.props;
         return (
             <div>
                 <div className="detail-profile">
-                    <img className="my-profile-img" src={profileImg} alt=''/>
+                    <img className="my-profile-img" src={MyProfileImg} alt=''/>
                     <div className="text-box">
-                        <div className="nick-name">{nickName}</div>
-                        <div className="user-id">{userID}</div>
-                        <div className="info">{info}</div>
+                        <div className="nick-name">{nickname}</div>
+                        <div className="user-id">@{id}</div>
+                        <div className="info">{intro}</div>
                         <Link to='/edit' className="info-modify-btn">
                             <img src={editimg} alt="수정" className="edit-img" />
                             <span className="edit-letter">프로필 수정하기</span>
