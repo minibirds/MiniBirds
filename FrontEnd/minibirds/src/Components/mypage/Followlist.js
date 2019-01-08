@@ -68,7 +68,7 @@ class Followlist extends Component {
         } = this;
         
         return (
-            <React.Fragment>
+            <div className="follow-box-background">
                 <div className="follow-content">
                     <div className="btn-box">
                         <img src={Profile} alt='' className='follow-profile-img' />
@@ -79,7 +79,7 @@ class Followlist extends Component {
                     <div className="user-intro">{intro}</div>
                 </div>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }

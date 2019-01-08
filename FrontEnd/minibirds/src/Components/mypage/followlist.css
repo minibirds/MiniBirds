@@ -1,3 +1,7 @@
+.follow-box-background {
+    display: inline-block;
+}
+
 .follow-content {
     width: 450px;
     height: 300px;
