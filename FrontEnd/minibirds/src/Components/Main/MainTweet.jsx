@@ -12,18 +12,18 @@ class MainTweet extends Component {
       userId: '',
       content: '',
       img: '',
-      created_At: ''
     }
   }
 
   handleChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      content: e.target.value
     })
+    console.log(this.state.content);
   }
 
   PostTwitContent = () => {
-    const { userId, content, img, created_At } = this.state;
+    const { userId, content, img } = this.state;
     axios({
       method: 'post',
       url: `${base_url}/twit`,
@@ -31,22 +31,21 @@ class MainTweet extends Component {
         userId: userId,
         content: content,
         img: img,
-        created_At: created_At
+      }, 
+      headers: {
+          'token': `${localStorage.getItem('token')}`
       }
     })
     .then((res) => {
-      console.log(1);
-      console.log(res);
-      console.log(res.data);
-    })
-    .catch((err) =>{
-      console.log(err);
-      console.log('error');
+      window.location.reload();
     })
   }
 
   render() { 
-    const { handleChange } = this;
+    const { 
+      handleChange,
+      PostTwitContent 
+    } = this;
     return ( 
       <div className="tweet">
 
@@ -58,7 +57,7 @@ class MainTweet extends Component {
         <div className="tweet-footer">
           <img className="btn-gallery" src={Gallery} alt="gallery"></img>
           <input type="file" accept="image/*" />
-          <input className="btn-tweet" type="button" value="트윗하기" onClick={() => window.location.reload()}/>
+          <input className="btn-tweet" type="button" value="트윗하기" onClick={() => PostTwitContent()}/>
         </div>
       </div>
      );
