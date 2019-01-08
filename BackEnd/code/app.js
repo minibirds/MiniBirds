@@ -20,10 +20,10 @@ sequelize.sync();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine','pug');
 app.set('port', process.env.PORT || 5000);
-
 app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/img', express.static(path.join(__dirname, 'uploads')));
+app.use('/images', express.static(path.join(__dirname, './node-slate/images')));
 app.use('/api', express.static(path.join(__dirname, 'api-docs')));
 app.use(express.json());
 app.use(express.urlencoded({ extended : false , limit: '50mb'}));
