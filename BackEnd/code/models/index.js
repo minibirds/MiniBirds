@@ -1,13 +1,14 @@
 const Sequelize = require('sequelize');
+require('dotenv').config();
 
 const db = {};
 
 const sequelize = new Sequelize(
     'minibirds', //db 이름
     'root', // 이름명
-    '1234', // 비밀번호
+     process.env.DB_SECRET, // 비밀번호
     {
-        'host': '13.59.174.126', // 사용할 호스트
+        'host': process.env.DB_HOST, // 사용할 호스트
         'dialect': 'mysql', // 사용할 DB 종류
         'operatorsAliases':false //deprecated 된 연산자 사용
     }
@@ -30,7 +31,7 @@ db.Post.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'id'});
 db.User.hasMany(db.Follower, { foreignKey: 'userId', sourceKey: 'id' });
 db.Follower.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'id'});
 
-// User 과 Follwing 1 : N 관계 지정
+// User 과 Following 1 : N 관계 지정
 db.User.hasMany(db.Following, { foreignKey: 'userId', sourceKey: 'id' });
 db.Following.belongsTo(db.User, { foreignKey: 'userId', targetKey: 'id'});
 

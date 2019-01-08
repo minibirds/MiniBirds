@@ -14,6 +14,17 @@ const followerRouter = require('./routes/follower');
 const profileRouter = require('./routes/profile');
 const sequelize = require('./models').sequelize;
 
+let winston =  require('winston');
+
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    transports: [
+        new winston.transports.File({ filename : 'info.log'}),
+        new winston.transports.File({ filename : 'error.log'}),
+    ]
+});
+
 const app = express();
 sequelize.sync();
 
@@ -49,6 +60,7 @@ app.use('/profile', profileRouter);
 app.use((req, res, next)=>{
     const err = new Error('Not Found');
     err.status = 404;
+    logger.info(req.method +' '+ req.url + ' Error: ' + err.message);
     next(err);
 });
 
