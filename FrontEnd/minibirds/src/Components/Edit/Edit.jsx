@@ -14,7 +14,7 @@ class Edit extends Component{
             intro : this.props.intro,
          }
     }
-    render() {
+    render() { 
         this.handleChange = (e) => {
             this.setState({
                 [e.target.name] : e.target.value
@@ -23,23 +23,26 @@ class Edit extends Component{
         }
 
         this.handleModify = () => {
-            const { history } = this.props;
+            const {history} = this.props;
             axios
                 .put(
-                    `${base_url}/edit/${this.state.id}`, {
+                    `${base_url}`, [{
                         nickname: this.state.nickname,
                         password: this.state.pw,
                         newPassword : this.state.newpw,
                         intro: this.state.intro
-                    }, {
+                    }], {
                         header: {
                             'Authorization': `bearer ${localStorage.getItem('token')}`,
                         },
-                    }).then(() => {
-                        history.push('/mypage/twitlist');
-                        
-                    }).catch(() => {
-                        alert("현재 비밀번호가 맞지 않습니다.");
+                    }).then((res) => {
+                        if (res.data.status === 401) {
+                            alert("현재 비밀번호가 맞지 않습니다. 다시 한 번 입력해 주세요.");
+                        } else if (res.data.status === 403) {
+                            alert("다른 사람의 정보는 수정할 수 없습니다.");
+                        } else {
+                            history.push('/mypage');
+                        }
                     })
         }
     return (

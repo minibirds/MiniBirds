@@ -46,6 +46,7 @@ class App extends Component {
                       nickname={this.state.nickname}
                       pw={this.state.pw}
                       intro={this.state.intro}
+                      history={this.history}
                     />
                   }
                 />
