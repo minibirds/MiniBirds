@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
 import './Edit.css';
 import axios from 'axios';
 import base_url from '../../base_url';
@@ -78,4 +79,4 @@ class Edit extends Component{
     }
 }
 
-export default Edit;
+export default withRouter(Edit);
