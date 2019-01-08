@@ -1,10 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+require('dotenv').config();
+
 const { Sequelize: {Op} } = require('../models');
 let Post = require('../models').Post;
 let User = require('../models').User;
 let Following = require('../models').Following;
 const { verify } = require('./middlewares');
+
 const router = express.Router();
 router.use(cors());
 
@@ -13,7 +16,7 @@ router.get('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
             follow = await Following.findAll({
                 attributes: ['FollowingId'],
@@ -57,7 +60,7 @@ router.put('/', async (req, res)=>{
     let token = req.cookies.sign;
     let err = {};
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
             if(req.body.nickname) { // 닉네임 변경시
                 await User.update(
@@ -112,7 +115,7 @@ router.delete('/:postId', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
             let post = await Post.findOne({
                 where: {userId: auth, postId: req.params.postId}

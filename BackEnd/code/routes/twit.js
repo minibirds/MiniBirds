@@ -3,8 +3,11 @@ const cors = require('cors');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+
+require('dotenv').config();
 let Post = require('../models').Post;
 const { verify } = require('./middlewares');
+
 let router = express.Router();
 router.use(cors());
 
@@ -42,7 +45,7 @@ router.post('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth) { // 인증성공
             let post = await Post.create({
                 userId: auth,
@@ -75,7 +78,7 @@ router.get('/', async(req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth) { // 인증설공
             let posts = await Post.findAll({
                 where: {userId: auth}

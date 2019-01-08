@@ -1,9 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-let User = require('../models').User;
+
+require('dotenv').config();
 let Following = require('../models').Following;
 let Follower = require('../models').Follower;
 const { verify } = require('./middlewares');
+
 let router = express.Router();
 router.use(cors());
 
@@ -12,7 +14,7 @@ router.post('/', (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
             Following.create({
                 FollowingId: req.body.targetId,
@@ -46,7 +48,7 @@ router.get('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
             let list = await Following.findAll({
                 attributes: ['followingId'],
@@ -76,7 +78,7 @@ router.delete('/:targetId', async(req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, "entry_minibirds");
+        let auth = verify(token, process.env.JWT_SECRET);
         if(auth < 0) throw err;
         let follow = await Following.findOne({
             where: {userId: auth, FollowingId: req.params.targetId}

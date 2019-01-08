@@ -1,11 +1,13 @@
 let express = require('express');
 const cors = require('cors');
+let jwt = require('jsonwebtoken');
+
+require('dotenv').config();
 let User = require('../models').User;
 const { verify } = require('./middlewares');
+
 let router = express.Router();
 router.use(cors());
-
-let jwt = require('jsonwebtoken');
 
 // id, password 로 인증받아 토큰을 발급받는 API
 router.post('/signIn', async (req, res)=> {
@@ -36,7 +38,7 @@ router.post('/signIn', async (req, res)=> {
                         intro: user.intro,
                         id: user.id
                     },
-                    'entry_minibirds', // 비밀키
+                    process.env.JWT_SECRET, // 비밀키
                     {
                         expiresIn: '5m' // 유효시간 5분
                     }
@@ -65,7 +67,7 @@ router.post('/signUp', async (req, res)=>{
         });
         if (user) {
             err.message = '아이디가 중복된 사용자가 존재합니다.';
-            err.status = 405;
+            err.status = 409;
             throw err;
         } else {
             let result = await User.create({
@@ -91,7 +93,7 @@ router.get('/token', async (req, res)=>{
    let err = {};
    if(token) {
        try {
-           let result = await verify(token, 'entry_minibirds');
+           let result = await verify(token, process.env.JWT_SECRET);
            if(result < 0) throw err;
            res.json(result);
        } catch (err) {

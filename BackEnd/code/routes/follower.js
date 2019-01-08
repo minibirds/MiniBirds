@@ -1,7 +1,10 @@
 const express = require('express');
 const cors = require('cors');
+
+require('dotenv').config();
 let Follower = require('../models').Follower;
 const { verify } = require('./middlewares');
+
 let router = express.Router();
 router.use(cors());
 
@@ -9,7 +12,7 @@ router.get('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
     try {
-        let auth = verify(token, 'entry_minibirds');
+        let auth = verify(token, process.env.JWT_SECRET);
         if (auth) {
             let list = await Follower.findAll({
                 attributes: ['FollowerId'],
