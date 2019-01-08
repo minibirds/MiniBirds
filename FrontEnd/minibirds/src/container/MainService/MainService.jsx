@@ -22,14 +22,14 @@ class MainService extends Component {
       }
 
     render() { 
-        const {history} = this.props;
+        const {history, id, nickname} = this.props;
         return(
             <div className="main-service">
                 <BrowserRouter>
                     <React.Fragment>
                         <Header history={history} />
                         <Switch>
-                            <Route path='/' component={Main} exact />
+                            <Route path='/' component={Main} id={id} nickname={nickname} exact />
                             <Route path='/mypage' component={Mypage} exact/>
                         </Switch>
                     </React.Fragment>
