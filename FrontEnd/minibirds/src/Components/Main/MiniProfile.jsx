@@ -69,7 +69,7 @@ GetFollowingNum = () => {
 
     return ( 
       <div className="mini__main--profile">
-        <Link to='/mypage/twitlist'>          
+        <Link to='/mypage'>          
           <div className="upper-profile">
             <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
             <span className="upper-text">
