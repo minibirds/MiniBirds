@@ -85,11 +85,11 @@ GetFollowingNum = () => {
             <div className="lowwer-body">{twitNum}</div>
           </span>
           <span className="lowwer-following">
-            <div className="lowwer-title">팔로잉</div>
+            <div className="lowwer-title">팔로워</div>
             <div className="lowwer-body">{followerNum}</div>
           </span>
           <span className="lowwer-follower">
-            <div className="lowwer-title">팔로워</div>
+            <div className="lowwer-title">팔로잉</div>
             <div className="lowwer-body">{followingNum}</div>
           </span>
         </div>
