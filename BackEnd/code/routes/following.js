@@ -58,7 +58,7 @@ router.get('/', async (req, res)=>{
             let profiles = [];
             for(i=0; i<list.length; i++) {
                 profiles[i] = await User.findOne({
-                    attribute: ['nicknmae','img', 'intro'],
+                    attributes: ['nickname','img', 'intro', 'id'],
                     where: {id: list[i].dataValues.followingId}
                 });
                 Object.assign(list[i], profiles[i])
