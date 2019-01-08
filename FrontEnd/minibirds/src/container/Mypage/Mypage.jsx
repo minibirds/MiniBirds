@@ -1,46 +1,54 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import Profile from '../../Components/mypage/Profile';
-import TabBar from '../../Components/mypage/Tapba';
-import MyTwitList from '../MyTwitList/MyTwitList';
-import FollowList from '../../Components/mypage/Followlist';
-import './Mypage.css';
-import Header from '../../Components/Share/Header';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Profile from "../../Components/mypage/Profile";
+import TabBar from "../../Components/mypage/Tapba";
+import MyTwitList from "../MyTwitList/MyTwitList";
+import FollowList from "../../Components/mypage/Followlist";
+import "./Mypage.css";
+import Header from "../../Components/Share/Header";
+import TwitList from "../../Components/Share/Twitlist";
 
 class Mypage extends Component {
   constructor(props) {
     super(props);
-    this.state = { 
-      listClassName : '',
-     }
+    this.state = {
+      twitList: true,
+      followingList: false,
+      followerList: false
+    };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.CheckToken();
   }
 
   CheckToken = () => {
-    const {history} = this.props;
-    if(localStorage.getItem('token') === ''){
-        history.push('/signin');
+    const { history } = this.props;
+    if (localStorage.getItem("token") === "") {
+      history.push("/signin");
     }
-  }
+  };
 
-  render() { 
+  render() {
+    const { twitList, followingList, followerList } = this.state;
     const { history, location } = this.props;
-    return ( 
+    return (
       <div className="mypage-container">
-
-        <Header/>
-        <Profile/>
+        <Header />
+        <Profile />
         <TabBar history={history} />
         <div className="mypage-twit-list" id="mypage-selected-list">
-          {location.pathname === '/mypage/twitlist' ? 
-          <MyTwitList /> : location.pathname === '/mypage/following' ? <FollowList/> : <FollowList/>}
+          {twitList ? (
+            <MyTwitList />
+          ) : followingList ? (
+            <FollowList />
+          ) : (
+            <FollowList />
+          )}
         </div>
       </div>
-     );
+    );
   }
 }
- 
+
 export default withRouter(Mypage);
