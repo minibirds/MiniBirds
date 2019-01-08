@@ -38,10 +38,11 @@ router.get('/', async (req, res)=>{
                     let profiles = [];
                     for(i=0; i<posts.length; i++) {
                         profiles[i] = await User.findOne({
-                            attribute: ['nicknmae','img'],
+                            attributes: ['nickname','img'],
                             where: {id: posts[i].userId}
                         });
-                        Object.assign(posts[i], profiles[i]);
+                        posts[i].dataValues.nickname = profiles[i].nickname;
+                        posts[i].dataValues.profileImg = profiles[i].img;
                     }
                     if(posts) {
                         res.json(posts);
