@@ -133,7 +133,7 @@ class Tapba extends Component {
     }
 
     render() {
-        const { twitNum, followerNum, followingNum } = this.state;
+        const { twitNumber, followerNumber, followingNumber } = this.state;
         const {
             onClickTwitList,
             onClickFollower,
@@ -151,9 +151,9 @@ class Tapba extends Component {
                                 <td onClick={() => onClickFollower()} className="table-follower" id="table-follower">팔로워</td>
                             </tr>
                             <tr className="second-table">
-                                <td className="twit-number" id="twit-number" onClick={() => onClickTwitList()}>{twitNum}</td>
-                                <td className="following-number" id="following-number" onClick={() => onClickFollowing()}>{followingNum}</td>
-                                <td className="follower-number" id="follower-number" onClick={() => onClickFollower()}>{followerNum}</td>
+                                <td className="twit-number" id="twit-number" onClick={() => onClickTwitList()}>{twitNumber}</td>
+                                <td className="following-number" id="following-number" onClick={() => onClickFollowing()}>{followingNumber}</td>
+                                <td className="follower-number" id="follower-number" onClick={() => onClickFollower()}>{followerNumber}</td>
                             </tr>
                         </tbody>
                     </table>
