@@ -1,6 +1,5 @@
 import React from 'react';
 import '../signup_in/Signin.css'
-import {Link} from 'react-router-dom';
 import Signlogo from '../signup_in/Signlogo';
 import Signin from '../signup_in/Signin';
 

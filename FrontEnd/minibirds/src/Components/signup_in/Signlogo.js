@@ -2,7 +2,7 @@ import React from 'react'
 import './Signlogo.css';
 import logo from '../img/MiniBirds-Logo.png';
 
-const Signlogo = ({}) => {
+const Signlogo = () => {
     return (
         <div className="logo-box">
             <div className="sign-logo">

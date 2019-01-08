@@ -29,17 +29,21 @@ class MiniProfile extends Component {
   }
 
   GetUserInfo = () => {
-    axios.get(`${base_url}/auth/signIn/${this.state.id}/${this.state.password}`)
+    axios({
+      method: 'post',
+      url: `${base_url}/auth/signIn`,
+      data: {
+        id: '',
+        password: ''
+      }
+    })
     .then((response) => {
-      this.setState({
-        userID: response.data.Sns_id,
-        userNickname: response.data.nickname,
-      });
+      console.log(response);
     }) 
   }
 
   GetTwitNum = () => {
-    axios.get(`${base_url}/auth/twit/${this.state.id}`)
+    axios.get(`${base_url}/twit`)
     .then((response) => {
       this.setState({
         twitNum: response.data.num
@@ -48,7 +52,7 @@ class MiniProfile extends Component {
   }
 
   GetFollowerNum = () => {
-    axios.get(`${base_url}/follower/`)
+    axios.get(`${base_url}/follower`)
     .then((response) => {
       this.setState({
         followerNum: response.data.num

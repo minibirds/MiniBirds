@@ -1,6 +1,5 @@
 import React from 'react';
 import './SignPage.css';
-import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import Signlogo from '../signup_in/Signlogo';
 import Signup from '../signup_in/Signup';
 

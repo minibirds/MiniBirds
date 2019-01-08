@@ -38,7 +38,7 @@ class Header extends Component {
       }
 
     render() { 
-        const {onTwit, logout, onKeyPress, Form} = this.props;
+        const { logout } = this.props;
         return ( 
             <div>
         <div className="small-twit-back" id="small-twit-back" onClick={() => this.AppearTwitComponent()}>

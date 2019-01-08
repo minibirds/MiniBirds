@@ -3,7 +3,6 @@ import { withRouter } from 'react-router-dom';
 import Profile from '../../Components/mypage/Profile';
 import TabBar from '../../Components/mypage/Tapba';
 import MyTwitList from '../MyTwitList/MyTwitList';
-import TwitList from '../../Components/Share/Twitlist';
 import FollowList from '../../Components/mypage/Followlist';
 import './Mypage.css';
 import Header from '../../Components/Share/Header';

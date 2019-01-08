@@ -37,11 +37,11 @@ class Signin extends Component {
                 this.setState({
                     isError: true,
                 });
+                console.log(res);
                 console.log('에러');
             })
     }
     render() {
-        const {check} = this.state; 
 
         let errorClassName = "error-code";
         if(!this.state.isError) {
