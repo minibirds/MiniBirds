@@ -16,7 +16,6 @@ class App extends Component {
   }
   getSigninData = (id, nickname, pw, intro) => {
     this.setState({
-      ...this.state,
       id,
       nickname,
       pw,
