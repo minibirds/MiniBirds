@@ -8,7 +8,7 @@ class Edit extends Component{
         super(props);
         this.state = { 
             id: this.props.id,
-            pw: this.props.pw,
+            pw: '',
             newpw : '',
             nickname: this.props.nickname,
             intro : this.props.intro,
@@ -18,20 +18,28 @@ class Edit extends Component{
         this.handleChange = (e) => {
             this.setState({
                 [e.target.name] : e.target.value
+                
             })
         }
 
         this.handleModify = () => {
+            const { history } = this.props;
             axios
                 .put(
                     `${base_url}/edit/${this.state.id}`, {
                         nickname: this.state.nickname,
                         password: this.state.pw,
+                        newPassword : this.state.newpw,
                         intro: this.state.intro
                     }, {
                         header: {
                             'Authorization': `bearer ${localStorage.getItem('token')}`,
                         },
+                    }).then(() => {
+                        history.push('/mypage/twitlist');
+                        
+                    }).catch(() => {
+                        alert("현재 비밀번호가 맞지 않습니다.");
                     })
         }
     return (
@@ -44,7 +52,7 @@ class Edit extends Component{
                 </tr>
                 <tr>
                     <td><span className="input-letter">현재 비밀번호</span></td>
-                    <td><div className="input-info">{this.state.pw}</div></td>
+                    <td><input className="input-info" onChange={this.handleChange} value={this.state.pw} name="pw"/></td >
                 </tr>
                 <tr>
                     <td><span className="input-letter">새 비밀번호</span></td>
