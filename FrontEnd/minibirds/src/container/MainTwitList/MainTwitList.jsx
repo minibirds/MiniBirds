@@ -5,15 +5,16 @@ import axios from 'axios';
 import base_url from '../../base_url';
 
 class MainTwitList extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             postId: '',
             userNickname: '',
             content: '',
             img: '',
             created_At: '',
-            userImg: TwitProfileImg
+            userImg: TwitProfileImg,
+            twitList: []
         }
     }
 
@@ -31,17 +32,23 @@ class MainTwitList extends Component {
     }
 
     render() {
-        const { postId, userNickname, content, img, created_At, userImg} = this.state;
-       
-        return(
-            <TwitList 
+        const { twitList } = this.state;
+        const MainTwit = twitList.map(
+            ({postId, userNickname, content, img, created_At, userImg}) => (
+                <TwitList 
                 postId={postId}
                 userNickname={userNickname}
                 content={content}
                 img={img}
                 created_At={created_At}
                 userImg={userImg}
-            />
+                />
+            )
+        );
+        return(
+            <div>
+                {MainTwit}
+            </div>
         );
     }
 }

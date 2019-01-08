@@ -10,8 +10,8 @@ import './Main.css';
 
 class Main extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       postID: '',
       userID: '',
@@ -44,7 +44,7 @@ class Main extends Component {
         <MiniProfile/>
         <div className="main-middle">
           <MainTweet/>
-          <MainTwitList/>
+          <MainTwitList />
         </div>
         <Introduction/>
       </div>

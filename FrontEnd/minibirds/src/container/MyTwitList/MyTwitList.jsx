@@ -15,7 +15,8 @@ class MyTwitList extends Component {
             content: '',
             img: '',
             created_At: '',
-            userImg: TwitProfileImg
+            userImg: TwitProfileImg,
+            TwitList: []
         }
     }
 
@@ -56,17 +57,22 @@ class MyTwitList extends Component {
     }
 
     render() {
-        const { postId, userNickname, content, img, created_At, userImg} = this.state;
+        const { TwitList } = this.state;
+        const MyTwit = TwitList.map(
+            ({postId, userNickname, content, img, created_At, userImg}) => (
+                <TwitList 
+                postId={postId}
+                userNickname={userNickname}
+                content={content}
+                img={img}
+                created_At={created_At}
+                userImg={userImg}
+                />
+            )
+        );
         return (
             <div className="mytwitlist-background-box">
-                <TwitList 
-                    postId={postId}
-                    userNickname={userNickname}
-                    content={content}
-                    img={img}
-                    created_At={created_At}
-                    userImg={userImg}
-                />
+                <MyTwit />
             </div>
         );
     }
