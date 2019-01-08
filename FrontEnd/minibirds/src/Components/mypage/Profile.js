@@ -25,14 +25,14 @@ class Profile extends Component {
     }
 
     GetLoginUserInfo = () => {
-        axios.get(`${base_url}/auth/signIn/${this.state.id}/${this.state.password}`)
+        axios.post(`${base_url}/auth/signIn`)
         .then((response) => {
             this.setState({
-                userID: response.data.Sns_id,
+                userID: response.data.id,
                 nickName: response.data.nickName,
                 info: response.data.intro
-            })
-        })
+            });
+        });
     }
 
     render() {
