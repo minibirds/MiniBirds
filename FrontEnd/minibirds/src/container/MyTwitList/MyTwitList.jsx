@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TwitList from '../../Components/Share/Twitlist'; 
+import Twitlist from '../../Components/Share/Twitlist'; 
 import base_url from '../../base_url';
 import './MyTwitList.css';
 import TwitProfileImg from '../../Components/img/profile-img-default.png'
@@ -41,6 +41,7 @@ class MyTwitList extends Component {
     GetMyNickname = () => {
         axios.post(`${base_url}/auth/signIn`)
         .then((res) => {
+            console.log(1);
             this.setState({
                 userNickname: res.data.nickName,
             });
@@ -60,7 +61,7 @@ class MyTwitList extends Component {
         const { TwitList } = this.state;
         const MyTwit = TwitList.map(
             ({postId, userNickname, content, img, created_At, userImg}) => (
-                <TwitList 
+                <Twitlist 
                 postId={postId}
                 userNickname={userNickname}
                 content={content}
@@ -72,7 +73,7 @@ class MyTwitList extends Component {
         );
         return (
             <div className="mytwitlist-background-box">
-                <MyTwit />
+                {MyTwit}
             </div>
         );
     }
