@@ -67,7 +67,7 @@ class Signin extends Component {
                 </div>
                 <div className="info-box">
                     <div className="no-account">계정이 없으신가요?</div>
-                    <Link to='/signup' ><div className="go-signin">회원가입</div></Link>
+                    <div className="go-signin">회원가입</div>
                 </div>
                 <div className={errorClassName}>아이디 또는 비밀번호가 잘못되었습니다.</div>
             </div>
