@@ -52,13 +52,13 @@ class TwitList extends Component {
             <div className="content-box">
               <img className="twit-profile-img" src={userImg} alt=''/>
               <div className="letter-box">
-                <div className="user-name">{userNickname}히히낙낙</div>
-                <span className="date">{created_At}11월 4일</span>
+                <div className="user-name">{userNickname}</div>
+                <span className="date">{created_At}</span>
                 <span className="delete-btn" onClick={() => DeleteTwitList()}>X</span>
               </div>
             </div>
             <div className="letter-content-box">
-              <span className="letter-content">{content}제가 짜장면을 먹어쓴ㄴ데 맣리죠 아 짜장면먹고싶다 진짜 아 ㅂ거피 식욕아 돌아오주세요 어헝헝자살할래</span>
+              <span className="letter-content">{content}</span>
             </div>
           </div>
           <div className="under-box">
