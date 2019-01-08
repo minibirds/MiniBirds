@@ -48,7 +48,7 @@ table {
     font-family: "맑은 고딕";
 }
 
-td {
+.letter-table tr td {
     width: 600px;
     cursor: pointer;
 }
