@@ -27,45 +27,42 @@ class MiniProfile extends Component {
 
   GetTwitNum = () => {
     axios.get(`${base_url}/twit`, {
-      headers: {
-          'token': `${localStorage.getItem('token')}`,
-      }
-    })
+        headers: {
+            'token': `${localStorage.getItem('token')}`
+        }
+      })
     .then((response) => {
-      console.log(response.data);
       this.setState({
         twitNum: response.data.num
       });
     })
-  }
+}
 
-  GetFollowerNum = () => {
+GetFollowerNum = () => {
     axios.get(`${base_url}/follower`, {
-      headers: {
-          'token': `${localStorage.getItem('token')}`
-      }
-    })
+        headers: {
+            'token': `${localStorage.getItem('token')}`
+        }
+      })
     .then((response) => {
-      console.log(response);
-      this.setState({
-        followerNum: response.data.num
-      });
+        this.setState({
+            followerNum: response.data.num
+        });
     })
-  }
+}
 
-  GetFollowingNum = () => {
+GetFollowingNum = () => {
     axios.get(`${base_url}/following`, {
-      headers: {
-          'token': `${localStorage.getItem('token')}`
-      }
-    })
+        headers: {
+            'token': `${localStorage.getItem('token')}`
+        }
+      })
     .then((response) => {
-      console.log(response.data);
-      this.setState({
-        followingNum: response.data.num
-      });
+        this.setState({
+            followingNum: response.data.num
+        });
     })
-  }
+}
 
   render() { 
     const {twitNum, followerNum, followingNum, userID, userNickname} = this.state;
