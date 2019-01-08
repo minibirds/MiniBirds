@@ -1,59 +1,80 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './Twitlist.css';
 import mention from '../img/speech-bubble.png';
 import heart from '../img/heart.png';
 import like from '../img/like.png';
-import TwitProfileImg from '../img/profile-img-default.png';
 
-const ChangeHeartImg = () => {
-  const HeartStatus = document.getElementById("heart-img");
-  if (HeartStatus.className === "heart-img") {
-    HeartStatus.src = like;
-    HeartStatus.className= 'like-img';
+class TwitList extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      postId: this.props.postId,
+      userNickname: this.props.userNickname,
+      content: this.props.content,
+      img: this.props.img,
+      created_At: this.props.created_At,
+      userImg: this.props.userImg,
+      mentionNum: 0,
+      heartNum: 0
+    }
   }
-  else {
-    HeartStatus.src = heart;
-    HeartStatus.className = 'heart-img';
+
+  ChangeHeartImg = () => {
+    const HeartStatus = document.getElementById("heart-img");
+    if (HeartStatus.className === "heart-img") {
+      HeartStatus.src = like;
+      HeartStatus.className= 'like-img';
+    }
+    else {
+      HeartStatus.src = heart;
+      HeartStatus.className = 'heart-img';
+    }
   }
-}
-
-const DeleteTwitList = () => {
-  const TwitList = document.getElementById('twit-content');
-
-  if (TwitList.className === 'twit-content') {
-    TwitList.className = 'twit-content-del';
+  
+  DeleteTwitList = () => {
+    const TwitList = document.getElementById('twit-content');
+  
+    if (TwitList.className === 'twit-content') {
+      TwitList.className = 'twit-content-del';
+    }
   }
-}
 
-const Twitlist = ({profileImg, date, nickName, poto, content, mentionNum, heartNum}) => {
-  return (
-    <div className="twit-content" id="twit-content">
-        <div className="above-box">
-          <div className="content-box">
-            <img className="twit-profile-img" src={TwitProfileImg} alt=''/>
-            <div className="letter-box">
-              <div className="user-name">{nickName}히히낙낙</div>
-              <span className="date">{date}11월 4일</span>
-              <span className="delete-btn" onClick={() => DeleteTwitList()}>X</span>
+  render() {
+    const { content, img, created_At, mentionNum, userNickname, userImg, heartNum } = this.state
+    const {
+      ChangeHeartImg,
+      DeleteTwitList
+    } = this;
+    
+    return (
+      <div className="twit-content" id="twit-content">
+          <div className="above-box">
+            <div className="content-box">
+              <img className="twit-profile-img" src={userImg} alt=''/>
+              <div className="letter-box">
+                <div className="user-name">{userNickname}히히낙낙</div>
+                <span className="date">{created_At}11월 4일</span>
+                <span className="delete-btn" onClick={() => DeleteTwitList()}>X</span>
+              </div>
+            </div>
+            <div className="letter-content-box">
+              <span className="letter-content">{content}제가 짜장면을 먹어쓴ㄴ데 맣리죠 아 짜장면먹고싶다 진짜 아 ㅂ거피 식욕아 돌아오주세요 어헝헝자살할래</span>
             </div>
           </div>
-          <div className="letter-content-box">
-            <span className="letter-content">{content}제가 짜장면을 먹어쓴ㄴ데 맣리죠 아 짜장면먹고싶다 진짜 아 ㅂ거피 식욕아 돌아오주세요 어헝헝자살할래</span>
-          </div>
-        </div>
-        <div className="under-box">
-          <div className="twit-img">
-            <img src={poto} alt=''/>
-          </div>
-            <div className="emoji-box">
-              <img src={mention} className="mention-img" alt='' />
-              <div className="mention-number">{mentionNum}23</div>
-              <img src={heart} className="heart-img" id="heart-img" onClick={()=>ChangeHeartImg()} alt='' />
-              <div className="heart-number">{heartNum}231</div>
-          </div>
-        </div>                                                                       
-    </div>
-  )
+          <div className="under-box">
+            <div className="twit-img">
+              <img src={img} alt=''/>
+            </div>
+              <div className="emoji-box">
+                <img src={mention} className="mention-img" alt='' />
+                <div className="mention-number">{mentionNum}</div>
+                <img src={heart} className="heart-img" id="heart-img" onClick={()=>ChangeHeartImg()} alt='' />
+                <div className="heart-number">{heartNum}</div>
+            </div>
+          </div>                                                                       
+      </div>
+    );
+  }
 }
 
-export default Twitlist;
+export default TwitList;
