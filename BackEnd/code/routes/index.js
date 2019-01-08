@@ -34,7 +34,6 @@ router.get('/', async (req, res)=>{
                         },
                         order:[['createdAt','DESC']]
                     });
-                    console.log(posts[0].userId);
                     let profiles = [];
                     for(i=0; i<posts.length; i++) {
                         profiles[i] = await User.findOne({
@@ -72,6 +71,15 @@ router.put('/', async (req, res)=>{
     try {
         let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
+            let compare = await User.findOne({
+                where: {id: auth}
+            });
+            if(compare.password != req.body.password)
+            {
+                err.message = '비밀번호가 일치하지 않습니다';
+                err.status = 401;
+                throw err;
+            }
             if(req.body.nickname) { // 닉네임 변경시
                 await User.update(
                     {nickname: req.body.nickname},
