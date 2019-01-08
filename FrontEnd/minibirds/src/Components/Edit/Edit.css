@@ -1,17 +1,19 @@
 .input-box {
-    display: inline-block;
-    width: 65%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
-    right: 0;
+    flex-direction: column;
+    right: 12%;
+    top: 10%;
 }
 
 .input-letter {
     display: flex;
-    float: right;
-    padding-bottom: 20px;
+    padding-bottom: 18px;
     font-size: 20pt;
     color: #ffffff;
-    margin: 0px 17px 0px 60px;
+    margin-top: 17px;
     font-weight: bold;
 }
 
@@ -27,6 +29,7 @@
     background-color: #ffffff;
     outline: none;
     border: none;
+    font-family: '맑은고딕';
 }
 
 .input-intro {    
@@ -37,26 +40,34 @@
     height: 130px;
     border-radius: 10px;
     font-size: 20pt;
-    font-family: "맑은 고딕";
-    color: #707070;
+    color: #AFABAB;
     background-color: #ffffff;
     outline: none;
     border: none;   
+    resize: none;
+    font-family: '맑은고딕';
+    font-weight: 500;
 }
 
-
 .accept-edit-btn {
-    position: absolute;
-    top: 70%;
-    left: 65%;
     margin-top: 60px;
     width: 177px;
-    height: 107px;
+    height: 177px;
     color: #B060FF;
     font-size: 20pt;
-    padding-top: 70px;
     text-align: center;
     font-weight: bold;
     background-color: #ffffff;
     border-radius: 100%;
+    cursor: pointer;
+}
+
+.input-box input,.input-box textarea{
+    padding-left: 10px;
+    font-size: 20pt;
+}
+
+.input-box td{
+    cursor: default;
+    width: 250px;
 }

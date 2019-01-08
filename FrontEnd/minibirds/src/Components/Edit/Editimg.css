@@ -1,29 +1,29 @@
 .profile-box {
     display: inline-block;
-    width: 34%;
+    width: 35%;
     height: 100%;
     border-right: solid 3px #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .profile-img {
-    position: relative;
-    top: 12%;
-    left: 10%;
-    width: 440px;
-    height: 440px;
+    width: 350px;
+    height: 350px;
     background-color: #ffffff;
     border: solid 30px #845EF7;   
+    align-items: center;
+    justify-content: center;
+    margin-top: -10%;
 }
 
 .img-edit {
-    width: 405px;
-    position: relative;
-    top: 20%;
-    left: 15%;
     color: white;
-    font-size: 40pt;
+    font-size: 25pt;
+    font-weight: bold;
     border-bottom: solid 1px #ffffff;
-}
-.img-edit:hover{
     cursor: pointer;
+    margin-top: 50px;
 }
