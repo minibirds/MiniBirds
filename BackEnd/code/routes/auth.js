@@ -20,7 +20,6 @@ router.post('/signIn', async (req, res)=> {
             // 비밀번호 일치 시
             if (req.body.password == user.password) {
                 let token = sign(user);
-                res.cookie("sign", token);
                 res.json({
                     'status': 200,
                     'token': token,
@@ -40,7 +39,7 @@ router.post('/signIn', async (req, res)=> {
                     },
                     process.env.JWT_SECRET, // 비밀키
                     {
-                        expiresIn: '5m' // 유효시간 5분
+                        expiresIn: '6h' // 유효시간 6시간
                     }
                 );
                 return token;
