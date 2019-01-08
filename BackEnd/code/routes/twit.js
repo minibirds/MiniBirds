@@ -76,7 +76,7 @@ router.post('/', async (req, res)=>{
 
 router.get('/', async(req, res)=>{
     let err = {};
-    let token = req.cookies.sign;
+    let token = req.get("token");
     try {
         let auth = verify(token, process.env.JWT_SECRET);
         if(auth) { // 인증설공
