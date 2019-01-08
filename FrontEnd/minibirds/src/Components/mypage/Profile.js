@@ -2,41 +2,20 @@ import React, { Component } from 'react';
 import editimg from '../img/edit-img.png';
 import './profile.css';
 import MyProfileImg from '../img/profile-img-default.png';
-import axios from 'axios';
-import base_url from '../../base_url';
 import {Link} from 'react-router-dom';
 
 class Profile extends Component {
 
-    componentDidMount() {
-        this.GetLoginUserInfo();
-    }
-
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             id: '',
             password: '',
             profileImg: MyProfileImg,
-            nickName: '계정이 없습니다.',
-            userID: '@NULL',
-            info: '자기소개가 없습니다. 자신을 다른 사람들에게 소개해보세요.',
+            nickName: this.props.nickname,
+            userID: this.props.id,
+            info: this.props.intro,
         }
-    }
-
-    GetLoginUserInfo = () => {
-        axios.post(`${base_url}/auth/signIn`, {
-            headers: {
-                'token': `${localStorage.getItem('token')}`
-            }
-          })
-        .then((response) => {
-            this.setState({
-                userID: response.data.id,
-                nickName: response.data.nickName,
-                info: response.data.intro
-            });
-        });
     }
 
     render() {
