@@ -257,9 +257,11 @@
     <span class="hljs-attr">"userId"</span>: <span class="hljs-string">"(게시물 작성자의 id)"</span>,
     <span class="hljs-attr">"content"</span>: <span class="hljs-string">"(게시물의 텍스트 내용)"</span>,
     <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(게시물의 이미지가 저장된 경로)"</span>,
-    <span class="hljs-attr">"created_At"</span>: <span class="hljs-string">"(게시물이 작성된 날짜)"</span>
+    <span class="hljs-attr">"created_At"</span>: <span class="hljs-string">"(게시물이 작성된 날짜)"</span>,
+    <span class="hljs-attr">"nickname"</span> : <span class="hljs-string">"(게시자의 닉네임)"</span>,
+    <span class="hljs-attr">"profileImg"</span> : <span class="hljs-string">"(게시자의 프로필 이미지)"</span>
   }
-]</code></pre><p>사용자의 id로 식별하여 자신이 팔로우 한 사람들의 게시물을 최신순으로 가져온다.</p>
+]</code></pre><p>사용자의 id로 식별하여 자신이 팔로우 한 사람들의 게시물과 게시자정보를 최신순으로 가져온다.</p>
 <h3 id="http-request">HTTP Request</h3>
 <p><code>GET http://example.com/</code></p>
 <h3 id="request-body">Request Body</h3>
@@ -615,7 +617,8 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
   {
     <span class="hljs-attr">"id"</span>: <span class="hljs-string">"(팔로잉 id)"</span>,
     <span class="hljs-attr">"img"</span>:<span class="hljs-string">"(팔로잉 한 사람의 프로필 이미지 저장 경로)"</span>,
-    <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로잉 한 사람의 한줄소개)"</span>  
+    <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로잉 한 사람의 한줄소개)"</span>,
+    <span class="hljs-attr">"nickname"</span> : <span class="hljs-string">"(팔로잉 한 사람의 닉네임)"</span>  
   }
 ]</code></pre><h3 id="http-request">HTTP Request</h3>
 <p><code>GET http://example.com/following</code></p>
@@ -737,14 +740,13 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 <h2 id="get">get</h2>
 <pre class="highlight json"><code>[
   {
-    <span class="hljs-attr">"status"</span>: <span class="hljs-number">200</span>,
-    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"팔로우 리스트를 가져왔습니다"</span>,
     <span class="hljs-attr">"num"</span>: <span class="hljs-string">"(현재 팔로우의 수)"</span>
   },
   {
     <span class="hljs-attr">"id"</span>: <span class="hljs-string">"(팔로우 id)"</span>,
     <span class="hljs-attr">"img"</span>:<span class="hljs-string">"(팔로우 한 사람의 프로필 이미지 저장 경로)"</span>,
-    <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로우 한 사람의 한줄소개)"</span>  
+    <span class="hljs-attr">"intro"</span>:<span class="hljs-string">"(팔로우 한 사람의 한줄소개)"</span>,
+    <span class="hljs-attr">"nickname"</span> : <span class="hljs-string">"(팔로우 한 사람의 닉네임)"</span>  
   }
 ]</code></pre><h3 id="http-request">HTTP Request</h3>
 <p><code>GET http://example.com/follower</code></p>
