@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom';
 import './Edit.css';
 import axios from 'axios';
 import base_url from '../../base_url';
@@ -14,13 +15,6 @@ class Edit extends Component{
         intro : this.props.intro,
      }
 }
-render() { 
-    this.handleChange = (e) => {
-        this.setState({
-            [e.target.name] : e.target.value
-            
-        })
-    }
   render() {
     this.handleChange = e => {
       this.setState({
@@ -133,4 +127,4 @@ render() {
   }
 }
 
-export default Edit;
+export default withRouter(Edit)

@@ -21,7 +21,8 @@ class MiniProfile extends Component {
       followerNum: 0,
       followingNum: 0,
       userID: this.props.id,
-      userNickname: this.props.Nickname
+      userNickname: this.props.Nickname,
+      ProfileImg: ProfileImg
     }
   }
 
@@ -38,7 +39,7 @@ class MiniProfile extends Component {
     })
 }
 
-GetFollowerNum = () => {
+  GetFollowerNum = () => {
     axios.get(`${base_url}/follower`, {
         headers: {
             'token': `${localStorage.getItem('token')}`
@@ -51,7 +52,7 @@ GetFollowerNum = () => {
     })
 }
 
-GetFollowingNum = () => {
+  GetFollowingNum = () => {
     axios.get(`${base_url}/following`, {
         headers: {
             'token': `${localStorage.getItem('token')}`
@@ -86,11 +87,11 @@ GetFollowingNum = () => {
             <div className="lowwer-body">{twitNum}</div>
           </span>
           <span className="lowwer-following">
-            <div className="lowwer-title">팔로잉</div>
+            <div className="lowwer-title">팔로워</div>
             <div className="lowwer-body">{followerNum}</div>
           </span>
           <span className="lowwer-follower">
-            <div className="lowwer-title">팔로워</div>
+            <div className="lowwer-title">팔로잉</div>
             <div className="lowwer-body">{followingNum}</div>
           </span>
         </div>
