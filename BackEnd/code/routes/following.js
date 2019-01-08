@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 
 require('dotenv').config();
+let User = require('../models').User;
 let Following = require('../models').Following;
 let Follower = require('../models').Follower;
 const { verify } = require('./middlewares');
@@ -54,6 +55,14 @@ router.get('/', async (req, res)=>{
                 attributes: ['followingId'],
                 where: {userId: auth}
             });
+            let profiles = [];
+            for(i=0; i<list.length; i++) {
+                profiles[i] = await User.findOne({
+                    attribute: ['nicknmae','img', 'intro'],
+                    where: {id: list[i].dataValues.followingId}
+                });
+                Object.assign(list[i], profiles[i])
+            }
             if(list) {
                 res.json({
                     num: list.length,
