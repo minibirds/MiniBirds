@@ -12,7 +12,7 @@ router.use(cors());
 // 자신을 팔로우 하고 있는 유저들의 목록을 가져오는 API
 router.get('/', async (req, res)=>{
     let err = {};
-    let token = req.cookies.sign;
+    let token = req.get("token");
     try {
         let auth = verify(token, process.env.JWT_SECRET);
         if (auth) {

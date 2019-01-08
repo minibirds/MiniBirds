@@ -14,7 +14,7 @@ router.use(cors());
 //자신이 팔로우 한 사람의 게시물을 최신 순으로 가져오는 API
 router.get('/', async (req, res)=>{
     let err = {};
-    let token = req.cookies.sign;
+    let token = req.get("token");
     try {
         let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
@@ -66,7 +66,7 @@ router.get('/', async (req, res)=>{
 
 // 사용자의 정보를 수정하는 API
 router.put('/', async (req, res)=>{
-    let token = req.cookies.sign;
+    let token = req.get("token");
     let err = {};
     try {
         let auth = verify(token, process.env.JWT_SECRET);
@@ -131,7 +131,7 @@ router.put('/', async (req, res)=>{
 // postId로 게시물을 검색하여 삭제하는 API
 router.delete('/:postId', async (req, res)=>{
     let err = {};
-    let token = req.cookies.sign;
+    let token = req.get("token");
     try {
         let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
