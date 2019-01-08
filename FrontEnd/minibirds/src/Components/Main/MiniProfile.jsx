@@ -65,7 +65,8 @@ GetFollowingNum = () => {
 }
 
   render() { 
-    const {twitNum, followerNum, followingNum, userID, userNickname} = this.state;
+    const {twitNum, followerNum, followingNum,} = this.state;
+    const { id, nickName } = this.props;
 
     return ( 
       <div className="mini__main--profile">
@@ -73,8 +74,8 @@ GetFollowingNum = () => {
           <div className="upper-profile">
             <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
             <span className="upper-text">
-              <div className="upper-name">{userNickname}</div>
-              <div className="upper-id">{userID}</div>
+              <div className="upper-name">{nickName}</div>
+              <div className="upper-id">@{id}</div>
             </span>
           </div>
         </Link>
