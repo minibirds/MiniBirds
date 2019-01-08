@@ -25,7 +25,11 @@ class Profile extends Component {
     }
 
     GetLoginUserInfo = () => {
-        axios.post(`${base_url}/auth/signIn`)
+        axios.post(`${base_url}/auth/signIn`, {
+            headers: {
+                'token': `${localStorage.getItem('token')}`
+            }
+          })
         .then((response) => {
             this.setState({
                 userID: response.data.id,

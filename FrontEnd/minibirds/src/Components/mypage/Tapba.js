@@ -21,7 +21,11 @@ class Tapba extends Component {
     }
 
     GetTwitNum = () => {
-        axios.get(`${base_url}/twit/${this.state.id}`)
+        axios.get(`${base_url}/twit`, {
+            headers: {
+                'token': `${localStorage.getItem('token')}`
+            }
+          })
         .then((response) => {
           this.setState({
             twitNumber: response.data.num
@@ -30,7 +34,11 @@ class Tapba extends Component {
     }
     
     GetFollowerNum = () => {
-        axios.get(`${base_url}/follower/${this.state.id}`)
+        axios.get(`${base_url}/follower`, {
+            headers: {
+                'token': `${localStorage.getItem('token')}`
+            }
+          })
         .then((response) => {
             this.setState({
                 followerNumber: response.data.num
@@ -39,7 +47,11 @@ class Tapba extends Component {
     }
 
     GetFollowingNum = () => {
-        axios.get(`${base_url}/following/${this.state.id}`)
+        axios.get(`${base_url}/following`, {
+            headers: {
+                'token': `${localStorage.getItem('token')}`
+            }
+          })
         .then((response) => {
             this.setState({
                 followingNumber: response.data.num

@@ -12,39 +12,27 @@ class MiniProfile extends Component {
      this.GetTwitNum();
      this.GetFollowerNum();
      this.GetFollowingNum();
-     this.GetUserInfo();
    }
 
   constructor(props) {
     super(props);
     this.state = { 
-      id: '',
-      password: '',
       twitNum: 0,
       followerNum: 0,
       followingNum: 0,
-      userID: '@NULL',
-      userNickname: '계정이 없습니다.'
+      userID: this.props.id,
+      userNickname: this.props.Nickname
     }
   }
 
-  GetUserInfo = () => {
-    axios({
-      method: 'post',
-      url: `${base_url}/auth/signIn`,
-      data: {
-        id: '',
-        password: ''
+  GetTwitNum = () => {
+    axios.get(`${base_url}/twit`, {
+      headers: {
+          'token': `${localStorage.getItem('token')}`,
       }
     })
     .then((response) => {
-      console.log(response);
-    }) 
-  }
-
-  GetTwitNum = () => {
-    axios.get(`${base_url}/twit`)
-    .then((response) => {
+      console.log(response.data);
       this.setState({
         twitNum: response.data.num
       });
@@ -52,8 +40,13 @@ class MiniProfile extends Component {
   }
 
   GetFollowerNum = () => {
-    axios.get(`${base_url}/follower`)
+    axios.get(`${base_url}/follower`, {
+      headers: {
+          'token': `${localStorage.getItem('token')}`
+      }
+    })
     .then((response) => {
+      console.log(response);
       this.setState({
         followerNum: response.data.num
       });
@@ -61,8 +54,13 @@ class MiniProfile extends Component {
   }
 
   GetFollowingNum = () => {
-    axios.get(`${base_url}/following`)
+    axios.get(`${base_url}/following`, {
+      headers: {
+          'token': `${localStorage.getItem('token')}`
+      }
+    })
     .then((response) => {
+      console.log(response.data);
       this.setState({
         followingNum: response.data.num
       });

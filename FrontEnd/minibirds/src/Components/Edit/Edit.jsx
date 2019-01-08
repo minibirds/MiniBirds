@@ -33,7 +33,7 @@ class Edit extends Component{
                         intro: this.state.intro
                     }], {
                         header: {
-                            'Authorization': `bearer ${localStorage.getItem('token')}`,
+                            'token': `${localStorage.getItem('token')}`,
                         },
                     }).then((res) => {
                         if (res.data.status === 401) {
