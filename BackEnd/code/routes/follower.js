@@ -3,11 +3,13 @@ const cors = require('cors');
 
 require('dotenv').config();
 let Follower = require('../models').Follower;
+let User = require('../models').User;
 const { verify } = require('./middlewares');
 
 let router = express.Router();
 router.use(cors());
 
+// 자신을 팔로우 하고 있는 유저들의 목록을 가져오는 API
 router.get('/', async (req, res)=>{
     let err = {};
     let token = req.cookies.sign;
@@ -18,6 +20,14 @@ router.get('/', async (req, res)=>{
                 attributes: ['FollowerId'],
                 where: {userId: auth}
             });
+            let profiles = [];
+            for(i=0; i<list.length; i++) {
+                profiles[i] = await User.findOne({
+                    attributes: ['nickname','img', 'intro','id'],
+                    where: {id: list[i].dataValues.FollowerId}
+                });
+                Object.assign(list[i], profiles[i])
+            }
             if(list) {
                 res.json({
                     num: list.length,
