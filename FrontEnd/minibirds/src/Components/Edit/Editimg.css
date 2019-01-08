@@ -24,3 +24,6 @@
     font-size: 40pt;
     border-bottom: solid 1px #ffffff;
 }
+.img-edit:hover{
+    cursor: pointer;
+}
