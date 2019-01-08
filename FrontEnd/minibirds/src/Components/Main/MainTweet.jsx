@@ -19,6 +19,7 @@ class MainTweet extends Component {
     this.setState({
       content: e.target.value
     })
+    console.log(this.state.content);
   }
 
   PostTwitContent = () => {
@@ -36,19 +37,15 @@ class MainTweet extends Component {
       }
     })
     .then((res) => {
-      console.log(1);
-      console.log(res);
-      console.log(res.data);
-    })
-    .catch((err) =>{
-      console.log(err);
-      console.log('error');
+      window.location.reload();
     })
   }
 
   render() { 
-    const { handleChange } = this;
-    const { PostTwitContent } = this.state;
+    const { 
+      handleChange,
+      PostTwitContent 
+    } = this;
     return ( 
       <div className="tweet">
 
@@ -60,7 +57,7 @@ class MainTweet extends Component {
         <div className="tweet-footer">
           <img className="btn-gallery" src={Gallery} alt="gallery"></img>
           <input type="file" accept="image/*" />
-          <input className="btn-tweet" type="button" value="트윗하기" onClick={PostTwitContent}/>
+          <input className="btn-tweet" type="button" value="트윗하기" onClick={() => PostTwitContent()}/>
         </div>
       </div>
      );
