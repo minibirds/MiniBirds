@@ -25,7 +25,6 @@ class Mypage extends Component {
   }
 
   ListToggle = TargetClass => {
-    const { twitList, followingList, followerList } = this.state;
     switch (TargetClass) {
       case "table-twit":
         this.setState({

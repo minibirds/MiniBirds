@@ -14,7 +14,7 @@ class App extends Component {
     pw: '',
     intro: '',
   }
-  getSigninData = (id, nickname, pw, intro) => {
+  getUserData = (id, nickname, pw, intro) => {
     this.setState({
       ...this.state,
       id,
@@ -33,11 +33,11 @@ class App extends Component {
               <Route path='/' component={() => <MainService history={this.history}/>} exact />
               <Route
                 path='/signin'
-                component={() => <SigninPage history={this.history} signin={this.getSigninData}/>}
+                component={() => <SigninPage history={this.history} signin={this.getUserData}/>}
                 exact
               />
               <Route path='/signup' component={SignupPage} exact/>
-              <Route path='/mypage' component={() => <Mypage history={this.history} />} />
+              <Route path='/mypage' component={() => <Mypage history={this.history} getUserData={this.getUserData} />} />
               <Route
                 path='/edit'
                 component={() =>
