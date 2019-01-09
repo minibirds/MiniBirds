@@ -5,6 +5,7 @@ import TabBar from "../../Components/mypage/Tapba";
 import MyTwitList from "../MyTwitList/MyTwitList";
 import "./Mypage.css";
 import Header from "../../Components/Share/Header";
+import MainFollowingList from '../followingList/MainFollowingList';
 import MainFollowerList from "../followerList/MainfollowerList";
 import axios from "axios";
 import base_url from "../../base_url";
@@ -95,7 +96,7 @@ class Mypage extends Component {
           {twitList ? (
             <MyTwitList nickname={nickname} />
           ) : followingList ? (
-            <MainFollowerList />
+            <MainFollowingList />
           ) : (
             <MainFollowerList />
           )}

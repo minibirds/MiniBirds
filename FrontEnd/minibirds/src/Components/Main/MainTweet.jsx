@@ -22,26 +22,47 @@ class MainTweet extends Component {
     console.log(this.state.content);
   };
 
+  PostTwitImg = (e) => {
+    const { img } = this.state;
+    this.setState({
+      img: e.target.files[0]
+    });
+    axios({
+      method: "post",
+      url: `${base_url}/twit/img`,
+      data: {
+        'img': img 
+      },
+      headers: {
+        'token': `${localStorage.getItem('token')}`
+      }
+    }).then((res) => {
+      console.log(res);
+      console.log(img);
+    })
+  }
+
   PostTwitContent = () => {
-    const { userId, content, img } = this.state;
+    const { userId, content,} = this.state;
     axios({
       method: "post",
       url: `${base_url}/twit`,
       data: {
         userId: userId,
         content: content,
-        img: img
       },
       headers: {
         token: `${localStorage.getItem("token")}`
       }
     }).then(res => {
       window.location.reload();
+      console.log('asfghj');
     });
   };
 
   render() {
-    const { handleChange, PostTwitContent } = this;
+    const { handleChange, PostTwitContent, PostTwitImg } = this;
+
     return (
       <div className="tweet">
         <div className="tweet-header">
@@ -58,8 +79,8 @@ class MainTweet extends Component {
         </div>
 
         <div className="tweet-footer">
-          <img className="btn-gallery" src={Gallery} alt="gallery" />
-          <input type="file" accept="image/*" />
+          <img className="btn-gallery" src={Gallery} alt="gallery"/>
+          <input type="file" accept="image/*" onChange={(e) => PostTwitImg(e) } id='img' name='img' />
           <input
             className="btn-tweet"
             type="button"

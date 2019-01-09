@@ -10,7 +10,7 @@ class Tapba extends Component {
         this.state = {
             twitNumber: 0,
             followerNumber: 0,
-            followingNumber: 0
+            followingNumber: 0  
         }
     }
 
@@ -127,10 +127,15 @@ class Tapba extends Component {
     }
 
     OnClickTabbarElement = (e) => {
+        
         const { ListToggle } = this.props;        
         const TargetClass = e.target.className;
-
         ListToggle(TargetClass);
+
+        if ( TargetClass === 'table-twit'){
+            e.target.className = 'on-table-twit';
+            
+        }
     }
 
     render() {

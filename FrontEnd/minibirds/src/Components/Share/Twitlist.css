@@ -17,10 +17,10 @@
 }
 
 .twit-content:hover .delete-btn {
+    margin: 0px 0 0 730px;
     display: inline;
     font-size: 30px;
-    position: absolute;
-    right: 0px;     
+    position: absolute;   
     top: -20px;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .date {
-    margin: 20px 0 0 475px;
+    margin: 20px 0 0 680px;
     font-size: 20px;
     color: #666666;
 }
