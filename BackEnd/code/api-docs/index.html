@@ -482,7 +482,7 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
   }
 ]</code></pre><p>게시물의 id로 식별하여 게시물에 달린 모든 멘션을 가져온다.<br>멘션이 속한 게시물의 id, 멘션을 작성한 작성자의 id도 반환한다.  </p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>POST http://example.com/ment/:&lt;postId&gt;</code></p>
+<p><code>GET http://example.com/:&lt;postId&gt;</code></p>
 <h3 id="request-body">Request Body</h3>
 <table>
 <thead>
@@ -510,8 +510,8 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 </thead>
 <tbody>
 <tr>
-<td>201</td>
-<td>멘션을 등록했습니다.</td>
+<td>200</td>
+<td>멘션을 가져왔습니다.</td>
 </tr>
 <tr>
 <td>404</td>
@@ -522,14 +522,13 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 <h2 id="post">post</h2>
 <pre class="highlight json"><code>[
   {
-    <span class="hljs-attr">"id"</span>: <span class="hljs-string">"(게시물 고유의 id)"</span>,
-    <span class="hljs-attr">"user_id"</span>: <span class="hljs-string">"(게시물 작성자의 id)"</span>,
+    <span class="hljs-attr">"postId"</span>: <span class="hljs-string">"(게시물 고유의 id)"</span>,
+    <span class="hljs-attr">"userId"</span>: <span class="hljs-string">"(게시물 작성자의 id)"</span>,
     <span class="hljs-attr">"content"</span>: <span class="hljs-string">"(게시물의 텍스트 내용)"</span>,
-    <span class="hljs-attr">"img"</span>: <span class="hljs-string">"(게시물 이미지가 저장된 경로)"</span>
   }
 ]</code></pre><p>사용자의 id로 식별하여 트윗을 게시한다.</p>
 <h3 id="http-request">HTTP Request</h3>
-<p><code>POST http://example.com/ment/:&lt;id&gt;</code></p>
+<p><code>POST http://example.com/</code></p>
 <h3 id="request-body">Request Body</h3>
 <table>
 <thead>
@@ -543,17 +542,12 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 <tr>
 <td>content</td>
 <td>varchar(1000)</td>
-<td>게시물의 텍스트 내용(1000자 제한)</td>
+<td>게시물의 텍스트 내용(100자 제한)</td>
 </tr>
 <tr>
-<td>img</td>
-<td>multipart-formdata</td>
-<td>게시물의 이미지 내용(1장 제한)</td>
-</tr>
-<tr>
-<td>id</td>
+<td>postId</td>
 <td>int</td>
-<td>멘션을 업로드한 사용자의 id 정보  </td>
+<td>멘션을 등록할 게시물의 id 정보  </td>
 </tr>
 </tbody>
 </table>
@@ -567,8 +561,8 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 </thead>
 <tbody>
 <tr>
-<td>200</td>
-<td>트윗을 게시했습니다.</td>
+<td>201</td>
+<td>멘션을 게시했습니다.</td>
 </tr>
 <tr>
 <td>404</td>
@@ -581,7 +575,7 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
    <span class="hljs-attr">"status"</span>: <span class="hljs-number">200</span>,
    <span class="hljs-attr">"message"</span>: <span class="hljs-string">"멘션을 삭제했습니다."</span>
 }</code></pre><h3 id="http-request">HTTP Request</h3>
-<p><code>DELETE http://example.com/ment/:&lt;id&gt;/:&lt;user_id&gt;</code></p>
+<p><code>DELETE http://example.com/:&lt;postId&gt;/:&lt;mentId&gt;</code></p>
 <h3 id="url-parameters">URL Parameters</h3>
 <table>
 <thead>
@@ -593,14 +587,14 @@ img는 업로드 시 AWS S3의 uploads 폴더에 보관되며 DB에는 이미지
 </thead>
 <tbody>
 <tr>
-<td>id</td>
+<td>mentId</td>
 <td>int</td>
 <td>삭제할 멘션의 고유 id</td>
 </tr>
 <tr>
-<td>user_id</td>
+<td>postId</td>
 <td>int</td>
-<td>삭제할 게시물 작성자의 고유 id</td>
+<td>삭제할 멘션이 소속된 게시물의 고유 id</td>
 </tr>
 </tbody>
 </table>
