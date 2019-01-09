@@ -17,6 +17,11 @@ router.post('/', (req, res)=>{
     try {
         let auth = verify(token, process.env.JWT_SECRET);
         if(auth) {
+            if(!req.body.targetId) {
+                err.message = '팔로우 하려는 대상이 없습니다';
+                err.status = 404;
+                throw err;
+            }
             Following.create({
                 FollowingId: req.body.targetId,
                 userId: auth
