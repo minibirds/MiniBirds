@@ -28,45 +28,33 @@ class MyTwitList extends Component {
     };
   }
 
-  componentDidMount() {
+  componenDidMount() {
     this.GetMyTwitInfo();
     this.GetMyProfileImg();
   }
 
   GetMyTwitInfo = () => {
-    axios
-      .get(`${base_url}/twit`, {
-        headers: {
-          token: `${localStorage.getItem("token")}`
-        }
-      })
-      .then(res => {
-        console.log(res.data);
-        this.setState({
-          postId: res.data.postId,
-          content: res.data.content,
-          img: res.data.img,
-          created_At: res.data.created_At
-        });
+    axios.get(`${base_url}/twit`, {
+      headers: {
+        'token': `${localStorage.getItem('token')}`
+      }
+    }).then((res) => {
+      console.log(res.data);
+      this.setState({
+        postId: res.data.postId,
+        content: res.data.content,
+        img: res.data.img,
+        created_At: res.data.created_At
       });
+    });
   };
 
   GetMyProfileImg = () => {
-    axios
-      .post(`${base_url}/profile/img`, {
-        headers: {
-          token: `${localStorage.getItem("token")}`
-        }
-      })
-      .then(res => {
-        this.setState({
-          userImg: res.data.img
-        });
-      });
-  };
-
-  GetMyProfileImg = () => {
-    axios.post(`${base_url}/profile/img`).then(res => {
+    axios.post(`${base_url}/profile/img`, {
+      headers: {
+        'token': `${localStorage.getItem('token')}`
+      }
+    }).then((res) => {
       this.setState({
         userImg: res.data.img
       });
@@ -84,7 +72,11 @@ class MyTwitList extends Component {
         userImg={item.userImg}
       />
     ));
-    return <div className="mytwitlist-background-box">{MyTwit}</div>;
+    return (
+      <div className="mytwitlist-background-box">
+        {MyTwit}
+      </div>
+    );
   }
 }
 
