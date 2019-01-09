@@ -15,6 +15,7 @@ class MainTweet extends Component {
     };
   }
 
+  //내용 입력 시 state 초기화 시켜주는 함수
   handleChange = e => {
     this.setState({
       content: e.target.value
@@ -22,47 +23,27 @@ class MainTweet extends Component {
     console.log(this.state.content);
   };
 
-  PostTwitImg = (e) => {
-    const { img } = this.state;
-    this.setState({
-      img: e.target.files[0]
-    });
-    axios({
-      method: "post",
-      url: `${base_url}/twit/img`,
-      data: {
-        'img': img 
-      },
-      headers: {
-        'token': `${localStorage.getItem('token')}`
-      }
-    }).then((res) => {
-      console.log(res);
-      console.log(img);
-    })
-  }
-
+  //트윗 작성 내용을 서버에 보내는 함수
   PostTwitContent = () => {
-    const { userId, content,} = this.state;
+    const { userId, content, img } = this.state;
     axios({
       method: "post",
       url: `${base_url}/twit`,
       data: {
         userId: userId,
         content: content,
+        img: img
       },
       headers: {
         token: `${localStorage.getItem("token")}`
       }
     }).then(res => {
       window.location.reload();
-      console.log('asfghj');
     });
   };
 
   render() {
-    const { handleChange, PostTwitContent, PostTwitImg } = this;
-
+    const { handleChange, PostTwitContent } = this;
     return (
       <div className="tweet">
         <div className="tweet-header">
@@ -79,8 +60,8 @@ class MainTweet extends Component {
         </div>
 
         <div className="tweet-footer">
-          <img className="btn-gallery" src={Gallery} alt="gallery"/>
-          <input type="file" accept="image/*" onChange={(e) => PostTwitImg(e) } id='img' name='img' />
+          <img className="btn-gallery" src={Gallery} alt="gallery" />
+          <input type="file" accept="image/*" />
           <input
             className="btn-tweet"
             type="button"

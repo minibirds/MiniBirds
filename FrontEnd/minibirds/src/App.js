@@ -1,76 +1,58 @@
-import React, { Component } from "react";
-import "./App.css";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SigninPage from "./Components/Share/SigninPage";
-import MainService from "./container/MainService/MainService";
-import SignupPage from "./Components/Share/SignupPage";
-import Mypage from "./container/Mypage/Mypage";
-import EditInfo from "./container/EditInfo/EditInfo";
+import React, { Component } from 'react';
+import './App.css';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import SigninPage from './Components/Share/SigninPage';
+import MainService from './container/MainService/MainService';
+import SignupPage from './Components/Share/SignupPage';
+import Mypage from './container/Mypage/Mypage';
+import EditInfo from './container/EditInfo/EditInfo';
 
 class App extends Component {
   state = {
-    id: "",
-    nickname: "",
-    pw: "",
-    intro: ""
-  };
-  getUserData = (id, nickname, pw, intro) => {
+    id: '',
+    nickname: '',
+    pw: '',
+    intro: '',
+    followingList: []
+  }
+
+  //현재 사용자의 아이디, 닉네임, 패스워드, 자기소개를 가져오는 함수
+  getSigninData = (id, nickname, pw, intro) => {
     this.setState({
+      ...this.state,
       id,
       nickname,
       pw,
-      intro
+      intro,
     });
-  };
-  
+  }
   render() {
-    const { id, nickname, pw, intro } = this.state;
+
     return (
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
             <Switch>
+              <Route path='/' component={() => <MainService history={this.history}/>} exact />
               <Route
-                path="/"
-                render={() => <MainService history={this.history} id={id} nickname={nickname}  />}
+                path='/signin'
+                component={() => <SigninPage history={this.history} signin={this.getSigninData}/>}
                 exact
               />
+              <Route path='/signup' component={SignupPage} exact/>
+              <Route path='/mypage' component={() => <Mypage history={this.history} />} />
               <Route
-                path="/signin"
-                component={() => (
-                  <SigninPage
-                    history={this.history}
-                    signin={this.getUserData}
-                  />
-                )}
-                exact
-              />
-              <Route path="/signup" component={SignupPage} exact />
-              <Route
-                path="/mypage"
-                render={() => (
-                  <Mypage
-                    history={this.history}
-                    getUserData={this.getUserData}
-                    id={id}
-                    nickname={nickname}
-                    pw={pw}
-                    intro={intro}
-                  />
-                )}
-              />
-              <Route
-                path="/edit"
-                component={() => (
-                  <EditInfo
-                    id={id}
-                    nickname={nickname}
-                    pw={pw}
-                    intro={intro}
-                    history={this.history}
-                  />
-                )}
-              />
+                path='/edit'
+                component={() =>
+                    <EditInfo 
+                      id={this.state.id}
+                      nickname={this.state.nickname}
+                      pw={this.state.pw}
+                      intro={this.state.intro}
+                      history={this.history}
+                    />
+                  }
+                />
             </Switch>
           </React.Fragment>
         </BrowserRouter>
@@ -80,3 +62,4 @@ class App extends Component {
 }
 
 export default App;
+

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import axios from 'axios';
 import './Signin.css';
 import base_url from '../../base_url';
@@ -70,7 +70,7 @@ class Signin extends Component {
                 </div>
                 <div className="info-box">
                     <div className="no-account">계정이 없으신가요?</div>
-                    <div className="go-signin">회원가입</div>
+                    <Link to='/signup'><div className="go-signin">회원가입</div></Link>
                 </div>
                 <div className={errorClassName}>아이디 또는 비밀번호가 잘못되었습니다.</div>
             </div>
