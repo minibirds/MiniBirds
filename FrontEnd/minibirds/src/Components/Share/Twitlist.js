@@ -37,9 +37,17 @@ class TwitList extends Component {
     if (TwitList.className === 'twit-content') {
       TwitList.className = 'twit-content-del';
     }
+
   }
 
   render() {
+
+    let deleteClassName = "delete-btn";
+    if(this.state.id != this.state.postId)
+    {
+      deleteClassName += "hidden";
+    }
+
     const { content, img, created_At, mentionNum, userNickname, userImg, heartNum } = this.state
     const {
       ChangeHeartImg,
