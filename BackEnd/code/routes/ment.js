@@ -44,6 +44,23 @@ router.post('/', async(req,res)=>{
     }
 });
 
-
+// 멘션을 가져오는 API
+router.get('/:postId', async (req, res)=>{
+   let err = {};
+   try {
+       let ments = await Ment.findAll({
+           where: {postId: req.params.postId}
+       });
+       if(ments) {
+           res.json(ments);
+       }
+   } catch (err) {
+       res.json({
+           message: err.message,
+           status: err.status
+       })
+   }
+});
+//TODO 멘션 삭제 API
 
 module.exports  = router;
