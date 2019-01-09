@@ -10,6 +10,7 @@ class MainFollowerList extends Component {
                 <FollowerList />
                 <FollowerList />
                 <FollowerList />
+                <FollowerList />
             </div>
         );
     }
