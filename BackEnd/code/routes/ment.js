@@ -61,6 +61,30 @@ router.get('/:postId', async (req, res)=>{
        })
    }
 });
-//TODO 멘션 삭제 API
+
+// 멘션을 삭제하는 API
+router.delete('/:postId/:mentId', async(req, res)=>{
+    let err = {};
+    let token = req.get('token');
+    try {
+        let auth = verify(token, process.env.JWT_SECRET);
+        if(auth) {
+            let ment = await Ment.findOne({
+                where: {userId: auth, postId: req.params.postId, mentId: req.params.mentId}
+            });
+            if(ment) {
+                await Ment.destroy({
+                    where: {mentId: req.params.mentId}
+                });
+                res.json({message: '멘션이 삭제되었습니다'})
+            }
+        }
+    } catch(err) {
+        res.json({
+                status: err.status,
+                message: err.message
+            })
+    }
+});
 
 module.exports  = router;
