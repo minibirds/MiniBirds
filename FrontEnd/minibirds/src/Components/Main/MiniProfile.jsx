@@ -26,7 +26,7 @@ class MiniProfile extends Component {
     }
   }
 
-  
+  //트윗 수 가져오는 함수
   GetTwitNum = () => {
     axios.get(`${base_url}/twit`, {
       headers: {
@@ -40,6 +40,7 @@ class MiniProfile extends Component {
     })
   }
 
+  //팔로워 수 가져오는 함수
   GetFollowerNum = () => {
     axios.get(`${base_url}/follower`, {
       headers: {
@@ -53,6 +54,7 @@ class MiniProfile extends Component {
     })
   }
 
+  //팔로잉 수 가져오는 함수
   GetFollowingNum = () => {
     axios.get(`${base_url}/following`, {
       headers: {

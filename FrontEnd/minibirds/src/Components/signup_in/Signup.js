@@ -18,18 +18,21 @@ class Signup extends Component {
         };
     }
 
+    //정보 입력 시 그에따라 state를 초기화 해주는 함수
     ChangeInput = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         });
     }
 
+    //만일 Enter를 눌렀을 시 회원가입 버튼을 클릭하는 것과 같은 동작을 하게 하는 함수
     handleKeyPress = (e) => {
         if(e.key === 'Enter') {
             this.postUserInfo();
         }
     }
 
+    //입력 정보를 서버에 보내는 함수
     postUserInfo = () => {
         const {history} = this.props;
         const {id, password, nickname} = this.state;

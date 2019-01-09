@@ -20,23 +20,6 @@ class Main extends Component {
     }
   }
 
-  componentDidMount() {
-    this.GetTwitInfo();
-  }
-
-  GetTwitInfo = () => {
-    axios.get(`${base_url}`)
-    .then((response) => {
-      this.setState({
-        postID: response.data.postID,
-        userID: response.data.userID,
-        content: response.data.content,
-        img: response.data.img,
-        created_At: response.data.created_At
-      });
-    })
-  }
-
   render() {
     const {id, nickname} = this.props;
     return(

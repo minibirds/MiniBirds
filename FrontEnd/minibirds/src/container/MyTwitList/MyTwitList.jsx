@@ -33,6 +33,7 @@ class MyTwitList extends Component {
     this.GetMyProfileImg();
   }
 
+  //자신의 트윗 정보를 가져오는 함수
   GetMyTwitInfo = () => {
     axios.get(`${base_url}/twit`, {
       headers: {
@@ -49,6 +50,7 @@ class MyTwitList extends Component {
     });
   };
 
+  //자신의 프로필 이미지를 가져오는 함수
   GetMyProfileImg = () => {
     axios.post(`${base_url}/profile/img`, {
       headers: {

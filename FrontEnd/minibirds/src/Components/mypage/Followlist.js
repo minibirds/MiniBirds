@@ -17,6 +17,7 @@ class Followlist extends Component {
         }
     }
 
+    //버튼 클릭 시 팔로잉 상태를 바꿔주는 함수
     handleBtnChange = () => {
         const changeBtn = document.getElementById('follow-btn');
         let followNum;

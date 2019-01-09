@@ -11,6 +11,7 @@ class Header extends Component {
         this.state = {  }
     }
 
+    //트윗하기를 눌렀을 시 트윗하기 컴포넌트를 보여주는 함수
     AppearTwitComponent = () => {
         const TwitBackground = document.getElementById('small-twit-back');
     
@@ -21,6 +22,7 @@ class Header extends Component {
         }
     };
     
+    //로그아웃을 하는 함수
     AppearConfirm = () => {
         // eslint-disable-next-line no-unused-expressions
         window.confirm('로그아웃 하시겠습니까?') ? localStorage.setItem('token', '') : null ;
@@ -29,6 +31,7 @@ class Header extends Component {
         
     }
 
+    //토큰이 있는지 확인하는 함수
     CheckToken = () => {
         const {history} = this.props;
         if(localStorage.getItem('token') === ''){

@@ -19,6 +19,7 @@ class TwitList extends Component {
     }
   }
 
+  //마음을 누를 시 마음이 채워지고 비워지게 하는 토글 함수
   ChangeHeartImg = () => {
     const HeartStatus = document.getElementById("heart-img");
     if (HeartStatus.className === "heart-img") {
@@ -31,6 +32,7 @@ class TwitList extends Component {
     }
   }
   
+  //트윗을 없앨 수 있게 하는 함수
   DeleteTwitList = () => {
     const TwitList = document.getElementById('twit-content');
   
@@ -41,7 +43,7 @@ class TwitList extends Component {
   }
 
   render() {
-
+    //자신의 트윗만 제거할 수 있게 하는 코드
     let deleteClassName = "delete-btn";
     if(this.state.id != this.state.postId)
     {

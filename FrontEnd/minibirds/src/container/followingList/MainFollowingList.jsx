@@ -28,6 +28,7 @@ class MainFollowingList extends Component {
         this.GetFollowingInfo();
     }
 
+    //자신의 팔로잉의 정보를 가져오는 함수
     GetFollowingInfo = () => {
         axios.get(`${base_url}/following`, {
             headers: {
@@ -36,11 +37,11 @@ class MainFollowingList extends Component {
         })
         .then((res) => {
             console.log("팔로잉 정보");
-            // console.log(res.data.list[0].nickname);
-            // this.setState({
-            //     nickname: res.data.list[0].nickname,
-            //     intro: res.data.list[0].intro,
-            // });
+            console.log(res.data.list[0].nickname);
+            this.setState({
+                nickname: res.data.list.nickname,
+                intro: res.data.list.intro,
+            });
             console.log(this.state.nickname);
             console.log(this.state.intro);
             if (res.data.img === '') {

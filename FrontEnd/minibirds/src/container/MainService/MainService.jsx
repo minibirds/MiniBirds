@@ -16,6 +16,7 @@ class MainService extends Component {
     this.handleConnect();
   }
 
+  //토큰이 있는지 없는지 검사하는 함수
   CheckToken = () => {
     const { history } = this.props;
     if (localStorage.getItem("token") === "") {
@@ -23,6 +24,7 @@ class MainService extends Component {
     }
   };
 
+  //사용자의 아이디, 닉네임, 패스워드, 정보를 가져오는 함수
   handleConnect = () => {
     axios
       .get(`${base_url}/auth/token`, {

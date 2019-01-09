@@ -18,6 +18,7 @@ class MainTwitList extends Component {
         }
     }
 
+    //자신이 팔로우 한 사용자의 트윗을 가져오는 함수
     GetFollowTwitInfo = () => {
         axios.get(`${base_url}/`)
         .then((res) => {

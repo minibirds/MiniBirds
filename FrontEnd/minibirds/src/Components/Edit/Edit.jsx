@@ -16,12 +16,14 @@ class Edit extends Component {
     };
   }
   render() {
+    //입력 시 state 초기화  함수
     this.handleChange = e => {
       this.setState({
         [e.target.name]: e.target.value
       });
     };
 
+    //입력한 내용을 기반으로 정보를 수정하는 함수
     this.handleModify = () => {
       const { history } = this.props;
       axios

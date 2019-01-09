@@ -12,11 +12,14 @@ class Signin extends Component {
         check: false,
     }
 
+    //정보 입력 시 그에따라 state를 초기화 해주는 함수
     handleChange = (e) => {
         this.setState({
             [e.target.name] : e.target.value
         })
     }
+
+    //로그인 정보를 서버에 보내는 함수
     handleLogin = () => {
         const {id, pw} = this.state;
         const userInfo = {id: id, password: pw};

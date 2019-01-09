@@ -25,6 +25,7 @@ class Mypage extends Component {
     this.handleConnect();
   }
 
+  //탭바 선택 시 해당 컴포넌트를 보여주게 하는 함수
   ListToggle = TargetClass => {
     switch (TargetClass) {
       case "table-twit":
@@ -53,6 +54,7 @@ class Mypage extends Component {
     }
   };
 
+  //토큰이 있는지 없는지 확인하는 코드
   CheckToken = () => {
     const { history } = this.props;
     if (localStorage.getItem("token") === "") {
@@ -60,6 +62,7 @@ class Mypage extends Component {
     }
   };
 
+  //사용자의 아이디, 닉네임, 비밀번호, 자기소개를 가져오는 함수
   handleConnect = () => {
     axios
       .get(`${base_url}/auth/token`, {
