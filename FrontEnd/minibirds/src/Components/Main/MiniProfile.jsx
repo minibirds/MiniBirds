@@ -12,71 +12,74 @@ class MiniProfile extends Component {
      this.GetTwitNum();
      this.GetFollowerNum();
      this.GetFollowingNum();
+     this.GetUserInfo();
    }
 
   constructor(props) {
     super(props);
     this.state = { 
+      id: '',
+      password: '',
       twitNum: 0,
       followerNum: 0,
       followingNum: 0,
-      userID: this.props.id,
-      userNickname: this.props.Nickname,
-      ProfileImg: ProfileImg
+      userID: '@NULL',
+      userNickname: '계정이 없습니다.'
     }
   }
 
+  GetUserInfo = () => {
+    axios({
+      method: 'post',
+      url: `${base_url}/auth/signIn`,
+      data: {
+        id: '',
+        password: ''
+      }
+    })
+    .then((response) => {
+      console.log(response);
+    }) 
+  }
+
   GetTwitNum = () => {
-    axios.get(`${base_url}/twit`, {
-        headers: {
-            'token': `${localStorage.getItem('token')}`
-        }
-      })
+    axios.get(`${base_url}/twit`)
     .then((response) => {
       this.setState({
         twitNum: response.data.num
       });
     })
-}
+  }
 
   GetFollowerNum = () => {
-    axios.get(`${base_url}/follower`, {
-        headers: {
-            'token': `${localStorage.getItem('token')}`
-        }
-      })
+    axios.get(`${base_url}/follower`)
     .then((response) => {
-        this.setState({
-            followerNum: response.data.num
-        });
+      this.setState({
+        followerNum: response.data.num
+      });
     })
-}
+  }
 
   GetFollowingNum = () => {
-    axios.get(`${base_url}/following`, {
-        headers: {
-            'token': `${localStorage.getItem('token')}`
-        }
-      })
+    axios.get(`${base_url}/following`)
     .then((response) => {
-        this.setState({
-            followingNum: response.data.num
-        });
+      this.setState({
+        followingNum: response.data.num
+      });
     })
-}
+  }
 
   render() { 
-    const {twitNum, followerNum, followingNum,} = this.state;
-    const { id, nickName } = this.props;
+    const {twitNum, followerNum, followingNum, userID, userNickname} = this.state;
 
     return ( 
       <div className="mini__main--profile">
-        <Link to='/mypage'>          
+        <Link to='/mypage/twitlist'>          
           <div className="upper-profile">
             <img className="upper-img" src={ProfileImg} alt="Profile_Photo" />
             <span className="upper-text">
-              <div className="upper-name">{nickName}</div>
-              <div className="upper-id">@{id}</div>
+              <div className="upper-name">{userNickname}</div>
+              <div className="upper-id">{userID}</div>
             </span>
           </div>
         </Link>
@@ -87,11 +90,11 @@ class MiniProfile extends Component {
             <div className="lowwer-body">{twitNum}</div>
           </span>
           <span className="lowwer-following">
-            <div className="lowwer-title">팔로워</div>
+            <div className="lowwer-title">팔로잉</div>
             <div className="lowwer-body">{followerNum}</div>
           </span>
           <span className="lowwer-follower">
-            <div className="lowwer-title">팔로잉</div>
+            <div className="lowwer-title">팔로워</div>
             <div className="lowwer-body">{followingNum}</div>
           </span>
         </div>

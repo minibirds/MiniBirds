@@ -38,12 +38,11 @@ class Main extends Component {
   }
 
   render() {
-    const {id, nickname} = this.props;
     return(
       <div className='main-page'>
-        <MiniProfile id={id} nickName={nickname}/>
+        <MiniProfile/>
         <div className="main-middle">
-          <MainTweet />
+          <MainTweet/>
           <MainTwitList />
         </div>
         <Introduction/>

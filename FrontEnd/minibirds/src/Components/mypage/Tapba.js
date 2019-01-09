@@ -21,11 +21,7 @@ class Tapba extends Component {
     }
 
     GetTwitNum = () => {
-        axios.get(`${base_url}/twit`, {
-            headers: {
-                'token': `${localStorage.getItem('token')}`
-            }
-          })
+        axios.get(`${base_url}/twit/${this.state.id}`)
         .then((response) => {
           this.setState({
             twitNumber: response.data.num
@@ -34,11 +30,7 @@ class Tapba extends Component {
     }
     
     GetFollowerNum = () => {
-        axios.get(`${base_url}/follower`, {
-            headers: {
-                'token': `${localStorage.getItem('token')}`
-            }
-          })
+        axios.get(`${base_url}/follower/${this.state.id}`)
         .then((response) => {
             this.setState({
                 followerNumber: response.data.num
@@ -47,11 +39,7 @@ class Tapba extends Component {
     }
 
     GetFollowingNum = () => {
-        axios.get(`${base_url}/following`, {
-            headers: {
-                'token': `${localStorage.getItem('token')}`
-            }
-          })
+        axios.get(`${base_url}/following/${this.state.id}`)
         .then((response) => {
             this.setState({
                 followingNumber: response.data.num
@@ -115,27 +103,25 @@ class Tapba extends Component {
     }
 
     onClickTwitList = () => {
-        
+        const { history } = this.props;
+        history.push('/mypage/twitlist');
         this.handleTwitColorChange();
     }
 
     onClickFollower = () => {
+        const { history } = this.props;
+        history.push('/mypage/followers');
         this.handleFollowerColorChange();
     }
 
     onClickFollowing = () => {
+        const { history } = this.props;
+        history.push('/mypage/following');
         this.handleFollowingColorChange();
     }
 
-    OnClickTabbarElement = (e) => {
-        const { ListToggle } = this.props;        
-        const TargetClass = e.target.className;
-
-        ListToggle(TargetClass);
-    }
-
     render() {
-        const { twitNumber, followerNumber, followingNumber } = this.state;
+        const { twitNum, followerNum, followingNum } = this.state;
         const {
             onClickTwitList,
             onClickFollower,
@@ -148,14 +134,14 @@ class Tapba extends Component {
                     <table className="letter-table">
                         <tbody>
                             <tr className="first-table">
-                                <td onClick={(e) => this.OnClickTabbarElement(e)} className="table-twit" id="table-twit">나의 트윗</td>
-                                <td onClick={(e) => this.OnClickTabbarElement(e)} className="table-follower" id="table-follower">팔로워</td>
-                                <td onClick={(e) => this.OnClickTabbarElement(e)}  className="table-following" id="table-following">팔로잉</td>
+                                <td onClick={() => onClickTwitList()} className="table-twit" id="table-twit">나의 트윗</td>
+                                <td onClick={() => onClickFollowing()}  className="table-following" id="table-following">팔로잉</td>
+                                <td onClick={() => onClickFollower()} className="table-follower" id="table-follower">팔로워</td>
                             </tr>
                             <tr className="second-table">
-                                <td className="twit-number" id="twit-number" onClick={() => onClickTwitList()}>{twitNumber}</td>
-                                <td className="follower-number" id="follower-number" onClick={() => onClickFollower()}>{followerNumber}</td>
-                                <td className="following-number" id="following-number" onClick={() => onClickFollowing()}>{followingNumber}</td>
+                                <td className="twit-number" id="twit-number" onClick={() => onClickTwitList()}>{twitNum}</td>
+                                <td className="following-number" id="following-number" onClick={() => onClickFollowing()}>{followingNum}</td>
+                                <td className="follower-number" id="follower-number" onClick={() => onClickFollower()}>{followerNum}</td>
                             </tr>
                         </tbody>
                     </table>

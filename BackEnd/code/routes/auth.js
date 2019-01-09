@@ -39,7 +39,7 @@ router.post('/signIn', async (req, res)=> {
                     },
                     process.env.JWT_SECRET, // 비밀키
                     {
-                        expiresIn: '15m' // 유효시간 6시간
+                        expiresIn: '6h' // 유효시간 6시간
                     }
                 );
                 return token;
@@ -88,19 +88,13 @@ router.post('/signUp', async (req, res)=>{
 
 // 토큰이 발급되었고 유효한지 검사하는 API
 router.get('/token', async (req, res)=>{
-   let token = req.get("token");
+   let token = req.cookies.sign;
    let err = {};
    if(token) {
        try {
-           let auth = await verify(token, process.env.JWT_SECRET);
-           if(auth) {
-               const user = await User.findOne({
-                   where: { id : auth }
-               });
-               if(user) {
-                   res.json(user);
-               }
-           }
+           let result = await verify(token, process.env.JWT_SECRET);
+           if(result < 0) throw err;
+           res.json(result);
        } catch (err) {
                res.json({
                    status: 401,

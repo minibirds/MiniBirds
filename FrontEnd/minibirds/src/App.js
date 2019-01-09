@@ -14,8 +14,9 @@ class App extends Component {
     pw: '',
     intro: '',
   }
-  getUserData = (id, nickname, pw, intro) => {
+  getSigninData = (id, nickname, pw, intro) => {
     this.setState({
+      ...this.state,
       id,
       nickname,
       pw,
@@ -23,20 +24,20 @@ class App extends Component {
     });
   }
   render() {
-    const { id, nickname, intro } = this.state;
+
     return (
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
             <Switch>
-              <Route path='/' render={() => (<MainService history={this.history} id={id} nickname={nickname} getUserData={this.getUserData} />) } exact />
+              <Route path='/' component={() => <MainService history={this.history}/>} exact />
               <Route
                 path='/signin'
-                component={() => <SigninPage history={this.history} signin={this.getUserData}/>}
+                component={() => <SigninPage history={this.history} signin={this.getSigninData}/>}
                 exact
               />
               <Route path='/signup' component={SignupPage} exact/>
-              <Route path='/mypage' render={() => <Mypage id={id} nickname={nickname} intro={intro} history={this.history} getUserData={this.getUserData} />} />
+              <Route path='/mypage' component={() => <Mypage history={this.history} />} />
               <Route
                 path='/edit'
                 component={() =>
@@ -45,6 +46,7 @@ class App extends Component {
                       nickname={this.state.nickname}
                       pw={this.state.pw}
                       intro={this.state.intro}
+                      history={this.history}
                     />
                   }
                 />

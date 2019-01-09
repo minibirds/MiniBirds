@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Twitlist from '../../Components/Share/Twitlist';
+import TwitList from '../../Components/Share/Twitlist';
 import TwitProfileImg from '../../Components/img/profile-img-default.png'
 import axios from 'axios';
 import base_url from '../../base_url';
@@ -35,7 +35,7 @@ class MainTwitList extends Component {
         const { twitList } = this.state;
         const MainTwit = twitList.map(
             ({postId, userNickname, content, img, created_At, userImg}) => (
-                <Twitlist 
+                <TwitList 
                 postId={postId}
                 userNickname={userNickname}
                 content={content}

@@ -22,11 +22,7 @@ class Followlist extends Component {
     }
     
     GetUserInfo = () => {
-        axios.get(`${base_url}/follower`, {
-            headers: {
-                'token': `${localStorage.getItem('token')}`
-            }
-          })
+        axios.get(`${base_url}/follower/${this.state.id}`)
         .then((response) => {
             this.setState({
                 intro: response.data.intro
@@ -43,11 +39,7 @@ class Followlist extends Component {
             this.setState({
                 followState: '팔로우'
             });
-            axios.get(`${base_url}/following`, {
-                headers: {
-                    'token': `${localStorage.getItem('token')}`
-                }
-              })
+            axios.get(`${base_url}/following`)
             .then((response) => {
                 followNum = response.data.num;
                 followNum -= 1;
@@ -58,9 +50,6 @@ class Followlist extends Component {
                     url: `${base_url}/following`,
                     data: {
                         num: followNum
-                    },
-                    headers: {
-                        'token': `${localStorage.getItem('token')}`
                     }
                 })
             })
