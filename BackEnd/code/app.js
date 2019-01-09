@@ -1,9 +1,6 @@
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
-const session = require('express-session');
-let winston =  require('winston');
 // .env 파일을 읽어 process.env 객체에 넣음
 require('dotenv').config();
 const sequelize = require('./models').sequelize;
@@ -15,16 +12,7 @@ const followingRouter = require('./routes/following');
 const followerRouter = require('./routes/follower');
 const profileRouter = require('./routes/profile');
 
-// logging 설정
-const logger = winston.createLogger({
-    level: 'info',
-    format: winston.format.json(),
-    transports: [
-        new winston.transports.File({ filename : 'info.log'}),
-        new winston.transports.File({ filename : 'error.log'}),
-    ]
-});
-
+const logger = require('./logger');
 const app = express();
 sequelize.sync();
 
