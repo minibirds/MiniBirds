@@ -12,7 +12,6 @@
 }
 
 .letter-box{
-    width: 80%;
     display: inline-block;
     position: relative;
 }
