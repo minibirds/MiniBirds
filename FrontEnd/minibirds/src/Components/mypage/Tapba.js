@@ -10,7 +10,13 @@ class Tapba extends Component {
         this.state = {
             twitNumber: 0,
             followerNumber: 0,
-            followingNumber: 0  
+            followingNumber: 0,
+            twitColor: document.getElementById('table-twit'),
+            FollowingColor: document.getElementById('table-following'),
+            FollowerColor: document.getElementById('table-follower'),
+            twitNumColor: document.getElementById('twit-number'),
+            FollowingNumColor: document.getElementById('following-number'),
+            FollowerNumColor: document.getElementById('follower-number')
         }
     }
 
@@ -20,6 +26,7 @@ class Tapba extends Component {
         this.GetFollowingNum();
     }
 
+    //트윗의 숫자를 가져오는 함수
     GetTwitNum = () => {
         axios.get(`${base_url}/twit`, {
             headers: {
@@ -33,6 +40,7 @@ class Tapba extends Component {
         })
     }
     
+    //팔로워 숫자를 가져오는 함수
     GetFollowerNum = () => {
         axios.get(`${base_url}/follower`, {
             headers: {
@@ -46,6 +54,7 @@ class Tapba extends Component {
         })
     }
 
+    //팔로잉 숫자를 가져오는 함수
     GetFollowingNum = () => {
         axios.get(`${base_url}/following`, {
             headers: {
@@ -59,13 +68,9 @@ class Tapba extends Component {
         })
     }
 
+    //글씨 활성화 함수
     handleTwitColorChange = () => {
-        const twitColor = document.getElementById('table-twit');
-        const FollowingColor = document.getElementById('table-following');
-        const FollowerColor = document.getElementById('table-follower');
-        const twitNumColor = document.getElementById('twit-number');
-        const FollowingNumColor = document.getElementById('following-number');
-        const FollowerNumColor = document.getElementById('follower-number');
+        const { twitColor, twitNumColor, FollowerColor, FollowingColor, FollowerNumColor, FollowingNumColor } = this.state;
 
         if (twitColor.className === 'table-twit') {
             twitColor.className = 'on-table-twit';
@@ -78,12 +83,7 @@ class Tapba extends Component {
     }
 
     handleFollowingColorChange = () => {
-        const twitColor = document.getElementById('table-twit');
-        const FollowingColor = document.getElementById('table-following');
-        const FollowerColor = document.getElementById('table-follower');
-        const twitNumColor = document.getElementById('twit-number');
-        const FollowingNumColor = document.getElementById('following-number');
-        const FollowerNumColor = document.getElementById('follower-number');
+        const { twitColor, twitNumColor, FollowerColor, FollowingColor, FollowerNumColor, FollowingNumColor } = this.state;
 
         if (FollowingColor.className === 'table-following') {
             FollowingColor.className = 'on-table-following';
@@ -96,12 +96,7 @@ class Tapba extends Component {
     }
 
     handleFollowerColorChange = () => {
-        const twitColor = document.getElementById('table-twit');
-        const FollowingColor = document.getElementById('table-following');
-        const FollowerColor = document.getElementById('table-follower');
-        const twitNumColor = document.getElementById('twit-number');
-        const FollowingNumColor = document.getElementById('following-number');
-        const FollowerNumColor = document.getElementById('follower-number');
+        const { twitColor, twitNumColor, FollowerColor, FollowingColor, FollowerNumColor, FollowingNumColor } = this.state;
 
         if (FollowerColor.className === 'table-follower') {
             console.log(1);
@@ -127,15 +122,10 @@ class Tapba extends Component {
     }
 
     OnClickTabbarElement = (e) => {
-        
         const { ListToggle } = this.props;        
         const TargetClass = e.target.className;
-        ListToggle(TargetClass);
 
-        if ( TargetClass === 'table-twit'){
-            e.target.className = 'on-table-twit';
-            
-        }
+        ListToggle(TargetClass);
     }
 
     render() {
